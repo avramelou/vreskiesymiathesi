@@ -85,6 +85,17 @@ hr {
   align-all: center;
 }
 
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  margin: 0 auto;
+  padding-top: 130px;
+}
+
+.caption-style{
+  font-size: small;
+}
+
 
 
 
