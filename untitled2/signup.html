@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ΒΡΕΣ ΚΙ ΕΣΥ ΜΙΑ ΘΕΣΗ! </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" href="logo.png"/>
+
+
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <meta name="theme-color" content="#fafafa">
+</head>
+<body class="text-center">
+
+<nav class="navbar navbar-dark navbar-expand bg-primary" >
+    <a class="navbar-brand" href="index.html"><img src="logo.png" alt="logo icon" height="15%" width="15%"/>ΒΡΕΣ ΚΙ ΕΣΥ ΜΙΑ ΘΕΣΗ!</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="index.html">ΑΡΧΙΚΗ</a>
+            <a class="nav-item nav-link" href="map.html">ΧΑΡΤΗΣ</a>
+            <a class="nav-item nav-link" href="new.html">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
+            <a class="nav-item nav-link" href="form.html">ΦΟΡΜΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</a>
+            <a class="nav-item nav-link" href="help.html">ΒΟΗΘΕΙΑ</a>
+        </div>
+    </div>
+    <a href="login.html"><button type="button" class="btn navbar-button">Σύνδεση</button></a>
+</nav>
+
+<form class="form-signin">
+    <img class="mb-4" src="logo.png" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal" style="font-size: medium">Δημιουργήστε έναν λογαριασμό</h1>
+    <label class="caption-style" for="inputUsername"> Εισάγετε το όνομα χρήστη </label>
+    <label for="inputUsername" class="sr-only">Όνομα χρήστη</label>
+    <input type="text" id="inputUsername" class="form-control" placeholder="Όνομα χρήστη" required autofocus>
+    <label class="caption-style" for="inputPassword"> Εισάγετε τον κωδικό </label>
+    <label for="inputPassword" class="sr-only">Κωδικός</label>
+    <input type="password" id="inputPassword" class="form-control" width="25%" placeholder="Κωδικός" required>
+    <label class="caption-style" for="inputUsername"> Επιβεβαιώστε τον κωδικό </label>
+    <label for="confirmPassword" class="sr-only">Επιβεβαίωση κωδικού</label>
+    <input type="password" id="confirmPassword" class="form-control" width="25%" placeholder="Επιβεβαίωση κωδικού" required> <br>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Εγγραφή</button>
+</form>
+</body>
+</html>
