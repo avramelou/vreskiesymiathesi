@@ -80,9 +80,42 @@ hr {
   border-color: #ffc107;
   position:relative;
 }
+.navbar-button:hover{
+  background-color: #e6ac00;
+  border-color: #e6ac00;
+}
 
 .navbar-nav{
   align-all: center;
+}
+
+.search-box-wrapper{
+  display: flex;
+  font-size: 15px;
+}
+.search-box-input{
+  font-size: inherit;
+  border: 0.2em solid #ffc107;
+  border-radius: 0.3em 0 0 0.3em;
+  padding: 0.3em;
+  outline: none;
+}
+.search-box-input:hover,
+.search-box-input:focus{
+  border-color: #e6ac00 ;
+}
+.search-box-button{
+  font-size: inherit;
+  border: 0.2em solid #ffc107;
+  border-radius: 0 0.3em 0.3em 0;
+  border-left: 0;
+  background-color: #ffc107;
+  padding: 0 0.8em;
+}
+.search-box-button:hover,
+.search-box-button:focus{
+  border-color: #e6ac00;
+  background-color: #e6ac00;
 }
 
 .form-signin {
