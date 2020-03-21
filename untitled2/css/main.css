@@ -163,6 +163,30 @@ hr {
   border-color: #e6ac00;
 }
 
+.new-location{
+  width: 50%;
+  max-width: 50%;
+  margin: 0 auto;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.submit-new-location{
+  background-color: #ffc107;
+  border: 0.5em solid #ffc107;
+  border-radius: 0.3em;
+  width: 52%;
+}
+
+.comments-new-location{
+  width: 52%;
+}
+.pin-image{
+  float: right;
+  width: 40%;
+  height: 20%;
+}
+
 audio,
 canvas,
 iframe,
