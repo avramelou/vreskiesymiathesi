@@ -131,9 +131,37 @@ hr {
 }
 
 .start-page{
-  padding: 50px;
+  padding: 70px;
 }
 
+.form-contact {
+  width: 100%;
+  max-width: 330px;
+  margin: 0 auto;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.submit-button{
+  background-color: #ffc107;
+  border: 0.5em solid #ffc107;
+  border-radius: 0.3em;
+}
+
+.submit-button:hover{
+  border-color: #e6ac00;
+  background-color: #e6ac00;
+}
+
+.reset-button{
+  padding: 0.3em;
+  border: 0.25em solid #ffc107;
+  border-radius: 0.3em;
+}
+
+.reset-button:hover{
+  border-color: #e6ac00;
+}
 
 audio,
 canvas,
@@ -160,6 +188,7 @@ fieldset {
 
 textarea {
   resize: vertical;
+  max-height: 300px;
 }
 
 /* ==========================================================================
