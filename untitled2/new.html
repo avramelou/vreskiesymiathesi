@@ -33,27 +33,27 @@
     </div>
     <a href="login.html"><button type="button" class="btn navbar-button">Σύνδεση</button></a>
   </nav>
-  <br>
+
   <div class="new-location">
     <img class="pin-image" src="pin.png" alt="pin on a map">
     <h5>Καταχώρηση νέας τοποθεσίας</h5><br>
     <form >
       <div>
         <label for="street">Οδός:</label><br>
-        <input id="street" type="text" required>
+        <input id="street" type="text" required><a style="color: red"> *</a>
       </div>
       <div>
         <label for="number">Αριθμός:</label><br>
-        <input id="number" type="number">
+        <input id="number" type="number" min="1">
       </div>
       <div>
         <label for="city">Πόλη:</label><br>
-        <input id="city" type="text" required>
+        <input id="city" type="text" required><a style="color: red"> *</a>
       </div>
       <div>
         <label for="postcode">Ταχυδρομικός Κώδικας:</label><br>
-        <input id="postcode" type="text" required>
-      </div>
+        <input id="postcode" type="text" required><a style="color: red"> *</a>
+      </div><br>
       <p>Επιλέξτε μια απο τις παρακάτω επιλογές:</p>
       <label for="notexist">Δεν υπάρχουν θέσεις</label>
       <input name="choice" id="notexist" type="radio"><br>
@@ -61,10 +61,12 @@
       <input name="choice" id="notenough" type="radio"><br>
       <label for="notregister">Υπάρχουν θέσεις αλλά δεν είναι καταχωρημένες στον χάρτη</label>
       <input name="choice" id="notregister" type="radio"><br>
-
       <div>
         <label for="comments">Σχόλια:</label><br>
         <textarea class="comments-new-location" id="comments" rows="5" cols="52" type="text"  placeholder="Γράψτε τα σχόλιά σας εδώ." maxlength="1500" ></textarea>
+      </div>
+      <div>
+        <a style="color: red">*</a><a><small>Υποχρεωτικά πεδία</small></a><br><br>
       </div>
       <!--<input class="submit-new-location" type="submit">-->
       <button class="submit-new-location" type="submit">Υποβολή</button>

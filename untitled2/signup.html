@@ -39,19 +39,37 @@
 
 
 <form class="form-signin">
-    <img class="mb-4" src="logo.png" alt="" width="150" height="100">
-    <h1 class="h3 mb-3 font-weight-normal" style="font-size: medium">Δημιουργήστε έναν λογαριασμό</h1>
+    <img class="mb-4" src="logo.png" alt="" width="178" height="100">
+    <h5>Δημιουργήστε έναν λογαριασμό</h5>
     <label class="caption-style" for="inputUsername"> Εισάγετε το όνομα χρήστη </label>
     <label for="inputUsername" class="sr-only">Όνομα χρήστη</label>
     <input type="text" id="inputUsername" class="form-control" placeholder="Όνομα χρήστη" required autofocus>
     <label class="caption-style" for="inputPassword"> Εισάγετε τον κωδικό </label>
     <label for="inputPassword" class="sr-only">Κωδικός</label>
-    <input type="password" id="inputPassword" class="form-control" width="25%" placeholder="Κωδικός" required>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Κωδικός" required>
+
+    <button class="eye-button" type="button" onclick="show()"><img src="visibility.png"></button>
+
     <label class="caption-style" for="inputUsername"> Επιβεβαιώστε τον κωδικό </label>
     <label for="confirmPassword" class="sr-only">Επιβεβαίωση κωδικού</label>
-    <input type="password" id="confirmPassword" class="form-control" width="25%" placeholder="Επιβεβαίωση κωδικού" required> <br>
+    <input type="password" id="confirmPassword" class="form-control" placeholder="Επιβεβαίωση κωδικού" required> <br>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Εγγραφή</button>
+    <button class="btn-block submit-signup" type="submit">Εγγραφή</button>
 </form>
+
+<script>
+    function show() {
+        var pw = document.getElementById("inputPassword");
+        var pw1 = document.getElementById("confirmPassword");
+        if(pw.type == "text"){
+            pw.type = "password";
+            pw1.type = "password";
+        } else {
+            pw.type = "text";
+            pw1.type = "text";
+        }
+    }
+</script>
+
 </body>
 </html>
