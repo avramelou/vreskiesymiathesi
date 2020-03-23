@@ -18,7 +18,7 @@
   <meta name="theme-color" content="#fafafa">
 </head>
 <body>
-<nav class="navbar navbar-dark navbar-expand bg-primary" >
+<nav class="navbar navbar-dark navbar-expand bg-primary">
   <a class="navbar-brand" href="index.html"><img src="logo.png" alt="logo icon" height="15%" width="40%"/></a>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
@@ -28,18 +28,21 @@
       <a class="nav-item nav-link" href="form.html">ΦΟΡΜΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</a>
       <a class="nav-item nav-link" href="help.html">ΒΟΗΘΕΙΑ</a>
     </div>
-    <div class="search-box-wrapper">
-      <input type="text" placeholder="Αναζήτηση..." class="search-box-input">
-      <button class="search-box-button">&#128269</button>
-    </div>
+
   </div>
   <a href="login.html"><button type="button" class="btn navbar-button">Σύνδεση</button></a>
 </nav>
 
-  <div class="map">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48454.30759807067!2d22.911007771714377!3d40.621187211363996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a838f41428e0ed%3A0x9bae715b8d574a9!2zzpjOtc-Dz4POsc67zr_Ovc6vzrrOtw!5e0!3m2!1sel!2sgr!4v1584754827316!5m2!1sel!2sgr"
-            width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+<p style="text-align:right; margin-right:2%; margin-bottom: 0; display:inline-block;">Αναζητήστε μία θέση πάρκινγκ στο Δήμο της Θεσσαλλονίκης. Πατήστε μία θέση στον χάρτη για να δείτε που βρίσκεται ή αναζητήστε μια θέση πάρκινγκ κοντά σας</p>
+<div class="search-box-wrapper" style="float:right; margin-right:2%">
+  <input type="text" id="search" placeholder="Αναζήτηση..." class="search-box-input">
+  <button class="search-box-button"></button>
+</div>
+  <div class="map" style="margin-top:0; margin-right:0;" >
+    <iframe src="https://www.google.com/maps/d/embed?mid=1FJTcgJvioT3JF0h0GYj7WNzUtmOH-efl" style="border: none;" width="1000" height="600"></iframe>
   </div>
+
+
 
 </body>
 </html>
