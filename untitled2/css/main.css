@@ -184,6 +184,28 @@ hr {
   height: 20%;
 }
 
+.text-help-style{
+  text-align: left;
+  margin-left: 15%;
+  margin-right: 10%;
+  margin-top: 0.1%;
+}
+
+.header-help-style{
+  text-align: left;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.image-help-style{
+  width: 500px;
+  height: 350px;
+  margin-left: 20%;
+
+}
+
+
+
 audio,
 canvas,
 iframe,
