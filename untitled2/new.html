@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>ΒΡΕΣ ΚΙ ΕΣΥ ΜΙΑ ΘΕΣΗ </title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="manifest" href="site.webmanifest">
   <link rel="icon" href="amea.png"/>
@@ -16,19 +16,26 @@
   <meta name="theme-color" content="#fafafa">
 </head>
 <body>
-  <nav class="navbar navbar-dark navbar-expand bg-primary" >
-    <a class="navbar-brand" href="index.html"><img src="logo.png" alt="logo icon" height="15%" width="40%"/></a>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link " href="index.html">ΑΡΧΙΚΗ</a>
-        <a class="nav-item nav-link" href="map.html">ΧΑΡΤΗΣ</a>
-        <a class="nav-item nav-link active" href="new.html">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
-        <a class="nav-item nav-link" href="form.html">ΦΟΡΜΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</a>
-        <a class="nav-item nav-link" href="help.html">ΒΟΗΘΕΙΑ</a>
-      </div>
+<nav class="navbar navbar-dark navbar-expand-md bg-primary" >
+  <div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" style="display: none">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <a class="navbar-brand" href="index.html"><img src="logo.png" alt="logo icon" height="70px" width=125px" /></a>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="index.html">ΑΡΧΙΚΗ</a>
+      <a class="nav-item nav-link" href="map.html">ΧΑΡΤΗΣ</a>
+      <a class="nav-item nav-link" href="new.html">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
+      <a class="nav-item nav-link" href="form.html">ΦΟΡΜΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</a>
+      <a class="nav-item nav-link" href="help.html">ΒΟΗΘΕΙΑ</a>
     </div>
-    <a href="login.html"><button type="button" class="btn navbar-button">Σύνδεση</button></a>
-  </nav>
+
+
+  </div>
+  <a href="login.html"><button type="button" class="btn navbar-button">Σύνδεση</button></a>
+</nav>
 
   <div class="new-location">
     <img class="pin-image" src="pin.png" alt="pin on a map">
@@ -51,12 +58,12 @@
         <input id="postcode" type="text" required><a style="color: red"> *</a>
       </div><br>
       <p>Επιλέξτε μια απο τις παρακάτω επιλογές:</p>
-      <label for="notexist">Δεν υπάρχουν θέσεις</label>
-      <input name="choice" id="notexist" type="radio"><br>
-      <label for="notenough">Δεν επαρκούν οι θέσεις</label>
-      <input name="choice" id="notenough" type="radio"><br>
-      <label for="notregister">Υπάρχουν θέσεις αλλά δεν είναι καταχωρημένες στον χάρτη</label>
-      <input name="choice" id="notregister" type="radio"><br>
+      <input name="choice" id="notexist" type="radio">
+      <label for="notexist">Δεν υπάρχουν θέσεις</label><br>
+      <input name="choice" id="notenough" type="radio">
+      <label for="notenough">Δεν επαρκούν οι θέσεις</label><br>
+      <input name="choice" id="notregister" type="radio">
+      <label for="notregister">Υπάρχουν θέσεις αλλά δεν είναι καταχωρημένες στον χάρτη</label><br>
       <div>
         <label for="comments">Σχόλια:</label><br>
         <textarea class="comments-new-location" id="comments" rows="5" cols="52" type="text"  placeholder="Γράψτε τα σχόλιά σας εδώ." maxlength="1500" ></textarea>

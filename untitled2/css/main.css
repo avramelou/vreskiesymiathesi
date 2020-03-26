@@ -17,6 +17,10 @@ html {
   line-height: 1.4;
 }
 
+body{
+  margin:0 auto !important;
+}
+
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
@@ -60,12 +64,11 @@ hr {
   background-color: #000082 !important;
 }
 
-.nav-item{
-  color:white;
+.navbar-nav{
+  display: flex; !important;
 }
-.nav-item:hover{
-  text-decoration: underline;
-}
+
+
 
 .navbar-brand{
   color:white;
@@ -338,8 +341,11 @@ textarea {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+@media only screen and (max-width: 767px) {
+ .navbar-nav{
+
+ }
+  .navbar-toggler{display:inline-block !important}
 }
 
 @media print,
