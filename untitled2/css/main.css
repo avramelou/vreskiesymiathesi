@@ -157,14 +157,26 @@ hr {
 
 .start-page{
   padding: 70px;
+  margin-top: 70px;
 }
 
 .form-contact, .new-location {
   width: 50%;
   max-width: 50%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 3%;
   padding-bottom: 3%;
+  margin-top: 100px;
+
+}
+
+.form-signin{
+  margin-top: 70px;
+}
+
+.help, .my-map{
+  margin-top: 100px;
 }
 
 .submit-form, .submit-new-location{
@@ -189,7 +201,9 @@ hr {
   width: 40%;
   height: 20%;
 }
-
+.new-location{
+  margin-top: 100px;
+}
 .text-help-style{
   text-align: left;
   margin-left: 15%;
