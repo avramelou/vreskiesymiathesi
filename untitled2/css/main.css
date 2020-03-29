@@ -85,7 +85,7 @@ hr {
   margin-right:0;
   margin-left: 0;
   background-color: #ffc107;
-  border-color: #ffc107;
+  border-color: rgb(255, 193, 7);
   position:relative;
 }
 .navbar-button:hover{
@@ -207,8 +207,12 @@ hr {
 }
 .pin-image,.message-image{
   float: right;
-  width: 40%;
+  width: 30%;
   height: 20%;
+}
+
+.choises{
+  font-size: 0.7em; !important;
 }
 
 /* --- HELP --- */
@@ -367,11 +371,10 @@ textarea {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   /* Style adjustments for viewports that meet the condition */
- .navbar-nav{
 
-  }
+
   .navbar-toggler{
     display:inline-block !important;
   }
@@ -409,6 +412,12 @@ textarea {
   }
 
 }
+@media only screen and (max-width: 768px) {
+  nav{
+    font-size:0.60em; !important;
+
+  }
+}
 
 @media print,
   (-webkit-min-device-pixel-ratio: 1.25),
@@ -416,6 +425,8 @@ textarea {
   (min-resolution: 120dpi) {
   /* Style adjustments for high resolution devices */
 }
+
+
 
 /* ==========================================================================
    Print styles.
