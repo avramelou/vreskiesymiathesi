@@ -22,7 +22,7 @@ body{
   font-family: 'Literata', serif;
 }
 
-h5{font-weight: 700;}
+h3,h5{font-weight: 700;}
 
 /*
  * Remove text-shadow in selection highlight:
@@ -63,23 +63,22 @@ hr {
  * https://github.com/h5bp/html5-boilerplate/issues/440
  */
 
+
+/* --- NAVBAR --- */
+
 .navbar{
   background-color: #000082 !important;
 }
 
-.navbar-nav{
-  display: flex; !important;
+.nav-item{
+  color: white;
 }
-
-
-
-.navbar-brand{
-  color:white;
-  font-size:1em;
-  height:20%;
-  width:20%;
-  font-family:"Courier New";
-  word-spacing: 0.05em;
+.nav-item:hover{
+  text-decoration: underline;
+}
+.navbar-nav{
+  align-all: center;
+  margin: auto;
 }
 
 .navbar-button{
@@ -95,10 +94,64 @@ hr {
   text-decoration: underline;
 }
 
-.navbar-nav{
-  align-all: center;
+/* --- START PAGE --- */
+
+.start-page{
+  margin-top: 70px;
+  padding: 3% 5%;
+}
+.image-start-page{
+  float:right;
+  margin-left:5%;
+  width:50%;
+  height:35%;
 }
 
+/* --- FORM SIGN IN --- */
+
+.form-signin {
+  max-width: 330px;
+  margin: 70px auto ;
+  padding-top: 70px;
+  padding-bottom: 3%;
+}
+
+.submit-signup{
+  background-color: #ffc107;
+  border: 0.5em solid #ffc107;
+  border-radius: 0.3em;
+}
+.submit-signup:hover{
+  border-color: #e6ac00;
+  background-color: #e6ac00;
+  text-decoration: underline;
+}
+.caption-style{
+  font-size: small;
+}
+.eye-button{
+  float: right;
+  border-radius: 0.3em;
+  border: none;
+  padding-bottom: 0.3em;
+}
+
+/* --- MAP --- */
+
+.map {
+  margin-top: 100px;
+  padding: 3% 5%;
+}
+.map-text{
+  float: right;
+  width: 30%;
+}
+.map-frame{
+  border: none;
+  margin-right:5%;
+  width: 60%;
+  height: 500px;
+}
 .search-box-wrapper{
   display: flex;
   font-size: 15px;
@@ -128,100 +181,56 @@ hr {
   background-color: #e6ac00;
 }
 
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  margin: 0 auto;
-  padding-top: 100px;
-  padding-bottom: 40px;
-}
-.submit-signup{
-  background-color: #ffc107;
-  border: 0.5em solid #ffc107;
-  border-radius: 0.3em;
-}
-.submit-signup:hover{
-  border-color: #e6ac00;
-  background-color: #e6ac00;
-  text-decoration: underline;
-}
-.caption-style{
-  font-size: small;
-}
-.eye-button{
-  float: right;
-  border-radius: 0.3em;
-  border: none;
-  padding-bottom: 0.3em;
-}
-
-.start-page{
-  padding: 70px;
-  margin-top: 70px;
-}
+/* --- FORM CONTACT AND NEW LOCATION --- */
 
 .form-contact, .new-location {
   width: 50%;
-  max-width: 50%;
   margin-left: auto;
   margin-right: auto;
   padding-top: 3%;
   padding-bottom: 3%;
   margin-top: 100px;
-
 }
-
-.form-signin{
-  margin-top: 70px;
-}
-
-.help, .my-map{
-  margin-top: 100px;
-}
-
 .submit-form, .submit-new-location{
   background-color: #ffc107;
   border: 0.5em solid #ffc107;
   border-radius: 0.3em;
   width: 52%;
 }
-
 .submit-form:hover, .submit-new-location:hover{
   border-color: #e6ac00;
   background-color: #e6ac00;
   text-decoration: underline;
 }
-
 .comments-form, .comments-new-location{
   width: 52%;
 }
-
 .pin-image,.message-image{
   float: right;
   width: 40%;
   height: 20%;
 }
-.new-location{
-  margin-top: 100px;
-}
-.text-help-style{
-  text-align: left;
-  margin-left: 15%;
-  margin-right: 10%;
-  margin-top: 0.1%;
-}
 
+/* --- HELP --- */
+
+.help{
+  margin-top: 100px;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
 .header-help-style{
   text-align: left;
   margin-left: 10%;
   margin-right: 10%;
 }
-
+.text-help-style{
+  text-align: left;
+  margin-left: 13%;
+  margin-right: 10%;
+}
 .image-help-style{
-  width: 500px;
-  height: 350px;
-  margin-left: 20%;
-
+  width: 35%;
+  height: 30%;
 }
 
 
@@ -358,11 +367,47 @@ textarea {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
+  /* Style adjustments for viewports that meet the condition */
  .navbar-nav{
 
- }
-  .navbar-toggler{display:inline-block !important}
+  }
+  .navbar-toggler{
+    display:inline-block !important;
+  }
+  .navbar-toggler-icon{
+    color: #ffc107;
+  }
+
+  .image-start-page{
+    width: 100%;
+    padding: 5% 12%;
+  }
+
+  .map-text{
+    width: 100%;
+    padding-bottom: 5%;
+  }
+  .map-frame{
+    width: 100%;
+    height: 400px;
+  }
+
+  .form-contact, .new-location{
+    padding: 3% 5%;
+    width: 100%;
+  }
+  .comments-form, .comments-new-location{
+    width: 75%;
+  }
+  .submit-form, .submit-new-location{
+    width: 75%;
+  }
+
+  .image-help-style{
+    width: 80%;
+  }
+
 }
 
 @media print,
