@@ -237,6 +237,11 @@ hr {
   height: 30%;
 }
 
+footer{
+  align-items: center; !important;
+
+}
+
 
 
 audio,
