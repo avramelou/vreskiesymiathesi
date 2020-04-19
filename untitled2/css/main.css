@@ -210,9 +210,8 @@ hr {
   width: 30%;
   height: 20%;
 }
-
 .choises{
-  font-size: 0.7em; !important;
+  font-size: 1em; !important;
 }
 
 /* --- HELP --- */
@@ -237,6 +236,10 @@ hr {
   height: 30%;
 }
 
+.footer{
+  padding-left: 5%;
+  padding-bottom: 2%;
+}
 
 
 audio,
