@@ -93,7 +93,9 @@ hr {
   border-color: #e6ac00;
   text-decoration: underline;
 }
-
+.dropdown{
+  margin-right: 4%;
+}
 /* --- START PAGE --- */
 
 .start-page{
@@ -377,7 +379,9 @@ textarea {
 @media only screen and (max-width: 767px) {
   /* Style adjustments for viewports that meet the condition */
 
-
+.dropdown{
+  margin-bottom: 10%;
+}
   .navbar-toggler{
     display:inline-block !important;
   }
