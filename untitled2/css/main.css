@@ -93,7 +93,9 @@ hr {
   border-color: #e6ac00;
   text-decoration: underline;
 }
-
+.dropdown{
+  margin-right: 4%;
+}
 /* --- START PAGE --- */
 
 .start-page{
@@ -210,9 +212,8 @@ hr {
   width: 30%;
   height: 20%;
 }
-
 .choises{
-  font-size: 0.7em; !important;
+  font-size: 1em; !important;
 }
 
 /* --- HELP --- */
@@ -237,11 +238,10 @@ hr {
   height: 30%;
 }
 
-footer{
-  align-items: center; !important;
-
+.footer{
+  padding-left: 5%;
+  padding-bottom: 2%;
 }
-
 
 
 audio,
@@ -379,7 +379,9 @@ textarea {
 @media only screen and (max-width: 767px) {
   /* Style adjustments for viewports that meet the condition */
 
-
+.dropdown{
+  margin-bottom: 10%;
+}
   .navbar-toggler{
     display:inline-block !important;
   }
