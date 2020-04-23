@@ -37,7 +37,7 @@
             <a class="nav-item nav-link" href="help.html">ΒΟΗΘΕΙΑ</a>
         </div>
 
-        <div class="nav-item dropdown ">
+        <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="profile.png" alt="profile symbol" style="width:50px; height: 50px;">
             </a>
@@ -50,16 +50,75 @@
     </div>
 </nav>
 
-<div class="profil" style="margin-top: 100px; padding: 3% 5%;">
-    <h5>Γεια σας, (όνομα)</h5><br>
-    <ul>
-        <li>Μπορείτε να επεξεργαστείτε τα στοιχεία του προφίλ σας κάνοντας κλικ <a href="editProfil.html">εδώ</a>.</li>
-        <li>Μπορείτε να καταχωρήσετε τις θέσεις πάρκινγκ που χρησιμοποιείτε πιο συχνά στην λίστα με τα αγαπημένα, ώστε να τις βρίσκετε ευκολότερα.</li>
-    </ul><br>
-    <img src="add-to-favorites.png" style="width: 18%; height: 18%; float:right; margin-right: 20%">
-    <h5>Η λίστα με τις αγαπημένες σας θέσεις:</h5><br>
-</div>
 
+<form class="form-contact">
+
+    <div align="center">
+        <img src="profile2.png" alt="profil picture" style="width:15%; height:15%;">
+    </div>
+    
+    <div style="float:left;">
+        <h5>Επεξεργασία των στοιχείων σας</h5><br>
+        <div>
+            <label for="inputName">Όνομα:</label><br>
+            <input type="text" id="inputName"><br>
+        </div>
+        <div>
+            <label for="inputLastname">Επώνυμο:</label><br>
+            <input type="text" id="inputLastname"><br>
+        </div>
+        <div>
+            <label for="inputEmail"><i class="fas fa-at"></i>  Email:</label><br>
+            <input type="email" id="inputEmail"><br>
+        </div>
+        <div>
+            <label for="inputTel"><i class="fas fa-phone-alt"></i> Τηλέφωνο:</label><br>
+            <input type="tel" id="inputTel"><br><br>
+        </div>
+    </div>
+
+    <div  style="float:right;">
+        <h5>Αλλαγή στοιχείων σύνδεσης</h5><br>
+        <div>
+            <label for="inputUsername">Όνομα Χρήστη:</label><br>
+            <input type="text" id="inputUsername"><br>
+        </div>
+        <div>
+            <label for="inputPassword">Τρέχων κωδικός:</label><br>
+            <input type="password" id="inputPassword"><br>
+        </div>
+        <div>
+            <label for="inputNewPassword">Νέος κωδικός:</label><br>
+            <button class="eye-button" title="Εμφάνιση κωδικού" type="button" onclick="show()"><img src="visibility.png"></button>
+            <input type="password" id="inputNewPassword"><br>
+        </div>
+        <div>
+            <label for="confirmNewPassword">Επιβεβαίωση νέου κωδικού:</label><br>
+            <input type="password" id="confirmNewPassword"><br><br>
+        </div>
+    </div>
+
+    <div align="center">
+        <button class="submit-form" type="submit">Ενημέρωση</button>
+    </div>
+</form>
+
+<script>
+    function show() {
+        var pw = document.getElementById("inputPassword");
+        var pw1 = document.getElementById("inputNewPassword");
+        var pw2 = document.getElementById("confirmNewPassword");
+        if(pw.type == "text"){
+            pw.type = "password";
+            pw1.type = "password";
+            pw2.type = "password";
+        } else {
+            pw.type = "text";
+            pw1.type = "text";
+            pw2.type = "text";
+        }
+    }
+</script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
