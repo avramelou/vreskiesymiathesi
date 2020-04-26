@@ -69,7 +69,6 @@ hr {
 .navbar{
   background-color: #000082 !important;
 }
-
 .nav-item{
   color: white;
 }
@@ -80,7 +79,6 @@ hr {
   align-all: center;
   margin: auto;
 }
-
 .navbar-button{
   margin-right:0;
   margin-left: 0;
@@ -94,7 +92,7 @@ hr {
   text-decoration: underline;
 }
 .dropdown{
-  margin-right: 7%;
+  margin-right: 4%;
 }
 /* --- START PAGE --- */
 
@@ -117,7 +115,6 @@ hr {
   padding-top: 70px;
   padding-bottom: 3%;
 }
-
 .submit-signup{
   background-color: #ffc107;
   border: 0.5em solid #ffc107;
@@ -237,6 +234,7 @@ hr {
   width: 35%;
   height: 30%;
 }
+
 
 .footer{
   padding-left: 5%;
@@ -379,14 +377,17 @@ textarea {
 @media only screen and (max-width: 767px) {
   /* Style adjustments for viewports that meet the condition */
 
-.dropdown{
-  margin-bottom: 10%;
-}
   .navbar-toggler{
     display:inline-block !important;
   }
   .navbar-toggler-icon{
     color: #ffc107;
+  }
+  .dropdown{
+    margin-right: 2%;
+  }
+  .change-data{
+    width: 100%;
   }
 
   .image-start-page{
@@ -422,7 +423,9 @@ textarea {
 @media only screen and (max-width: 768px) {
   nav{
     font-size:0.60em; !important;
-
+  }
+  .change-data{
+    width: 100%;
   }
 }
 
