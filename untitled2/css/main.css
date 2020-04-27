@@ -235,6 +235,18 @@ hr {
   height: 30%;
 }
 
+/* --- PROFIL --- */
+
+.favorites-image{
+  width: 25%;
+  height: 25%;
+  float:right;
+  margin-bottom: 3%;
+}
+.eye{
+  padding-right: 10%;
+}
+
 
 .footer{
   padding-left: 5%;
@@ -414,20 +426,24 @@ textarea {
   .submit-form, .submit-new-location{
     width: 75%;
   }
-
-  .image-help-style{
-    width: 80%;
-  }
-
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
   nav{
     font-size:0.60em; !important;
   }
+
+  .image-help-style{
+    width: 75%;
+  }
+
   .change-data{
     width: 100%;
   }
+  .eye{
+    padding-right: 25%;
+  }
 }
+
 
 @media print,
   (-webkit-min-device-pixel-ratio: 1.25),
