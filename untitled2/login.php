@@ -49,6 +49,7 @@
             <input type="checkbox" value="remember-me" style="font-size: medium"> Να παραμείνω συνδεδεμένος
         </label>
     </div>
+
     <label>
         Δεν έχετε λογαριασμό; Δημιουργήστε έναν πατώντας <a href="signup.html">εδώ</a>
     </label>

@@ -66,6 +66,7 @@
     </div>
 </form>
 
+
 <footer class="footer">
     <div class="fb-share-button" data-href="http://localhost:63342/vreskiesymiathsi/untitled2/index.html?_ijt=drbuie6ggtrueacrt4gcv9a29l" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A63342%2Fvreskiesymiathsi%2Funtitled2%2Findex.html%3F_ijt%3Ddrbuie6ggtrueacrt4gcv9a29l&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
