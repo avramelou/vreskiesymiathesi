@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ΒΡΕΣ ΚΙ ΕΣΥ ΜΙΑ ΘΕΣΗ </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" href="media/amea.png"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Literata:400,700&display=swap&subset=greek,greek-ext" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <meta name="theme-color" content="#fafafa">
+</head>
+<body>
+<!--[if IE]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<nav class="navbar navbar-dark navbar-expand-md bg-primary fixed-top" >
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" style="display: none">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="index.html"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="index.html">ΑΡΧΙΚΗ</a>
+            <a class="nav-item nav-link" href="map.html">ΧΑΡΤΗΣ</a>
+            <a class="nav-item nav-link" href="new.html">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
+            <a class="nav-item nav-link" href="form.html">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+            <a class="nav-item nav-link" href="help.html">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
+        </div>
+    </div>
+
+    <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="media/profile.png" alt="profile symbol" style="width:50px; height: 50px;">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="profil.html"><i class="fas fa-user"></i> Προφίλ</a>
+            <a class="dropdown-item" href="index.html"><i class="fas fa-power-off"></i> Έξοδος</a>
+        </div>
+    </div>
+
+</nav>
+
+<div class="form-contact">
+
+    <div align="center">
+        <img src="media/profile2.png" alt="profil picture" style="width:20%; height:20%;" >
+    </div>
+
+    <h5>Γεια σας, (όνομα)</h5><br>
+    <ul>
+        <li>Μπορείτε να επεξεργαστείτε τα στοιχεία του προφίλ σας παρακάτω.</li>
+        <li>Με την δημιουργία λογαριασμού, έχετε πλέον την δυνατότητα να καταχωρήσετε τις θέσεις πάρκινγκ που χρησιμοποιείτε πιο συχνά στην λίστα με τα
+            αγαπημένα, ώστε να τις βρίσκετε ευκολότερα.</li>
+    </ul><br>
+
+    <div style="float:left;">
+        <h5>Επεξεργασία των στοιχείων σας</h5><br>
+        <div>
+            <label for="inputName">Όνομα:</label><br>
+            <input type="text" id="inputName"><br>
+        </div>
+        <div>
+            <label for="inputLastname">Επώνυμο:</label><br>
+            <input type="text" id="inputLastname"><br>
+        </div>
+        <div>
+            <label for="inputEmail"><i class="fas fa-at"></i>  Email:</label><br>
+            <input type="email" id="inputEmail"><br>
+        </div>
+        <div>
+            <label for="inputTel"><i class="fas fa-phone-alt"></i> Τηλέφωνο:</label><br>
+            <input type="tel" id="inputTel"><br><br>
+        </div>
+    </div>
+
+    <div class="change-data" style="float: right;" >
+        <h5>Αλλαγή στοιχείων σύνδεσης</h5><br>
+        <div>
+            <label for="inputUsername">Όνομα Χρήστη:</label><br>
+            <input type="text" id="inputUsername"><br>
+        </div>
+        <div>
+            <label for="inputPassword">Τρέχων κωδικός:</label><br>
+            <input type="password" id="inputPassword"><br>
+        </div>
+        <div>
+            <label for="inputNewPassword">Νέος κωδικός:</label><br>
+            <div class="eye">
+                <button class="eye-button" title="Εμφάνιση κωδικού" type="button" onclick="show()"><img src="media/visibility.png"></button>
+            </div>
+            <input type="password" id="inputNewPassword"><br>
+        </div>
+        <div>
+            <label for="confirmNewPassword">Επιβεβαίωση νέου κωδικού:</label><br>
+            <input type="password" id="confirmNewPassword"><br><br>
+        </div>
+    </div>
+
+    <div align="center">
+        <button class="submit-form" type="submit">Ενημέρωση</button>
+    </div><br><br>
+
+    <img class="favorites-image" src="media/add-to-favorites.png">
+    <h5>Η λίστα με τις αγαπημένες σας θέσεις:</h5><br>
+    <button class="submit-signup" type="submit"><i class="fas fa-plus-circle"></i> Προσθήκη θέσης</button>
+
+</div>
+
+<script>
+    function show() {
+        var pw = document.getElementById("inputPassword");
+        var pw1 = document.getElementById("inputNewPassword");
+        var pw2 = document.getElementById("confirmNewPassword");
+        if(pw.type == "text"){
+            pw.type = "password";
+            pw1.type = "password";
+            pw2.type = "password";
+        } else {
+            pw.type = "text";
+            pw1.type = "text";
+            pw2.type = "text";
+        }
+    }
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>
