@@ -80,11 +80,13 @@ if ($_POST['submit']=="submit") {
     $email=$_POST['Email'];
     $tel=$_POST['Tel'];
     $comments=$_POST['Comments'];
-    echo "<p align='center' style='margin-top: 100px'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που επικοινωνήσατε μαζί μας.</p>";
+
 
     $link=mysqli_connect('localhost',"avramelou","eresos4ever","CONTACTFORM");
-    $sql="INSERT INTO form_contact (Name, Last name, Email, Telephone, Comments) 
-           VALUES($name, $lastName, $email, $tel, $comments)";
+    $sql="INSERT INTO form_contact (ID, Name, Lastname, Email, Telephone, Comments) VALUES (NULL, '".$name."', '".$lastName."', '".$email."', '".$tel."', '".$comments."')";
+    if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 100px'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που επικοινωνήσατε μαζί μας.</p>";
+    else echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+
 }
 ?>
 

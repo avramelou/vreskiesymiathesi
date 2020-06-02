@@ -93,11 +93,12 @@ if ($_POST['submit']=="submit") {
     $postCode=$_POST['PostCode'];
     $choice=$_POST['Choice'];
     $comments=$_POST['Comments'];
-    echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που υποβάλατε νέα θέση.</p>";
+
 
     $link=mysqli_connect('localhost',"avramelou","eresos4ever","NEWLOC");
-    $sql="INSERT INTO NEW_LOCATION (Street, StreetNum, City, PostCode, Choice, Comments) 
-           VALUES($street, $number, $city, $postCode, $choice, $comments)";
+    $sql="INSERT INTO NEW_LOCATION (Street, StreetNum, City, PostCode, Choice, Comments) VALUES ('".$street."', '".$number."', '".$city."', '".$postCode."', '".$choice."', '".$comments."')";
+    if(mysqli_query($link,$sql))  echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που υποβάλατε νέα θέση.</p>";
+    else echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
 }
 ?>
 
