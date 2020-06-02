@@ -35,36 +35,58 @@
     <a href="login.html"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
 </nav>
 
-<form class="form-contact">
+
+
+<form class="form-contact" method="post" action="form.php">
     <img class="message-image" src="media/message.png" alt="contact us">
     <h5>Επικοινωνήστε μαζί μας</h5><br>
     <div>
         <label for="inputName">Όνομα:</label><br>
-        <input type="text" id="inputName" required><a style="color: red"> *</a><br>
+        <input type="text" name="Name" id="inputName" required><a style="color: red"> *</a><br>
     </div>
     <div>
         <label for="inputLastname">Επώνυμο:</label><br>
-        <input type="text" id="inputLastname" required><a style="color: red"> *</a><br>
+        <input type="text" name="LastName" id="inputLastname" required><a style="color: red"> *</a><br>
     </div>
     <div>
         <label for="inputEmail"><i class="fas fa-at"></i> Email:</label><br>
-        <input type="email" id="inputEmail" required><a style="color: red"> *</a><br>
+        <input type="email" name="Email" id="inputEmail" required><a style="color: red"> *</a><br>
     </div>
     <div>
         <label for="inputTel"><i class="fas fa-phone-alt"></i> Τηλέφωνο:</label><br>
-        <input type="tel" id="inputTel"><br><br>
+        <input type="tel" name="Tel" id="inputTel"><br><br>
     </div>
     <div>
         <label for="inputComments"><i class="far fa-comment-dots"></i> Σχόλια: <a style="color: red">*</a></label><br>
-        <textarea class="comments-form" rows="5" cols="52" type="text" id="inputComments" placeholder="Γράψτε τα σχόλιά σας εδώ." maxlength="1500" required></textarea>
+        <textarea class="comments-form" rows="5" cols="52" type="text" name="Comments" id="inputComments" placeholder="Γράψτε τα σχόλιά σας εδώ." maxlength="1500" required></textarea>
     </div>
     <div>
         <a style="color: red">*</a><a><small>Υποχρεωτικά πεδία</small></a><br><br>
     </div>
     <div>
-        <button class="submit-form" type="submit">Υποβολή</button>
+        <button class="submit-form" type="submit" name="submit" value="submit">Υποβολή</button>
     </div>
 </form>
+
+<?php
+$name="";
+$lastName="";
+$email="";
+$tel="";
+$comments="";
+if ($_POST['submit']=="submit") {
+    $name=$_POST['Name'];
+    $lastName=$_POST['LastName'];
+    $email=$_POST['Email'];
+    $tel=$_POST['Tel'];
+    $comments=$_POST['Comments'];
+    echo "<p align='center' style='margin-top: 100px'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που επικοινωνήσατε μαζί μας.</p>";
+
+    $link=mysqli_connect('localhost',"avramelou","eresos4ever","CONTACTFORM");
+    $sql="INSERT INTO form_contact (Name, Last name, Email, Telephone, Comments) 
+           VALUES($name, $lastName, $email, $tel, $comments)";
+}
+?>
 
 
 <footer class="footer">

@@ -39,42 +39,68 @@
   <a href="login.html"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
 </nav>
 
-<form class="new-location">
+
+
+<form class="new-location" method="post" action="new.php">
   <img class="pin-image" src="media/pin.png" alt="pin on a map">
   <h5>Καταχώρηση νέας τοποθεσίας</h5><br>
   <div>
     <label for="street">Οδός:</label><br>
-    <input id="street" type="text" required><a style="color: red"> *</a>
+    <input id="street" name="Street" type="text" required><a style="color: red"> *</a>
   </div>
   <div>
     <label for="number">Αριθμός:</label><br>
-    <input id="number" type="number" min="1">
+    <input id="number" name="Number" type="number" min="1">
   </div>
   <div>
     <label for="city">Πόλη:</label><br>
-    <input id="city" type="text" required><a style="color: red"> *</a>
+    <input id="city" name="City" type="text" required><a style="color: red"> *</a>
   </div>
   <div>
     <label for="postcode">Ταχυδρομικός Κώδικας:</label><br>
-    <input id="postcode" type="text" required><a style="color: red"> *</a>
+    <input id="postcode" name="PostCode" type="text" required><a style="color: red"> *</a>
   </div><br>
-  <p>Επιλέξτε μια απο τις παρακάτω επιλογές:</p>
-  <input name="choice"  id="notexist" type="radio">
+  <p>Επιλέξτε μια απο τις παρακάτω επιλογές:<a style="color: red"> *</a></p>
+  <input name="Choice"  id="notexist" value="1" type="radio" required>
   <label for="notexist" class="choises">Δεν υπάρχουν θέσεις</label><br>
-  <input name="choice" id="notenough" type="radio">
+  <input name="Choice" id="notenough" value="2" type="radio" required>
   <label for="notenough" class="choises">Δεν επαρκούν οι θέσεις</label><br>
-  <input name="choice" id="notregister" type="radio">
+  <input name="Choice" id="notregister" value="3" type="radio" required>
   <label for="notregister" class="choises">Υπάρχουν θέσεις αλλά δεν είναι καταχωρημένες στον χάρτη</label><br>
   <div>
     <label for="comments"><i class="far fa-comment-dots"></i> Σχόλια:</label><br>
-    <textarea class="comments-new-location" id="comments" rows="5" cols="52" type="text"  placeholder="Γράψτε τα σχόλιά σας εδώ." maxlength="1500" ></textarea>
+    <textarea class="comments-new-location" name="Comments" id="comments" rows="5" cols="52" type="text"  placeholder="Γράψτε τα σχόλιά σας εδώ." maxlength="1500" ></textarea>
   </div>
   <div>
     <a style="color: red">*</a><a><small>Υποχρεωτικά πεδία</small></a><br><br>
   </div>
   <!--<input class="submit-new-location" type="submit">-->
-  <button class="submit-new-location" type="submit">Υποβολή</button>
+  <button class="submit-new-location" name="submit" value="submit" type="submit">Υποβολή</button>
 </form>
+
+
+<?php
+$street="";
+$number="";
+$city="";
+$postCode="";
+$choice="";
+$comments="";
+if ($_POST['submit']=="submit") {
+    $street=$_POST['Street'];
+    $number=$_POST['Number'];
+    $city=$_POST['City'];
+    $postCode=$_POST['PostCode'];
+    $choice=$_POST['Choice'];
+    $comments=$_POST['Comments'];
+    echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που υποβάλατε νέα θέση.</p>";
+
+    $link=mysqli_connect('localhost',"avramelou","eresos4ever","NEWLOC");
+    $sql="INSERT INTO NEW_LOCATION (Street, StreetNum, City, PostCode, Choice, Comments) 
+           VALUES($street, $number, $city, $postCode, $choice, $comments)";
+}
+?>
+
 
 <footer class="footer">
   <div class="fb-share-button" data-href="http://localhost:63342/vreskiesymiathsi/untitled2/index.html?_ijt=drbuie6ggtrueacrt4gcv9a29l" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A63342%2Fvreskiesymiathsi%2Funtitled2%2Findex.html%3F_ijt%3Ddrbuie6ggtrueacrt4gcv9a29l&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
