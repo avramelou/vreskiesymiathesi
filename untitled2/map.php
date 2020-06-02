@@ -62,7 +62,7 @@ if ($_POST['submit']=="submit") {
             $result=mysqli_query($link,$sql);
             if(mysqli_num_rows($result)==0)
             {
-                echo "<p><br><br> ΔΕΝ ΒΡΕΘΗΚΑΝ ΘΕΣΕΙΣ ΠΑΡΚΙΝΓΚ. </p>";
+                echo "<p><br><br> Δεν βρέθηκαν θέσεις πάρκινγκ. </p>";
             }
             for ($i=0; $i<mysqli_num_rows($result); $i++) {
                 $row = mysqli_fetch_assoc($result);

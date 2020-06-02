@@ -50,13 +50,6 @@
 
 </nav>
 
-<?php
-$searh="";
-if ($_POST['submit']=="submit") {
-    $searh=$_POST['search'];
-}
-?>
-
 <div class="form-contact">
 
     <div align="center">
@@ -119,29 +112,9 @@ if ($_POST['submit']=="submit") {
 
     <img class="favorites-image" src="media/add-to-favorites.png">
     <h5>Η λίστα με τις αγαπημένες σας θέσεις:</h5><br>
-    <input type="text" id="search" placeholder="Αναζήτηση..." name="search" class="search-box-input"  value="<?=$searh;?>">
-    <button class="submit-signup" type="submit" name="submit" value="submit"><i class="fa fa-search"></i> Νέα θέση</button>
+    <button class="submit-signup" type="submit"><i class="fas fa-plus-circle"></i> Προσθήκη θέσης</button>
 
 </div>
-
-<?php
-if(!empty($searh))
-{
-    $link=mysqli_connect('localhost',"avramelou","eresos4ever","mapdb");
-    $sql="SELECT * FROM PARKING WHERE ΟΔΟΣ='$searh' OR ΠΕΡΙΟΧΗ='$searh'";
-    $result=mysqli_query($link,$sql);
-    if(mysqli_num_rows($result)==0)
-    {
-        echo "<p><br><br> Δεν βρέθηκαν θέσεις πάρκινγκ. </p>";
-    }
-    for ($i=0; $i<mysqli_num_rows($result); $i++) {
-        $row = mysqli_fetch_assoc($result);
-        $show=$row["ΟΔΟΣ"] .' ' .$row["ΑΡΙΘΜΟΣ"] .' ' . $row["ΠΕΡΙΟΧΗ"];
-        $site=$row["SITE"];
-        echo "<p> <br><br> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i></a> </p>";
-    }
-}
-?>
 
 <script>
     function show() {
@@ -159,7 +132,6 @@ if(!empty($searh))
         }
     }
 </script>
-
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
