@@ -81,24 +81,31 @@
 
 <?php
 $street="";
-$number="";
+$number=NULL;
 $city="";
 $postCode="";
 $choice="";
 $comments="";
-if ($_POST['submit']=="submit") {
+if (isset($_POST['submit'])) {
     $street=$_POST['Street'];
     $number=$_POST['Number'];
     $city=$_POST['City'];
     $postCode=$_POST['PostCode'];
     $choice=$_POST['Choice'];
+    if($choice=='1'){
+        $choice=1;
+    }else if($choice=='2'){
+        $choice=2;
+    }else{
+        $choice=3;
+    }
     $comments=$_POST['Comments'];
 
 
-    $link=mysqli_connect('localhost',"avramelou","eresos4ever","NEWLOC");
-    $sql="INSERT INTO NEW_LOCATION (Street, StreetNum, City, PostCode, Choice, Comments) VALUES ('".$street."', '".$number."', '".$city."', '".$postCode."', '".$choice."', '".$comments."')";
+    $link=mysqli_connect('localhost',"root","eresos4ever","NEWLOC");
+    $sql="INSERT INTO NEW_LOCATION (ID, Street, StreetNum, City, PostCode, Choice, Comments) VALUES (NULL,'".$street."', '".$number."', '".$city."', '".$postCode."', '".$choice."', '".$comments."')";
     if(mysqli_query($link,$sql))  echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που υποβάλατε νέα θέση.</p>";
-    else echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
 }
 ?>
 

@@ -39,26 +39,52 @@
     <a href="login.html"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
 </nav>
 
-<form class="form-signin text-center">
+<form class="form-signin text-center" method="post" action="signup.php">
     <div align="center">
         <img class="mb-4" src="media/logo.png" alt="" width="178" height="100">
     </div>
     <h5>Δημιουργήστε έναν λογαριασμό</h5>
     <label class="caption-style" for="inputUsername"> Εισάγετε το όνομα χρήστη </label>
     <label for="inputUsername" class="sr-only">Όνομα χρήστη</label>
-    <input type="text" id="inputUsername" class="form-control" placeholder="Όνομα χρήστη" required autofocus>
+    <input type="text" id="inputUsername" class="form-control" placeholder="Όνομα χρήστη" required autofocus name="username">
     <label class="caption-style" for="inputPassword"> Εισάγετε τον κωδικό </label>
     <label for="inputPassword" class="sr-only">Κωδικός</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Κωδικός" required>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Κωδικός" required name="password">
 
     <button class="eye-button" title="Εμφάνιση κωδικού" type="button" onclick="show()"><img src="media/visibility.png"></button>
 
     <label class="caption-style" for="inputUsername"> Επιβεβαιώστε τον κωδικό </label>
     <label for="confirmPassword" class="sr-only">Επιβεβαίωση κωδικού</label>
-    <input type="password" id="confirmPassword" class="form-control" placeholder="Επιβεβαίωση κωδικού" required> <br>
+    <input type="password" id="confirmPassword" class="form-control" placeholder="Επιβεβαίωση κωδικού" required name="confirmpassword"> <br>
 
-    <button class="btn-block submit-signup" type="submit">Εγγραφή</button>
+    <button class="btn-block submit-signup" type="submit" name="signup" value="submit">Εγγραφή</button>
 </form>
+<?php
+$username="";
+$password="";
+$password1="";
+if (isset($_POST['signup'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $password1 = $_POST['confirmpassword'];
+
+    if ($password != $password1) {
+        echo "ΟΙ ΚΩΔΙΚΟΙ ΔΕΝ ΤΑΙΡΙΑΖΟΥΝ!";
+    } else {
+        $link = mysqli_connect('localhost', "root", "eresos4ever", "user_map");
+        $sql = "SELECT password FROM User WHERE username='$username'";
+        $result = mysqli_query($link, $sql);
+        if (mysqli_num_rows($result) == 0) {
+            $sql = "INSERT INTO User (username, password) VALUES ('" . $username . "', '" . $password . "')";
+            if (mysqli_query($link, $sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i>Η εγγραφή ολοκληρώθηκε επιτυχώς.</p>";
+            else echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+        } else {
+            echo "Τo username υπάρχει ήδη.";
+        }
+
+    }
+}
+?>
 
 <script>
     function show() {
@@ -80,3 +106,4 @@
 
 </body>
 </html>
+

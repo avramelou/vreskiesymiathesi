@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="el">
 <head>
@@ -27,9 +31,9 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="index.html">ΑΡΧΙΚΗ</a>
-            <a class="nav-item nav-link" href="map.html">ΕΥΡΕΣΗ ΘΕΣΗΣ</a>
-            <a class="nav-item nav-link" href="new.html">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
-            <a class="nav-item nav-link" href="form.html">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+            <a class="nav-item nav-link" href="map.php">ΕΥΡΕΣΗ ΘΕΣΗΣ</a>
+            <a class="nav-item nav-link" href="new.php">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
+            <a class="nav-item nav-link" href="form.php">ΕΠΙΚΟΙΝΩΝΙΑ</a>
             <a class="nav-item nav-link" href="help.html">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
         </div>
 
@@ -37,13 +41,13 @@
     <a href="login.html"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
 </nav>
 
-<form class="form-signin text-center">
+<form class="form-signin text-center" method="post" action="login.php">
     <img class="mb-4" src="media/logo.png" alt="" width="178" height="100">
     <h5>Συνδεθείτε στον λογαριασμό σας</h5>
     <label for="inputUsername" class="sr-only">Όνομα χρήστη</label>
-    <input type="text" id="inputUsername" class="form-control" placeholder="Όνομα χρήστη" required autofocus>
+    <input type="text" id="inputUsername" class="form-control" placeholder="Όνομα χρήστη" required autofocus name="username">
     <label for="inputPassword" class="sr-only">Κωδικός</label>
-    <input type="password" id="inputPassword" class="form-control" width="25%" placeholder="Κωδικός" required>
+    <input type="password" id="inputPassword" class="form-control" width="25%" placeholder="Κωδικός" required name="password">
     <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me" style="font-size: medium"> Να παραμείνω συνδεδεμένος
@@ -51,10 +55,56 @@
     </div>
 
     <label>
-        Δεν έχετε λογαριασμό; Δημιουργήστε έναν πατώντας <a href="signup.html">εδώ</a>
+        Δεν έχετε λογαριασμό; Δημιουργήστε έναν πατώντας <a href="signup.php">εδώ</a>
     </label>
-    <button class="btn-block submit-signup" type="submit">Σύνδεση</button>
+    <button class="btn-block submit-signup" type="submit" name="login" value="submit">Σύνδεση</button>
 </form>
+
+
+<?php
+$username="";
+$password="";
+if (isset($_POST['login'])) {
+    $username=$_POST['username'];
+    $password=$_POST['password'];
+
+    $link=mysqli_connect('localhost',"root","eresos4ever","user_map");
+    $sql="SELECT password, administrator FROM User WHERE username='$username'";
+    $result=mysqli_query($link,$sql);
+    if(mysqli_num_rows($result)==0)
+    {
+        echo "<p align='center'>ΛΑΘΟΣ ΟΝΟΜΑ ΧΡΗΣΤΗ!</p>";
+    }
+    else{
+        $row=mysqli_fetch_assoc($result);
+        if($password==$row['password'])
+        {
+            if($row['administrator']==true)
+            {
+                $_SESSION["LOGGED IN"]=true;
+                $_SESSION["username"]=$username;
+                $_SESSION["password"]=$password;
+                header('location:administrator.php');
+            }
+            else
+            {
+                $_SESSION["LOGGED IN"]=true;
+                $_SESSION["username"]=$username;
+                $_SESSION["password"]=$password;
+                header('location:profil.php');
+            }
+
+        }
+        else
+        {
+            echo "<p align='center'>ΛΑΘΟΣ ΚΩΔΙΚΟΣ!</p>";
+        }
+
+    }
+
+}
+?>
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

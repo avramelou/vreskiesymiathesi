@@ -1,3 +1,28 @@
+<?php
+session_start();
+if(isset($_SESSION["LOGGED IN"]))
+{
+    $username=$_SESSION["username"];
+    $password=$_SESSION["password"];
+
+    $link=mysqli_connect('localhost',"root","eresos4ever","user_map");
+    $sql="SELECT * FROM User WHERE username='$username'";
+    $result=mysqli_query($link,$sql);
+    $row=mysqli_fetch_assoc($result);
+    $name=$row['name'];
+    $surname=$row['surname'];
+    $email=$row['email'];
+    $tel=$row['telephone'];
+}
+else{
+    $name="";
+    $surname="";
+    $email="";
+    $tel="";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,9 +76,9 @@
 </nav>
 
 <?php
-$searh="";
-if ($_POST['submit']=="submit") {
-    $searh=$_POST['search'];
+$search="";
+if (isset($_POST['submit'])) {
+    $search=$_POST['search'];
 }
 ?>
 
@@ -70,78 +95,136 @@ if ($_POST['submit']=="submit") {
             αγαπημένα, ώστε να τις βρίσκετε ευκολότερα.</li>
     </ul><br>
 
-    <div style="float:left;">
-        <h5>Επεξεργασία των στοιχείων σας</h5><br>
-        <div>
-            <label for="inputName">Όνομα:</label><br>
-            <input type="text" id="inputName"><br>
-        </div>
-        <div>
-            <label for="inputLastname">Επώνυμο:</label><br>
-            <input type="text" id="inputLastname"><br>
-        </div>
-        <div>
-            <label for="inputEmail"><i class="fas fa-at"></i>  Email:</label><br>
-            <input type="email" id="inputEmail"><br>
-        </div>
-        <div>
-            <label for="inputTel"><i class="fas fa-phone-alt"></i> Τηλέφωνο:</label><br>
-            <input type="tel" id="inputTel"><br><br>
-        </div>
-    </div>
-
-    <div class="change-data" style="float: right;" >
-        <h5>Αλλαγή στοιχείων σύνδεσης</h5><br>
-        <div>
-            <label for="inputUsername">Όνομα Χρήστη:</label><br>
-            <input type="text" id="inputUsername"><br>
-        </div>
-        <div>
-            <label for="inputPassword">Τρέχων κωδικός:</label><br>
-            <input type="password" id="inputPassword"><br>
-        </div>
-        <div>
-            <label for="inputNewPassword">Νέος κωδικός:</label><br>
-            <div class="eye">
-                <button class="eye-button" title="Εμφάνιση κωδικού" type="button" onclick="show()"><img src="media/visibility.png"></button>
+    <form action="profil.php" method="post">
+        <div style="float:left;">
+            <h5>Επεξεργασία των στοιχείων σας</h5><br>
+            <div>
+                <label for="inputName">Όνομα:</label><br>
+                <input type="text" id="inputName" name="name" value="<?=$name;?>"><br>
             </div>
-            <input type="password" id="inputNewPassword"><br>
+            <div>
+                <label for="inputLastname">Επώνυμο:</label><br>
+                <input type="text" id="inputLastname" name="surname" value="<?=$surname;?>"><br>
+            </div>
+            <div>
+                <label for="inputEmail"><i class="fas fa-at"></i>  Email:</label><br>
+                <input type="email" id="inputEmail" name="email" value="<?=$email;?>"><br>
+            </div>
+            <div>
+                <label for="inputTel"><i class="fas fa-phone-alt"></i> Τηλέφωνο:</label><br>
+                <input type="tel" id="inputTel" name="telephone" value="<?=$tel;?>"><br><br>
+            </div>
         </div>
-        <div>
-            <label for="confirmNewPassword">Επιβεβαίωση νέου κωδικού:</label><br>
-            <input type="password" id="confirmNewPassword"><br><br>
-        </div>
-    </div>
 
-    <div align="center">
-        <button class="submit-form" type="submit">Ενημέρωση</button>
-    </div><br><br>
+        <div class="change-data" style="float: right;" >
+            <h5>Αλλαγή στοιχείων σύνδεσης</h5><br>
+            <div>
+                <label for="inputUsername">Όνομα Χρήστη:</label><br>
+                <input type="text" id="inputUsername" name="username" value="<?=$username;?>"><br>
+            </div>
+            <div>
+                <label for="inputPassword">Τρέχων κωδικός:</label><br>
+                <input type="password" id="inputPassword" name="password"><br>
+            </div>
+            <div>
+                <label for="inputNewPassword">Νέος κωδικός:</label><br>
+                <div class="eye">
+                    <button class="eye-button" title="Εμφάνιση κωδικού" type="button" onclick="show()"><img src="media/visibility.png"></button>
+                </div>
+                <input type="password" id="inputNewPassword" name="newpassword"><br>
+            </div>
+            <div>
+                <label for="confirmNewPassword">Επιβεβαίωση νέου κωδικού:</label><br>
+                <input type="password" id="confirmNewPassword" name="newpassword1"><br><br>
+            </div>
+        </div>
+
+        <div align="center">
+            <button class="submit-form" type="submit" name="update" value="submit">Ενημέρωση</button>
+        </div>
+    </form><br><br>
+
+
+    <?php
+    if (isset($_POST['update'])) {
+        $name=$_POST['name'];
+        $surname=$_POST['surname'];
+        $email=$_POST['email'];
+        $tel=$_POST['telephone'];
+        if(!empty($_POST['password']))
+        {
+            $username1=$_POST['username'];
+            $password1=$_POST['password'];
+            $passwordnew=$_POST['newpassword'];
+            $passwordnew1=$_POST['newpassword1'];
+
+            $link=mysqli_connect('localhost',"root","eresos4ever","user_map");
+            $sql="SELECT id FROM User WHERE username='$username'";
+            $result=mysqli_query($link,$sql);
+            $row=mysqli_fetch_assoc($result);
+
+            if($password==$password1)
+            {
+                if($passwordnew==$passwordnew1)
+                {
+                    $id=$row['id'];
+                    $sql="UPDATE User SET username='$username', password='$passwordnew', email='$email', telephone='$tel', name='$name', surname='$surname' WHERE id=$id";
+                    if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i>Η ενημέρωση ολοκληρώθηκε επιτυχώς.</p>";
+                    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+                }
+            }
+        }
+
+    }
+    ?>
 
     <img class="favorites-image" src="media/add-to-favorites.png">
     <h5>Η λίστα με τις αγαπημένες σας θέσεις:</h5><br>
-    <input type="text" id="search" placeholder="Αναζήτηση..." name="search" class="search-box-input"  value="<?=$searh;?>">
-    <button class="submit-signup" type="submit" name="submit" value="submit"><i class="fa fa-search"></i> Νέα θέση</button>
+    <form method="post" action="profil.php">
+        <input type="text" id="search" placeholder="Αναζήτηση..." name="search" class="search-box-input"  value="<?=$search;?>">
+        <button class="submit-signup" type="submit" name="submit" value="submit"><i class="fa fa-search"></i> Νέα θέση</button>
+    </form>
+
+    <?php
+    if(!empty($search))
+    {
+        $link=mysqli_connect('localhost',"root","eresos4ever","user_map");
+        $sql="SELECT * FROM PARKING WHERE ΟΔΟΣ='$search' OR ΠΕΡΙΟΧΗ='$search'";
+        $result=mysqli_query($link,$sql);
+        if(mysqli_num_rows($result)==0)
+        {
+            echo "<p><br><br> Δεν βρέθηκαν θέσεις πάρκινγκ. </p>";
+        }
+        for ($i=0; $i<mysqli_num_rows($result); $i++) {
+            $row = mysqli_fetch_assoc($result);
+            $show=$row["ΟΔΟΣ"] .' ' .$row["ΑΡΙΘΜΟΣ"] .' ' . $row["ΠΕΡΙΟΧΗ"];
+            $site=$row["SITE"];
+
+            echo "<p> <br><br> <form method='post' action='profil.php'>
+                                <button type='submit' name='fav' value='submit' style='border: none; color: red; background: white;'><i class=\"far fa-heart\"></i></button>
+                                </form>
+                                $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i></a> </p>";
+
+            if ($_POST['fav']=="submit"){
+                echo "oigmew";
+//                $sql1="SELECT id FROM User WHERE username='$username'";
+//                $result1=mysqli_query($link,$sql1);
+//                $row1=mysqli_fetch_assoc($result1);
+//                $sql2="INSERT INTO FAVOURITES (user_id,location_id) VALUES ('".$row["ID"]."', '".$row1."')";
+//                if(mysqli_query($link,$sql2))  echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Η τοποθεσία προστέθηκε στα αγαπημένα.</p>";
+//                else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+//            }else{
+                echo "fnewoijukhnjknjgi";
+            }
+        }
+
+
+    }
+    ?>
 
 </div>
 
-<?php
-if(!empty($searh))
-{
-    $link=mysqli_connect('localhost',"avramelou","eresos4ever","mapdb");
-    $sql="SELECT * FROM PARKING WHERE ΟΔΟΣ='$searh' OR ΠΕΡΙΟΧΗ='$searh'";
-    $result=mysqli_query($link,$sql);
-    if(mysqli_num_rows($result)==0)
-    {
-        echo "<p><br><br> Δεν βρέθηκαν θέσεις πάρκινγκ. </p>";
-    }
-    for ($i=0; $i<mysqli_num_rows($result); $i++) {
-        $row = mysqli_fetch_assoc($result);
-        $show=$row["ΟΔΟΣ"] .' ' .$row["ΑΡΙΘΜΟΣ"] .' ' . $row["ΠΕΡΙΟΧΗ"];
-        $site=$row["SITE"];
-        echo "<p> <br><br> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i></a> </p>";
-    }
-}
-?>
+
 
 <script>
     function show() {

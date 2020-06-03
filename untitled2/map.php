@@ -37,9 +37,9 @@
     <a href="login.html"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
 </nav>
 <?php
-$searh="";
+$search="";
 if ($_POST['submit']=="submit") {
-    $searh=$_POST['search'];
+    $search=$_POST['search'];
 }
 ?>
 
@@ -50,15 +50,15 @@ if ($_POST['submit']=="submit") {
         <p>Αναζητήστε μία θέση πάρκινγκ στο Δήμο της Θεσσαλλονίκης.<br>Πατήστε μία θέση στον χάρτη για να δείτε που βρίσκεται ή αναζητήστε μια θέση πάρκινγκ κοντά σας.</p>
         <div class="search-box-wrapper">
             <form method="post" action="map.php">
-                <input type="text" id="search" placeholder="Αναζήτηση..." name="search" class="search-box-input"  value="<?=$searh;?>">
+                <input type="text" id="search" placeholder="Αναζήτηση..." name="search" class="search-box-input"  value="<?=$search;?>">
                 <button class="search-box-button" type="submit" name="submit" value="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
         <?php
-        if(!empty($searh))
+        if(!empty($search))
         {
-            $link=mysqli_connect('localhost',"avramelou","eresos4ever","mapdb");
-            $sql="SELECT * FROM PARKING WHERE ΟΔΟΣ='$searh' OR ΠΕΡΙΟΧΗ='$searh'";
+            $link=mysqli_connect('localhost',"root","eresos4ever","user_map");
+            $sql="SELECT * FROM PARKING WHERE ΟΔΟΣ='$search' OR ΠΕΡΙΟΧΗ='$search'";
             $result=mysqli_query($link,$sql);
             if(mysqli_num_rows($result)==0)
             {

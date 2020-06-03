@@ -74,18 +74,17 @@ $lastName="";
 $email="";
 $tel="";
 $comments="";
-if ($_POST['submit']=="submit") {
+if (isset($_POST['submit'])) {
     $name=$_POST['Name'];
     $lastName=$_POST['LastName'];
     $email=$_POST['Email'];
     $tel=$_POST['Tel'];
     $comments=$_POST['Comments'];
 
-
-    $link=mysqli_connect('localhost',"avramelou","eresos4ever","CONTACTFORM");
+    $link=mysqli_connect('localhost',"root","eresos4ever","CONTACTFORM");
     $sql="INSERT INTO form_contact (ID, Name, Lastname, Email, Telephone, Comments) VALUES (NULL, '".$name."', '".$lastName."', '".$email."', '".$tel."', '".$comments."')";
-    if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 100px'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που επικοινωνήσατε μαζί μας.</p>";
-    else echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+    if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που επικοινωνήσατε μαζί μας.</p>";
+    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
 
 }
 ?>
