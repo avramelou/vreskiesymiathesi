@@ -135,6 +135,13 @@ hr {
   padding-bottom: 0.3em;
 }
 
+.eye-button-admin{
+
+  border-radius: 0.3em;
+  border: none;
+  padding-bottom: 0.3em;
+}
+
 /* --- MAP --- */
 
 .map {
@@ -172,7 +179,7 @@ hr {
   border-radius: 0 0.3em 0.3em 0;
   border-left: 0;
   background-color: #ffc107;
-  padding: 0 0.8em;
+  padding: 0.3em 0.8em;
 }
 .search-box-button:hover,
 .search-box-button:focus{
@@ -180,6 +187,22 @@ hr {
   background-color: #e6ac00;
 }
 
+.delete-input{
+  font-size: inherit;
+  border: 0.2em solid black;
+  border-radius: 0.3em 0 0 0.3em;
+  padding: 0.3em;
+  outline: none;
+}
+.delete-button{
+  color: red;
+  font-size: inherit;
+  border: 0.2em solid black;
+  border-radius: 0 0.3em 0.3em 0;
+  border-left: 0;
+  background-color: black;
+  padding: 0.3em 0.8em;
+}
 /* --- FORM CONTACT AND NEW LOCATION --- */
 
 .form-contact, .new-location {
@@ -196,7 +219,7 @@ hr {
   border-radius: 0.3em;
   width: 52%;
 }
-.submit-form:hover, .submit-new-location:hover{
+.submit-form:hover, .submit-new-location:hover, .admin-submit:hover{
   border-color: #e6ac00;
   background-color: #e6ac00;
   text-decoration: underline;
@@ -247,6 +270,11 @@ hr {
   padding-right: 10%;
 }
 
+.admin-submit{
+  background-color: #ffc107;
+  border: 0.5em solid #ffc107;
+  border-radius: 0.3em;
+}
 
 .footer{
   padding-left: 5%;

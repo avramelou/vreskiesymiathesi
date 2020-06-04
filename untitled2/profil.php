@@ -203,7 +203,7 @@ if (isset($_POST['submit'])) {
             $site=$row["SITE"];
 
             echo "<p> <br><br> <form method='post' action='profil.php'>
-                                <button type='submit' name=$i value=$i onclick='doSomething()' style='border: none; color: red; background: white;'><i class=\"far fa-heart\"></i></button>
+                                <button type='submit' name='fav' value=$i onclick='doSomething()' style='border: none; color: red; background: white;'><i class=\"far fa-heart\"></i></button>
                                 </form>
                                 $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i></a> </p>";
 
@@ -216,7 +216,7 @@ if (isset($_POST['submit'])) {
         for ($i=0; $i<mysqli_num_rows($result); $i++) {
             $row2 = mysqli_fetch_assoc($result);
 
-            if (isset($_POST[$i])) {
+            if (isset($_POST['fav'])) {
 
                 echo "oigmew";
                 $sql1 = "SELECT id FROM User WHERE username='$username'";

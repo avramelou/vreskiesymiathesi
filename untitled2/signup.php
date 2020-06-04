@@ -75,7 +75,7 @@ if (isset($_POST['signup'])) {
         $sql = "SELECT password FROM User WHERE username='$username'";
         $result = mysqli_query($link, $sql);
         if (mysqli_num_rows($result) == 0) {
-            $sql = "INSERT INTO User (username, password) VALUES ('" . $username . "', '" . $password . "')";
+            $sql = "INSERT INTO User (username, password, administrator) VALUES ('" . $username . "', '" . $password . "', false)";
             if (mysqli_query($link, $sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i>Η εγγραφή ολοκληρώθηκε επιτυχώς.</p>";
             else echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
         } else {

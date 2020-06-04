@@ -31,16 +31,16 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="index.html">ΑΡΧΙΚΗ</a>
-            <a class="nav-item nav-link" href="map.html">ΧΑΡΤΗΣ</a>
-            <a class="nav-item nav-link" href="new.html">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
-            <a class="nav-item nav-link" href="form.html">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+            <a class="nav-item nav-link" href="map.php">ΧΑΡΤΗΣ</a>
+            <a class="nav-item nav-link" href="new.php">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
+            <a class="nav-item nav-link" href="form.php">ΕΠΙΚΟΙΝΩΝΙΑ</a>
             <a class="nav-item nav-link" href="help.html">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
         </div>
     </div>
 
     <div class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="media/profile.png" alt="profile symbol" style="width:50px; height: 50px;">
+            <img src="media/admin.png" alt="profile symbol" style="width:50px; height: 50px;">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="profil.html"><i class="fas fa-user"></i> Προφίλ</a>
@@ -50,40 +50,14 @@
 
 </nav>
 
-<div class="form-contact">
+<div class="form-contact" align="center">
 
-    <div align="center">
-        <img src="media/profile2.png" alt="profil picture" style="width:20%; height:20%;" >
+    <div >
+        <img src="media/admin.png" alt="profil picture" style="width:20%; height:20%;" >
     </div>
 
-    <h5>Γεια σας, (όνομα)</h5><br>
-    <ul>
-        <li>Μπορείτε να επεξεργαστείτε τα στοιχεία του προφίλ σας παρακάτω.</li>
-        <li>Με την δημιουργία λογαριασμού, έχετε πλέον την δυνατότητα να καταχωρήσετε τις θέσεις πάρκινγκ που χρησιμοποιείτε πιο συχνά στην λίστα με τα
-            αγαπημένα, ώστε να τις βρίσκετε ευκολότερα.</li>
-    </ul><br>
-
-    <div style="float:left;">
-        <h5>Επεξεργασία των στοιχείων σας</h5><br>
-        <div>
-            <label for="inputName">Όνομα:</label><br>
-            <input type="text" id="inputName"><br>
-        </div>
-        <div>
-            <label for="inputLastname">Επώνυμο:</label><br>
-            <input type="text" id="inputLastname"><br>
-        </div>
-        <div>
-            <label for="inputEmail"><i class="fas fa-at"></i>  Email:</label><br>
-            <input type="email" id="inputEmail"><br>
-        </div>
-        <div>
-            <label for="inputTel"><i class="fas fa-phone-alt"></i> Τηλέφωνο:</label><br>
-            <input type="tel" id="inputTel"><br><br>
-        </div>
-    </div>
-
-    <div class="change-data" style="float: right;" >
+    <br>
+    <div class="change-data" >
         <h5>Αλλαγή στοιχείων σύνδεσης</h5><br>
         <div>
             <label for="inputUsername">Όνομα Χρήστη:</label><br>
@@ -95,10 +69,11 @@
         </div>
         <div>
             <label for="inputNewPassword">Νέος κωδικός:</label><br>
-            <div class="eye">
-                <button class="eye-button" title="Εμφάνιση κωδικού" type="button" onclick="show()"><img src="media/visibility.png"></button>
-            </div>
-            <input type="password" id="inputNewPassword"><br>
+
+            <input type="password" id="inputNewPassword">
+
+                <button class="eye-button-admin" title="Εμφάνιση κωδικού" type="button" onclick="show()"><img src="media/visibility.png"></button>
+
         </div>
         <div>
             <label for="confirmNewPassword">Επιβεβαίωση νέου κωδικού:</label><br>
@@ -107,14 +82,18 @@
     </div>
 
     <div align="center">
-        <button class="submit-form" type="submit">Ενημέρωση</button>
+        <button class="admin-submit" type="submit">Ενημέρωση</button>
     </div><br><br>
 
-    <img class="favorites-image" src="media/add-to-favorites.png">
-    <h5>Η λίστα με τις αγαπημένες σας θέσεις:</h5><br>
-    <button class="submit-signup" type="submit"><i class="fas fa-plus-circle"></i> Προσθήκη θέσης</button>
-
+    <h5>Πρόσβαση στις βάσεις δεδομένων</h5>
+    <div >
+        <button type="submit" class="admin-submit" ><a href="formdb.php" style="color: black">Φόρμα Επικοινωνίας</a> </button>
+        <button type="submit" class="admin-submit"><a href="formdb.php" style="color: black">Νέες Θέσεις</a></button>
+        <button type="submit" class="admin-submit"><a href="formdb.php" style="color: black">Χάρτης</a></button>
+        <button type="submit" class="admin-submit"><a href="formdb.php" style="color: black">Χρήστες</a></button>
+    </div>
 </div>
+
 
 <script>
     function show() {
