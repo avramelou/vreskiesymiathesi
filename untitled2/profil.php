@@ -195,29 +195,42 @@ if (isset($_POST['submit'])) {
         {
             echo "<p><br><br> Δεν βρέθηκαν θέσεις πάρκινγκ. </p>";
         }
+
+
         for ($i=0; $i<mysqli_num_rows($result); $i++) {
             $row = mysqli_fetch_assoc($result);
             $show=$row["ΟΔΟΣ"] .' ' .$row["ΑΡΙΘΜΟΣ"] .' ' . $row["ΠΕΡΙΟΧΗ"];
             $site=$row["SITE"];
 
             echo "<p> <br><br> <form method='post' action='profil.php'>
-                                <button type='submit' name='fav' value='submit' style='border: none; color: red; background: white;'><i class=\"far fa-heart\"></i></button>
+                                <button type='submit' name=$i value=$i onclick='doSomething()' style='border: none; color: red; background: white;'><i class=\"far fa-heart\"></i></button>
                                 </form>
                                 $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i></a> </p>";
 
-            if ($_POST['fav']=="submit"){
+
+        }
+        $sql="SELECT * FROM PARKING WHERE ΟΔΟΣ='$search' OR ΠΕΡΙΟΧΗ='$search'";
+            $result=mysqli_query($link,$sql);
+
+
+        for ($i=0; $i<mysqli_num_rows($result); $i++) {
+            $row2 = mysqli_fetch_assoc($result);
+
+            if (isset($_POST[$i])) {
+
                 echo "oigmew";
-//                $sql1="SELECT id FROM User WHERE username='$username'";
-//                $result1=mysqli_query($link,$sql1);
-//                $row1=mysqli_fetch_assoc($result1);
-//                $sql2="INSERT INTO FAVOURITES (user_id,location_id) VALUES ('".$row["ID"]."', '".$row1."')";
-//                if(mysqli_query($link,$sql2))  echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Η τοποθεσία προστέθηκε στα αγαπημένα.</p>";
-//                else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
-//            }else{
+                $sql1 = "SELECT id FROM User WHERE username='$username'";
+                $result1 = mysqli_query($link, $sql1);
+                $row1 = mysqli_fetch_assoc($result1);
+
+                $sql2 = "INSERT INTO FAVOURITES (user_id,location_id) VALUES ('" . $row1["id"] . "', '" . $row2["ID"] . "')";
+                echo $sql2;
+                if (mysqli_query($link, $sql2)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Η τοποθεσία προστέθηκε στα αγαπημένα.</p>";
+                else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+            } else {
                 echo "fnewoijukhnjknjgi";
             }
         }
-
 
     }
     ?>
