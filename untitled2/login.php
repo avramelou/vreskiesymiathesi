@@ -27,18 +27,18 @@ session_start();
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-    <a class="navbar-brand" href="index.html"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
+    <a class="navbar-brand" href="index.php"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="index.html">ΑΡΧΙΚΗ</a>
+            <a class="nav-item nav-link" href="index.php">ΑΡΧΙΚΗ</a>
             <a class="nav-item nav-link" href="map.php">ΕΥΡΕΣΗ ΘΕΣΗΣ</a>
             <a class="nav-item nav-link" href="new.php">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
             <a class="nav-item nav-link" href="form.php">ΕΠΙΚΟΙΝΩΝΙΑ</a>
-            <a class="nav-item nav-link" href="help.html">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
+            <a class="nav-item nav-link" href="help.php">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
         </div>
 
     </div>
-    <a href="login.html"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
+    <a href="login.php"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
 </nav>
 
 <form class="form-signin text-center" method="post" action="login.php">
@@ -68,18 +68,18 @@ if (isset($_POST['login'])) {
     $username=$_POST['username'];
     $password=$_POST['password'];
 
-    $link=mysqli_connect('localhost',"root","eresos4ever","user_map");
-    $sql="SELECT password, administrator FROM User WHERE username='$username'";
+    $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
+    $sql="SELECT PASSWORD, ADMIN FROM USER WHERE USERNAME='$username'";
     $result=mysqli_query($link,$sql);
     if(mysqli_num_rows($result)==0)
     {
-        echo "<p align='center'>ΛΑΘΟΣ ΟΝΟΜΑ ΧΡΗΣΤΗ!</p>";
+        echo "<p align='center'><i class=\"fa fa-exclamation-triangle\"></i> Λάθος όνομα χρήστη.</p>";
     }
     else{
         $row=mysqli_fetch_assoc($result);
-        if($password==$row['password'])
+        if($password==$row['PASSWORD'])
         {
-            if($row['administrator']==true)
+            if($row['ADMIN']==true)
             {
                 $_SESSION["LOGGED IN"]=true;
                 $_SESSION["username"]=$username;
@@ -97,7 +97,7 @@ if (isset($_POST['login'])) {
         }
         else
         {
-            echo "<p align='center'>ΛΑΘΟΣ ΚΩΔΙΚΟΣ!</p>";
+            echo "<p align='center'><i class=\"fa fa-exclamation-triangle\"></i> Λάθος κωδικός.</p>";
         }
 
     }

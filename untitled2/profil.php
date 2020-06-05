@@ -5,14 +5,14 @@ if(isset($_SESSION["LOGGED IN"]))
     $username=$_SESSION["username"];
     $password=$_SESSION["password"];
 
-    $link=mysqli_connect('localhost',"root","eresos4ever","user_map");
-    $sql="SELECT * FROM User WHERE username='$username'";
+    $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
+    $sql="SELECT * FROM USER WHERE USERNAME='$username'";
     $result=mysqli_query($link,$sql);
     $row=mysqli_fetch_assoc($result);
-    $name=$row['name'];
-    $surname=$row['surname'];
-    $email=$row['email'];
-    $tel=$row['telephone'];
+    $name=$row['NAME'];
+    $surname=$row['SURNAME'];
+    $email=$row['EMAIL'];
+    $tel=$row['TELEPHONE'];
 }
 else{
     $name="";
@@ -52,14 +52,14 @@ else{
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" style="display: none">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="index.html"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
+    <a class="navbar-brand" href="index.php"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="index.html">ΑΡΧΙΚΗ</a>
-            <a class="nav-item nav-link" href="map.html">ΧΑΡΤΗΣ</a>
-            <a class="nav-item nav-link" href="new.html">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
-            <a class="nav-item nav-link" href="form.html">ΕΠΙΚΟΙΝΩΝΙΑ</a>
-            <a class="nav-item nav-link" href="help.html">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
+            <a class="nav-item nav-link active" href="index.php">ΑΡΧΙΚΗ</a>
+            <a class="nav-item nav-link" href="map.php">ΧΑΡΤΗΣ</a>
+            <a class="nav-item nav-link" href="new.php">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
+            <a class="nav-item nav-link" href="form.php">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+            <a class="nav-item nav-link" href="help.php">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
         </div>
     </div>
 
@@ -68,8 +68,8 @@ else{
             <img src="media/profile.png" alt="profile symbol" style="width:50px; height: 50px;">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="profil.html"><i class="fas fa-user"></i> Προφίλ</a>
-            <a class="dropdown-item" href="index.html"><i class="fas fa-power-off"></i> Έξοδος</a>
+            <a class="dropdown-item" href="profil.php"><i class="fas fa-user"></i> Προφίλ</a>
+            <a class="dropdown-item" href="index.php"><i class="fas fa-power-off"></i> Έξοδος</a>
         </div>
     </div>
 
@@ -158,8 +158,8 @@ if (isset($_POST['submit'])) {
             $passwordnew=$_POST['newpassword'];
             $passwordnew1=$_POST['newpassword1'];
 
-            $link=mysqli_connect('localhost',"root","eresos4ever","user_map");
-            $sql="SELECT id FROM User WHERE username='$username'";
+            $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
+            $sql="SELECT ID FROM USER WHERE USERNAME='$username'";
             $result=mysqli_query($link,$sql);
             $row=mysqli_fetch_assoc($result);
 
@@ -167,10 +167,10 @@ if (isset($_POST['submit'])) {
             {
                 if($passwordnew==$passwordnew1)
                 {
-                    $id=$row['id'];
-                    $sql="UPDATE User SET username='$username', password='$passwordnew', email='$email', telephone='$tel', name='$name', surname='$surname' WHERE id=$id";
+                    $id=$row['ID'];
+                    $sql="UPDATE USER SET USERNAME='$username', PASSWORD='$passwordnew', EMAIL='$email', TELEPHONE='$tel', NAME='$name', SURNAME='$surname' WHERE ID=$id";
                     if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i>Η ενημέρωση ολοκληρώθηκε επιτυχώς.</p>";
-                    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+                    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
                 }
             }
         }
@@ -188,7 +188,7 @@ if (isset($_POST['submit'])) {
     <?php
     if(!empty($search))
     {
-        $link=mysqli_connect('localhost',"root","eresos4ever","user_map");
+        $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
         $sql="SELECT * FROM PARKING WHERE ΟΔΟΣ='$search' OR ΠΕΡΙΟΧΗ='$search'";
         $result=mysqli_query($link,$sql);
         if(mysqli_num_rows($result)==0)
@@ -202,34 +202,8 @@ if (isset($_POST['submit'])) {
             $show=$row["ΟΔΟΣ"] .' ' .$row["ΑΡΙΘΜΟΣ"] .' ' . $row["ΠΕΡΙΟΧΗ"];
             $site=$row["SITE"];
 
-            echo "<p> <br><br> <form method='post' action='profil.php'>
-                                <button type='submit' name='fav' value=$i onclick='doSomething()' style='border: none; color: red; background: white;'><i class=\"far fa-heart\"></i></button>
-                                </form>
-                                $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i></a> </p>";
+            echo "<p> <br> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
 
-
-        }
-        $sql="SELECT * FROM PARKING WHERE ΟΔΟΣ='$search' OR ΠΕΡΙΟΧΗ='$search'";
-            $result=mysqli_query($link,$sql);
-
-
-        for ($i=0; $i<mysqli_num_rows($result); $i++) {
-            $row2 = mysqli_fetch_assoc($result);
-
-            if (isset($_POST['fav'])) {
-
-                echo "oigmew";
-                $sql1 = "SELECT id FROM User WHERE username='$username'";
-                $result1 = mysqli_query($link, $sql1);
-                $row1 = mysqli_fetch_assoc($result1);
-
-                $sql2 = "INSERT INTO FAVOURITES (user_id,location_id) VALUES ('" . $row1["id"] . "', '" . $row2["ID"] . "')";
-                echo $sql2;
-                if (mysqli_query($link, $sql2)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Η τοποθεσία προστέθηκε στα αγαπημένα.</p>";
-                else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
-            } else {
-                echo "fnewoijukhnjknjgi";
-            }
         }
 
     }

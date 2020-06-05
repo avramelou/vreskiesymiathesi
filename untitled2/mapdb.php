@@ -38,7 +38,7 @@ if (isset($_POST['submitInsert'])) {
 
 <table class="table">
     <thead class="thead-dark">
-    <tr>
+    <tr align="center">
         <th scope="col">ID</th>
         <th scope="col">Οδός</th>
         <th scope="col">Αριθμός</th>
@@ -49,18 +49,18 @@ if (isset($_POST['submitInsert'])) {
 
     <tbody>
     <?php
-    $link=mysqli_connect('localhost',"root","eresos4ever","user_map");
+    $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
     $sql="SELECT * FROM PARKING ";
     $result=mysqli_query($link,$sql);
     if(mysqli_num_rows($result)==0)
     {
-        echo "<p><br><br> Δεν βρέθηκαν καταχωρήσεις στη βάση. </p>";
+        echo "<p align='center'><br><br> Δεν βρέθηκαν καταχωρήσεις στη βάση. </p>";
     }
 
 
     for ($i=0; $i<mysqli_num_rows($result); $i++) {
         $row = mysqli_fetch_assoc($result);
-        echo "<tr>
+        echo "<tr class='bg-light' align='center'>
                         <th scope=\"row\">".$row["ID"]."</th>
                         <td>".$row["ΟΔΟΣ"]."</td>
                         <td>".$row["ΑΡΙΘΜΟΣ"]."</td>
@@ -76,35 +76,40 @@ if (isset($_POST['submitInsert'])) {
     <form action="mapdb.php" method="post" >
         <br>
         <h5>Διαγραφή τοποθεσίας</h5>
-        <input class="delete-input" type="number" placeholder="Πληκτρολογήστε ID" name="delete" value="<?=$delete;?>">
+        <input class="delete-input" type="number" placeholder="Πληκτρολογήστε ID" name="delete">
         <button class="delete-button"  type="submit" name="submitDelete" value="submit"  ><i class="fas fa-trash"></i></button>
     </form>
 </div>
 
 <div align="center" style="margin-bottom: 5em">
     <form action="mapdb.php" method="post" >
-        <br>
         <h5>Προσθήκη τοποθεσίας</h5>
-        <input class="delete-input" type="text" placeholder="Οδός" name="street" value="<?=$street;?>" required>
-        <input class="delete-input" type="number" placeholder="Αριθμός" name="streetNum" value="<?=$streetNum;?>" required>
-        <input class="delete-input" type="text" placeholder="Περιοχή" name="location" value="<?=$location;?>" required>
-        <input class="delete-input" type="text" placeholder="Site" name="site" value="<?=$site;?>" required>
+        <input class="delete-input" type="text" placeholder="Οδός" name="street" required>
+        <input class="delete-input" type="number" placeholder="Αριθμός" name="streetNum" required>
+        <input class="delete-input" type="text" placeholder="Περιοχή" name="location" required>
+        <input class="delete-input" type="text" placeholder="Site" name="site" required>
         <button class="delete-button"  type="submit" name="submitInsert" value="submit" style="color: lawngreen" ><i class="fas fa-plus"></i></button>
     </form>
 </div>
 
 <?php
-$link=mysqli_connect('localhost',"root","eresos4ever","user_map");
+$link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
 if(!empty($delete)){
     $sql="DELETE FROM PARKING WHERE ID='$delete'";
     if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Η καταχώρηση διαγράφτηκε επιτυχώς.</p>";
-    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+    $page=$_SERVER['PHP_SELF'];
+    $sec="0";
+    header("Refresh:$sec; url=$page");
 }
 
 if(!empty($street)){
     $sql="INSERT INTO PARKING (ΟΔΟΣ, ΑΡΙΘΜΟΣ, ΠΕΡΙΟΧΗ, SITE) VALUES ('".$street."', '".$streetNum."', '".$location."', '".$site."')";
     if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Η καταχώρηση προστέθηκε επιτυχώς.</p>";
-    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+    $page=$_SERVER['PHP_SELF'];
+    $sec="0";
+    header("Refresh:$sec; url=$page");
 }
 ?>
 

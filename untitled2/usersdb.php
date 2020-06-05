@@ -33,7 +33,7 @@ if (isset($_POST['submitInsert'])) {
 
 <table class="table">
     <thead class="thead-dark">
-    <tr>
+    <tr align="center">
         <th scope="col">ID</th>
         <th scope="col">Username</th>
         <th scope="col">Password</th>
@@ -48,27 +48,27 @@ if (isset($_POST['submitInsert'])) {
 
     <tbody>
     <?php
-    $link=mysqli_connect('localhost',"root","eresos4ever","user_map");
-    $sql="SELECT * FROM user ";
+    $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
+    $sql="SELECT * FROM USER ";
     $result=mysqli_query($link,$sql);
     if(mysqli_num_rows($result)==0)
     {
-        echo "<p><br><br> Δεν βρέθηκαν καταχωρήσεις στη βάση. </p>";
+        echo "<p align='center'><br><br> Δεν βρέθηκαν καταχωρήσεις στη βάση. </p>";
     }
 
 
     for ($i=0; $i<mysqli_num_rows($result); $i++) {
         $row = mysqli_fetch_assoc($result);
 
-        echo "<tr>
-                        <th scope=\"row\">".$row["id"]."</th>
-                        <td>".$row["username"]."</td>
-                        <td>".$row["password"]."</td>
-                        <td>".$row["email"]."</td>
-                        <td>".$row["telephone"]."</td>
-                        <td>".$row["name"]."</td>
-                        <td>".$row["surname"]."</td>";
-        if($row["administrator"]==1){
+        echo "<tr align='center' class='bg-light'>
+                        <th scope=\"row\">".$row["ID"]."</th>
+                        <td>".$row["USERNAME"]."</td>
+                        <td>".$row["PASSWORD"]."</td>
+                        <td>".$row["EMAIL"]."</td>
+                        <td>".$row["TELEPHONE"]."</td>
+                        <td>".$row["NAME"]."</td>
+                        <td>".$row["SURNAME"]."</td>";
+        if($row["ADMIN"]){
             echo "<td><i style='color: green' class=\"fas fa-user-check\"></i></td> </tr>";
         }else{
             echo "<td><i style='color: red' class=\"fas fa-user-times\"></i></td> </tr>";
@@ -82,7 +82,7 @@ if (isset($_POST['submitInsert'])) {
     <form action="usersdb.php" method="post">
         <br>
         <h5>Διαγραφή administrator</h5>
-        <input class="delete-input" type="number" placeholder="Πληκτρολογήστε ID" name="delete" value="<?=$delete;?>">
+        <input class="delete-input" type="number" placeholder="Πληκτρολογήστε ID" name="delete" >
         <button class="delete-button"  type="submit" name="submitDelete" value="submit" ><i class="fas fa-trash"></i></button>
     </form>
 </div>
@@ -91,33 +91,47 @@ if (isset($_POST['submitInsert'])) {
     <form action="usersdb.php" method="post">
         <br>
         <h5>Προσθήκη administator</h5>
-        <input class="delete-input" type="text" placeholder="username" name="username" value="<?=$username;?>" required>
-        <input class="delete-input" type="text" placeholder="password" name="password" value="<?=$password;?>" required>
+        <input class="delete-input" type="text" placeholder="username" name="username" required>
+        <input class="delete-input" type="text" placeholder="password" name="password" required>
         <button class="delete-button"  type="submit" name="submitInsert" value="submit" style="color: lawngreen"><i class="fas fa-plus"></i></button>
     </form>
 </div>
 
 
 <?php
-$link=mysqli_connect('localhost',"root","eresos4ever","user_map");
+$link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
 if(!empty($delete)){
 
-    $sql="SELECT * FROM user WHERE id='$delete'";
+    $sql="SELECT * FROM USER WHERE ID='$delete'";
     $result=mysqli_query($link,$sql);
-    $row = mysqli_fetch_row($result);
+    $row = mysqli_fetch_assoc($result);
 
-    if ($row["administrator"]==1){
-        $sql1="DELETE FROM user WHERE id='$delete'";
-        if(mysqli_query($link,$sql1)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Η καταχώρηση διαγράφτηκε επιτυχώς.</p>";
-        else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
-
+    if ($row["ADMIN"]){
+        $sql1="DELETE FROM USER WHERE ID='$delete'";
+        if(mysqli_query($link,$sql1)) {
+            echo "<script>alert('Η καταχώρηση διαγράφτηκε επιτυχώς.');</script>";
+        }
+        else {
+            echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.');</script>";
+        }
+        $page=$_SERVER['PHP_SELF'];
+        $sec="0";
+        header("Refresh:$sec; url=$page");
+    }else {
+        echo "<br> <p align='center'> <i class=\"fa fa-exclamation-triangle\"></i> Ο χρήστης με id $delete δεν είναι administrator.</p>";
     }
 }
 if(!empty($username)){
-    $sql="INSERT INTO user (username,password,administrator) VALUES ('".$username."', '".$password."',true)";
-    if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Η καταχώρηση προστέθηκε επιτυχώς.</p>";
-    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
-
+    $sql="INSERT INTO USER (USERNAME,PASSWORD,ADMIN) VALUES ('".$username."', '".$password."',true)";
+    if(mysqli_query($link,$sql)) {
+        echo "<script>alert('Η καταχώρηση προστέθηκε επιτυχώς.');</script>";
+    }
+    else {
+        echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.');</script>";
+    }
+    $page=$_SERVER['PHP_SELF'];
+    $sec="0";
+    header("Refresh:$sec; url=$page");
 }
 ?>
 

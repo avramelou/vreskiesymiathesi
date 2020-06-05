@@ -27,14 +27,14 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" style="display: none">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="index.html"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
+    <a class="navbar-brand" href="index.php"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="index.html">ΑΡΧΙΚΗ</a>
+            <a class="nav-item nav-link" href="index.php">ΑΡΧΙΚΗ</a>
             <a class="nav-item nav-link" href="map.php">ΧΑΡΤΗΣ</a>
             <a class="nav-item nav-link" href="new.php">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
             <a class="nav-item nav-link" href="form.php">ΕΠΙΚΟΙΝΩΝΙΑ</a>
-            <a class="nav-item nav-link" href="help.html">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
+            <a class="nav-item nav-link" href="help.php">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
         </div>
     </div>
 
@@ -43,8 +43,8 @@
             <img src="media/admin.png" alt="profile symbol" style="width:50px; height: 50px;">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="profil.html"><i class="fas fa-user"></i> Προφίλ</a>
-            <a class="dropdown-item" href="index.html"><i class="fas fa-power-off"></i> Έξοδος</a>
+            <a class="dropdown-item" href="profil.php"><i class="fas fa-user"></i> Προφίλ</a>
+            <a class="dropdown-item" href="index.php"><i class="fas fa-power-off"></i> Έξοδος</a>
         </div>
     </div>
 
@@ -88,9 +88,9 @@
     <h5>Πρόσβαση στις βάσεις δεδομένων</h5>
     <div >
         <button type="submit" class="admin-submit" ><a href="formdb.php" style="color: black">Φόρμα Επικοινωνίας</a> </button>
-        <button type="submit" class="admin-submit"><a href="formdb.php" style="color: black">Νέες Θέσεις</a></button>
-        <button type="submit" class="admin-submit"><a href="formdb.php" style="color: black">Χάρτης</a></button>
-        <button type="submit" class="admin-submit"><a href="formdb.php" style="color: black">Χρήστες</a></button>
+        <button type="submit" class="admin-submit"><a href="newdb.php" style="color: black">Νέες Θέσεις</a></button>
+        <button type="submit" class="admin-submit"><a href="mapdb.php" style="color: black">Χάρτης</a></button>
+        <button type="submit" class="admin-submit"><a href="usersdb.php" style="color: black">Χρήστες</a></button>
     </div>
 </div>
 

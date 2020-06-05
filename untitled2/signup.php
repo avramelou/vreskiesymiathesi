@@ -26,17 +26,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-    <a class="navbar-brand" href="index.html"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
+    <a class="navbar-brand" href="index.php"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link " href="index.html">ΑΡΧΙΚΗ</a>
-            <a class="nav-item nav-link" href="map.html">ΕΥΡΕΣΗ ΘΕΣΗΣ</a>
-            <a class="nav-item nav-link" href="new.html">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
-            <a class="nav-item nav-link" href="form.html">ΕΠΙΚΟΙΝΩΝΙΑ</a>
-            <a class="nav-item nav-link" href="help.html">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
+            <a class="nav-item nav-link " href="index.php">ΑΡΧΙΚΗ</a>
+            <a class="nav-item nav-link" href="map.php">ΕΥΡΕΣΗ ΘΕΣΗΣ</a>
+            <a class="nav-item nav-link" href="new.php">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
+            <a class="nav-item nav-link" href="form.php">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+            <a class="nav-item nav-link" href="help.php">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
         </div>
     </div>
-    <a href="login.html"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
+    <a href="login.php"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
 </nav>
 
 <form class="form-signin text-center" method="post" action="signup.php">
@@ -71,11 +71,11 @@ if (isset($_POST['signup'])) {
     if ($password != $password1) {
         echo "ΟΙ ΚΩΔΙΚΟΙ ΔΕΝ ΤΑΙΡΙΑΖΟΥΝ!";
     } else {
-        $link = mysqli_connect('localhost', "root", "eresos4ever", "user_map");
-        $sql = "SELECT password FROM User WHERE username='$username'";
+        $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
+        $sql = "SELECT PASSWORD FROM USER WHERE USERNAME='$username'";
         $result = mysqli_query($link, $sql);
         if (mysqli_num_rows($result) == 0) {
-            $sql = "INSERT INTO User (username, password, administrator) VALUES ('" . $username . "', '" . $password . "', false)";
+            $sql = "INSERT INTO USER (USERNAME, PASSWORD, ADMIN) VALUES ('" . $username . "', '" . $password . "', false)";
             if (mysqli_query($link, $sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i>Η εγγραφή ολοκληρώθηκε επιτυχώς.</p>";
             else echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
         } else {

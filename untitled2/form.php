@@ -22,17 +22,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-    <a class="navbar-brand" href="index.html"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
+    <a class="navbar-brand" href="index.php"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="index.html">ΑΡΧΙΚΗ</a>
-            <a class="nav-item nav-link" href="map.html">ΕΥΡΕΣΗ ΘΕΣΗΣ</a>
-            <a class="nav-item nav-link" href="new.html">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
-            <a class="nav-item nav-link active" href="form.html">ΕΠΙΚΟΙΝΩΝΙΑ</a>
-            <a class="nav-item nav-link" href="help.html">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
+            <a class="nav-item nav-link" href="index.php">ΑΡΧΙΚΗ</a>
+            <a class="nav-item nav-link" href="map.php">ΕΥΡΕΣΗ ΘΕΣΗΣ</a>
+            <a class="nav-item nav-link" href="new.php">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
+            <a class="nav-item nav-link active" href="form.php">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+            <a class="nav-item nav-link" href="help.php">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
         </div>
     </div>
-    <a href="login.html"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
+    <a href="login.php"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
 </nav>
 
 
@@ -81,10 +81,10 @@ if (isset($_POST['submit'])) {
     $tel=$_POST['Tel'];
     $comments=$_POST['Comments'];
 
-    $link=mysqli_connect('localhost',"root","eresos4ever","CONTACTFORM");
-    $sql="INSERT INTO form_contact (ID, Name, Lastname, Email, Telephone, Comments) VALUES (NULL, '".$name."', '".$lastName."', '".$email."', '".$tel."', '".$comments."')";
+    $link=mysqli_connect('localhost',"root","eresos4ever","CONTACT_FORM");
+    $sql="INSERT INTO CONTACT_FORM (NAME , SURNAME, EMAIL, TELEPHONE, COMMENTS) VALUES ('".$name."', '".$lastName."', '".$email."', '".$tel."', '".$comments."')";
     if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που επικοινωνήσατε μαζί μας.</p>";
-    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
 
 }
 ?>

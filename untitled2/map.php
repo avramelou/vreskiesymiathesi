@@ -24,17 +24,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-    <a class="navbar-brand" href="index.html"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
+    <a class="navbar-brand" href="index.php"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="index.html">ΑΡΧΙΚΗ</a>
-            <a class="nav-item nav-link active" href="map.html">ΕΥΡΕΣΗ ΘΕΣΗΣ</a>
-            <a class="nav-item nav-link" href="new.html">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
-            <a class="nav-item nav-link" href="form.html">ΕΠΙΚΟΙΝΩΝΙΑ</a>
-            <a class="nav-item nav-link" href="help.html">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
+            <a class="nav-item nav-link" href="index.php">ΑΡΧΙΚΗ</a>
+            <a class="nav-item nav-link active" href="map.php">ΕΥΡΕΣΗ ΘΕΣΗΣ</a>
+            <a class="nav-item nav-link" href="new.php">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
+            <a class="nav-item nav-link" href="form.php">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+            <a class="nav-item nav-link" href="help.php">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
         </div>
     </div>
-    <a href="login.html"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
+    <a href="login.php"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
 </nav>
 <?php
 $search="";
@@ -57,18 +57,18 @@ if ($_POST['submit']=="submit") {
         <?php
         if(!empty($search))
         {
-            $link=mysqli_connect('localhost',"root","eresos4ever","user_map");
+            $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
             $sql="SELECT * FROM PARKING WHERE ΟΔΟΣ='$search' OR ΠΕΡΙΟΧΗ='$search'";
             $result=mysqli_query($link,$sql);
             if(mysqli_num_rows($result)==0)
             {
-                echo "<p><br><br> Δεν βρέθηκαν θέσεις πάρκινγκ. </p>";
+                echo "<p><br> Δεν βρέθηκαν θέσεις πάρκινγκ. </p>";
             }
             for ($i=0; $i<mysqli_num_rows($result); $i++) {
                 $row = mysqli_fetch_assoc($result);
                 $show=$row["ΟΔΟΣ"] .' ' .$row["ΑΡΙΘΜΟΣ"] .' ' . $row["ΠΕΡΙΟΧΗ"];
                 $site=$row["SITE"];
-                echo "<p> <br><br> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i></a> </p>";
+                echo "<p> <br> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
             }
         }
         ?>
