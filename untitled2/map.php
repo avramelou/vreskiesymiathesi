@@ -68,13 +68,10 @@ if ($_POST['submit']=="submit") {
                 $row = mysqli_fetch_assoc($result);
                 $show=$row["ΟΔΟΣ"] .' ' .$row["ΑΡΙΘΜΟΣ"] .' ' . $row["ΠΕΡΙΟΧΗ"];
                 $site=$row["SITE"];
-                echo "<p> <br> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
+                echo "<p><br> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
             }
         }
         ?>
-
-
-
     </div>
 
     <div >

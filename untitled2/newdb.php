@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
     <tr align="center">
         <th colspan="7">NEW_LOCATION</th>
     </tr>
-    <tr align="center">
+    <tr>
         <th scope="col">ID</th>
         <th scope="col">Street</th>
         <th scope="col">StreetNumber</th>
@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
 
     for ($i=0; $i<mysqli_num_rows($result); $i++) {
         $row = mysqli_fetch_assoc($result);
-        echo "<tr align='center' class='bg-light'>
+        echo "<tr class='bg-light'>
                         <th scope=\"row\">".$row["ID"]."</th>
                         <td>".$row["STREET"]."</td>
                         <td>".$row["STREET_NUM"]."</td>
@@ -72,7 +72,7 @@ if (isset($_POST['submit'])) {
     <form action="newdb.php" method="post">
         <br>
         <h5>Διαγραφή καταχώρησης</h5>
-        <input class="delete-input" type="number" placeholder="ID για διαγραφή" name="delete">
+        <input class="delete-input" type="number" placeholder="Πληκτρολογήστε ID" name="delete">
         <button class="delete-button"  type="submit" name="submit" value="submit" ><i class="fas fa-trash"></i></button>
     </form>
 </div>
@@ -81,8 +81,14 @@ if (isset($_POST['submit'])) {
 if(!empty($delete)){
     $link=mysqli_connect('localhost',"root","eresos4ever","NEW_LOCATION");
     $sql="DELETE FROM NEW_LOCATION WHERE ID='$delete'";
-    if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Η καταχώρηση διαγράφτηκε επιτυχώς.</p>";
-    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+    $result=mysqli_query($link,$sql);
+    $rows=mysqli_affected_rows($link);
+    if($result && $rows!=0) {
+        echo "<script>alert('Η καταχώρηση διαγράφτηκε επιτυχώς.')</script>";
+    }
+    else {
+        echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.')</script>";
+    }
     $page=$_SERVER['PHP_SELF'];
     $sec="0";
     header("Refresh:$sec; url=$page");

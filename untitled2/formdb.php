@@ -27,10 +27,13 @@ if (isset($_POST['submit'])) {
 
     <table class="table">
         <thead class="thead-dark">
+        <tr align="center">
+            <th colspan="6">CONTACT_FORM</th>
+        </tr>
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
-            <th scope="col">Last Name</th>
+            <th scope="col">Surname</th>
             <th scope="col">Email</th>
             <th scope="col">Telephone</th>
             <th scope="col">Comments</th>
@@ -39,43 +42,55 @@ if (isset($_POST['submit'])) {
 
         <tbody>
         <?php
-        $link=mysqli_connect('localhost',"root","eresos4ever","contactform");
-        $sql="SELECT * FROM form_contact ";
+        $link=mysqli_connect('localhost',"root","eresos4ever","CONTACT_FORM");
+        $sql="SELECT * FROM CONTACT_FORM ";
         $result=mysqli_query($link,$sql);
         if(mysqli_num_rows($result)==0)
         {
-            echo "<p><br><br> Δεν βρέθηκαν καταχωρήσεις στη βάση. </p>";
+            echo "<p align='center'><br><br> Δεν βρέθηκαν καταχωρήσεις στη βάση. </p>";
         }
 
 
         for ($i=0; $i<mysqli_num_rows($result); $i++) {
             $row = mysqli_fetch_assoc($result);
-            echo "<tr>
+            echo "<tr class='bg-light'>
                         <th scope=\"row\">".$row["ID"]."</th>
-                        <td>".$row["Name"]."</td>
-                        <td>".$row["Lastname"]."</td>
-                        <td>".$row["Email"]."</td>
-                        <td>".$row["Telephone"]."</td>
-                        <td>".$row["Comments"]."</td>
+                        <td>".$row["NAME"]."</td>
+                        <td>".$row["SURNAME"]."</td>
+                        <td>".$row["EMAIL"]."</td>
+                        <td>".$row["TELEPHONE"]."</td>
+                        <td>".$row["COMMENTS"]."</td>
                   </tr>";
         }
         ?>
         </tbody>
     </table>
 
+    <div align="center">
+        <form action="formdb.php" method="post">
+            <br>
+            <h5>Διαγραφή καταχώρησης.</h5>
+            <input class="delete-input" type="number" placeholder="Πληκτρολογήστε ID" name="delete" >
+            <button class="delete-button"  type="submit" name="submit" value="submit" ><i class="fas fa-trash"></i></button>
+        </form>
+    </div>
 
-    <form action="formdb.php" method="post">
-        <input class="delete-input" type="number" placeholder="ID για διαγραφή" name="delete" value="<?=$delete;?>">
-        <button class="delete-button"  type="submit" name="submit" value="submit"  onClick="window.location.reload();"><i class="fas fa-trash"></i></button>
-    </form>
 
     <?php
     if(!empty($delete)){
-        $link=mysqli_connect('localhost',"root","eresos4ever","CONTACTFORM");
-        $sql="DELETE FROM form_contact WHERE ID='$delete'";
-        if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Η καταχώρηση διαγράφτηκε επιτυχώς.</p>";
-        else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
-
+        $link=mysqli_connect('localhost',"root","eresos4ever","CONTACT_FORM");
+        $sql="DELETE FROM CONTACT_FORM WHERE ID='$delete'";
+        $result=mysqli_query($link,$sql);
+        $rows=mysqli_affected_rows($link);
+        if($result && $rows!=0) {
+            echo "<script>alert('Η καταχώρηση διαγράφτηκε επιτυχώς.')</script>";
+        }
+        else {
+            echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.')</script>";
+        }
+        $page=$_SERVER['PHP_SELF'];
+        $sec="0";
+        header("Refresh:$sec; url=$page");
     }
     ?>
 

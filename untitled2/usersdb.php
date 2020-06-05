@@ -34,6 +34,9 @@ if (isset($_POST['submitInsert'])) {
 <table class="table">
     <thead class="thead-dark">
     <tr align="center">
+        <th colspan="8">USER</th>
+    </tr>
+    <tr>
         <th scope="col">ID</th>
         <th scope="col">Username</th>
         <th scope="col">Password</th>
@@ -42,7 +45,6 @@ if (isset($_POST['submitInsert'])) {
         <th scope="col">Name</th>
         <th scope="col">Surname</th>
         <th scope="col">Administrator</th>
-
     </tr>
     </thead>
 
@@ -53,14 +55,14 @@ if (isset($_POST['submitInsert'])) {
     $result=mysqli_query($link,$sql);
     if(mysqli_num_rows($result)==0)
     {
-        echo "<p align='center'><br><br> Δεν βρέθηκαν καταχωρήσεις στη βάση. </p>";
+        echo "<p align='center'><br><br>Δεν βρέθηκαν καταχωρήσεις στη βάση.</p>";
     }
 
 
     for ($i=0; $i<mysqli_num_rows($result); $i++) {
         $row = mysqli_fetch_assoc($result);
 
-        echo "<tr align='center' class='bg-light'>
+        echo "<tr class='bg-light'>
                         <th scope=\"row\">".$row["ID"]."</th>
                         <td>".$row["USERNAME"]."</td>
                         <td>".$row["PASSWORD"]."</td>
@@ -105,20 +107,24 @@ if(!empty($delete)){
     $sql="SELECT * FROM USER WHERE ID='$delete'";
     $result=mysqli_query($link,$sql);
     $row = mysqli_fetch_assoc($result);
-
-    if ($row["ADMIN"]){
-        $sql1="DELETE FROM USER WHERE ID='$delete'";
-        if(mysqli_query($link,$sql1)) {
-            echo "<script>alert('Η καταχώρηση διαγράφτηκε επιτυχώς.');</script>";
+    $rows = mysqli_affected_rows($link);
+    if ($rows!=0) {
+        if ($row["ADMIN"]) {
+            $sql1="DELETE FROM USER WHERE ID='$delete'";
+            if(mysqli_query($link,$sql1)) {
+                echo "<script>alert('Η καταχώρηση διαγράφτηκε επιτυχώς.');</script>";
+            }
+            else {
+                echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.');</script>";
+            }
+            $page=$_SERVER['PHP_SELF'];
+            $sec="0";
+            header("Refresh:$sec; url=$page");
+        }else {
+            echo "<script>alert('Ο χρήστης με ID $delete δεν είναι administrator.')</script>";
         }
-        else {
-            echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.');</script>";
-        }
-        $page=$_SERVER['PHP_SELF'];
-        $sec="0";
-        header("Refresh:$sec; url=$page");
-    }else {
-        echo "<br> <p align='center'> <i class=\"fa fa-exclamation-triangle\"></i> Ο χρήστης με id $delete δεν είναι administrator.</p>";
+    }else{
+        echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.');</script>";
     }
 }
 if(!empty($username)){

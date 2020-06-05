@@ -35,7 +35,33 @@
     <a href="login.php"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
 </nav>
 
+<?php
+$name="";
+$lastName="";
+$email="";
+$tel="";
+$comments="";
+if (isset($_POST['submit'])) {
+    $name=$_POST['Name'];
+    $lastName=$_POST['LastName'];
+    $email=$_POST['Email'];
+    $tel=$_POST['Tel'];
+    //$tel = intval($tel,10);
+    $comments=$_POST['Comments'];
 
+    $link=mysqli_connect('localhost',"root","eresos4ever","CONTACT_FORM");
+    $sql="INSERT INTO CONTACT_FORM (NAME , SURNAME, EMAIL, TELEPHONE, COMMENTS) VALUES ('".$name."', '".$lastName."', '".$email."', '".$tel."', '".$comments."')";
+    echo "<style> .form-contact{ margin-top: 6px}</style>";
+    if(mysqli_query($link,$sql)) {
+
+        echo "<p align='center' style='margin-top: 120px'><mark style='background: #BDFFA7'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που επικοινωνήσατε μαζί μας.</mark></p>";
+    }
+    else {
+        echo "<p align='center' style='margin-top: 120px'><mark style='background: #FF7D75'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</mark></p>";
+    }
+
+}
+?>
 
 <form class="form-contact" method="post" action="form.php">
     <img class="message-image" src="media/message.png" alt="contact us">
@@ -54,7 +80,7 @@
     </div>
     <div>
         <label for="inputTel"><i class="fas fa-phone-alt"></i> Τηλέφωνο:</label><br>
-        <input type="tel" name="Tel" id="inputTel"><br><br>
+        <input type="number" name="Tel" id="inputTel"><br><br>
     </div>
     <div>
         <label for="inputComments"><i class="far fa-comment-dots"></i> Σχόλια: <a style="color: red">*</a></label><br>
@@ -68,26 +94,7 @@
     </div>
 </form>
 
-<?php
-$name="";
-$lastName="";
-$email="";
-$tel="";
-$comments="";
-if (isset($_POST['submit'])) {
-    $name=$_POST['Name'];
-    $lastName=$_POST['LastName'];
-    $email=$_POST['Email'];
-    $tel=$_POST['Tel'];
-    $comments=$_POST['Comments'];
 
-    $link=mysqli_connect('localhost',"root","eresos4ever","CONTACT_FORM");
-    $sql="INSERT INTO CONTACT_FORM (NAME , SURNAME, EMAIL, TELEPHONE, COMMENTS) VALUES ('".$name."', '".$lastName."', '".$email."', '".$tel."', '".$comments."')";
-    if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που επικοινωνήσατε μαζί μας.</p>";
-    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
-
-}
-?>
 
 
 <footer class="footer">

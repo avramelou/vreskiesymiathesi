@@ -39,6 +39,9 @@ if (isset($_POST['submitInsert'])) {
 <table class="table">
     <thead class="thead-dark">
     <tr align="center">
+        <th colspan="5">PARKING</th>
+    </tr>
+    <tr>
         <th scope="col">ID</th>
         <th scope="col">Οδός</th>
         <th scope="col">Αριθμός</th>
@@ -60,7 +63,7 @@ if (isset($_POST['submitInsert'])) {
 
     for ($i=0; $i<mysqli_num_rows($result); $i++) {
         $row = mysqli_fetch_assoc($result);
-        echo "<tr class='bg-light' align='center'>
+        echo "<tr class='bg-light'>
                         <th scope=\"row\">".$row["ID"]."</th>
                         <td>".$row["ΟΔΟΣ"]."</td>
                         <td>".$row["ΑΡΙΘΜΟΣ"]."</td>
@@ -72,7 +75,7 @@ if (isset($_POST['submitInsert'])) {
     </tbody>
 </table>
 
-<div align="center" style="margin-bottom: 5em">
+<div align="center">
     <form action="mapdb.php" method="post" >
         <br>
         <h5>Διαγραφή τοποθεσίας</h5>
@@ -83,6 +86,7 @@ if (isset($_POST['submitInsert'])) {
 
 <div align="center" style="margin-bottom: 5em">
     <form action="mapdb.php" method="post" >
+        <br>
         <h5>Προσθήκη τοποθεσίας</h5>
         <input class="delete-input" type="text" placeholder="Οδός" name="street" required>
         <input class="delete-input" type="number" placeholder="Αριθμός" name="streetNum" required>
@@ -96,8 +100,14 @@ if (isset($_POST['submitInsert'])) {
 $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
 if(!empty($delete)){
     $sql="DELETE FROM PARKING WHERE ID='$delete'";
-    if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Η καταχώρηση διαγράφτηκε επιτυχώς.</p>";
-    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+    $result=mysqli_query($link,$sql);
+    $rows=mysqli_affected_rows($link);
+    if($result && $rows!=0) {
+        echo "<script>alert('Η καταχώρηση διαγράφτηκε επιτυχώς.')</script>";
+    }
+    else {
+        echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.')</script>";
+    }
     $page=$_SERVER['PHP_SELF'];
     $sec="0";
     header("Refresh:$sec; url=$page");
@@ -105,8 +115,12 @@ if(!empty($delete)){
 
 if(!empty($street)){
     $sql="INSERT INTO PARKING (ΟΔΟΣ, ΑΡΙΘΜΟΣ, ΠΕΡΙΟΧΗ, SITE) VALUES ('".$street."', '".$streetNum."', '".$location."', '".$site."')";
-    if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Η καταχώρηση προστέθηκε επιτυχώς.</p>";
-    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+    if(mysqli_query($link,$sql)) {
+        echo "<script>alert('Η καταχώρηση προστέθηκε επιτυχώς.')</script>";
+    }
+    else {
+        echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.')</script>";
+    }
     $page=$_SERVER['PHP_SELF'];
     $sec="0";
     header("Refresh:$sec; url=$page");

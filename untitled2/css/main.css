@@ -145,7 +145,7 @@ hr {
 /* --- MAP --- */
 
 .map {
-  margin-top: 100px;
+  margin-top: 70px;
   padding: 3% 5%;
 }
 .map-text{
@@ -165,7 +165,7 @@ hr {
 .search-box-input{
   font-size: inherit;
   border: 0.2em solid #ffc107;
-  border-radius: 0.3em 0 0 0.3em;
+  border-radius: 0.3em;
   padding: 0.3em;
   outline: none;
 }
@@ -176,8 +176,7 @@ hr {
 .search-box-button{
   font-size: inherit;
   border: 0.2em solid #ffc107;
-  border-radius: 0 0.3em 0.3em 0;
-  border-left: 0;
+  border-radius: 0.3em;
   background-color: #ffc107;
   padding: 0.3em 0.8em;
 }
@@ -190,7 +189,7 @@ hr {
 .delete-input{
   font-size: inherit;
   border: 0.2em solid black;
-  border-radius: 0.3em 0 0 0.3em;
+  border-radius: 0.3em;
   padding: 0.3em;
   outline: none;
 }
@@ -198,8 +197,7 @@ hr {
   color: red;
   font-size: inherit;
   border: 0.2em solid black;
-  border-radius: 0 0.3em 0.3em 0;
-  border-left: 0;
+  border-radius: 0.3em;
   background-color: black;
   padding: 0.3em 0.8em;
 }

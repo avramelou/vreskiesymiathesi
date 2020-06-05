@@ -186,28 +186,52 @@ if (isset($_POST['submit'])) {
     </form>
 
     <?php
-    if(!empty($search))
-    {
-        $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
-        $sql="SELECT * FROM PARKING WHERE ΟΔΟΣ='$search' OR ΠΕΡΙΟΧΗ='$search'";
-        $result=mysqli_query($link,$sql);
-        if(mysqli_num_rows($result)==0)
-        {
+    if(!empty($search)) {
+        $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
+        $sql = "SELECT * FROM PARKING WHERE ΟΔΟΣ='$search' OR ΠΕΡΙΟΧΗ='$search'";
+        $result = mysqli_query($link, $sql);
+        if (mysqli_num_rows($result) == 0) {
             echo "<p><br><br> Δεν βρέθηκαν θέσεις πάρκινγκ. </p>";
         }
 
 
-        for ($i=0; $i<mysqli_num_rows($result); $i++) {
+        for ($i = 0; $i < mysqli_num_rows($result); $i++) {
             $row = mysqli_fetch_assoc($result);
-            $show=$row["ΟΔΟΣ"] .' ' .$row["ΑΡΙΘΜΟΣ"] .' ' . $row["ΠΕΡΙΟΧΗ"];
-            $site=$row["SITE"];
+            $show = $row["ΟΔΟΣ"] . ' ' . $row["ΑΡΙΘΜΟΣ"] . ' ' . $row["ΠΕΡΙΟΧΗ"];
+            $site = $row["SITE"];
+            $id = $row["ID"];
 
-            echo "<p> <br> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
+            echo "<p> <br>ID: $id ->  $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
 
         }
+        echo " <div>
+                  <form action=\"profil.php\" method=\"post\">
+                    <br>
+                    <h5>Προσθήκη στα αγαπημένα.</h5>
+                    <input class='search-box-input' type=\"number\" placeholder=\"Πληκτρολογήστε ID\" name='insert' >
+                    <button class='search-box-button'  type=\"submit\" name=\"submit\" value=\"submit\" ><i class=\"fas fa-plus\"></i></button>
+                </form>
+              </div>";
 
+
+        $insert = "";
+        if ($_POST['insert']=="submit") {
+            $insert = $_POST("insert");
+            $insert = intval($insert, 10);
+
+            $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
+            $sql = "SELECT * FROM PARKING WHERE ID='$insert'";
+            $result = mysqli_query($link, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $sql1 = "SELECT ID FROM USER WHERE USERNAME='$username'";
+            $result1 = mysqli_query($link, $sql1);
+            $row1 = mysqli_fetch_assoc($result1);
+            $sql2 = "INSERT INTO FAVOURITES (USER_ID, LOCATION_ID) VALUES ('" . $row1['ID'] . "', '" . $row['ID'] . "')";
+
+        }
     }
-    ?>
+?>
+
 
 </div>
 

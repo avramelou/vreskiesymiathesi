@@ -39,7 +39,40 @@
   <a href="login.php"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
 </nav>
 
+<?php
+$street="";
+$number=NULL;
+$city="";
+$postCode="";
+$choice="";
+$comments="";
+if (isset($_POST['submit'])) {
+    $street=$_POST['Street'];
+    $number=$_POST['Number'];
+    $city=$_POST['City'];
+    $postCode=$_POST['PostCode'];
+    $choice=$_POST['Choice'];
+    if($choice=='1'){
+        $choice=1;
+    }else if($choice=='2'){
+        $choice=2;
+    }else{
+        $choice=3;
+    }
+    $comments=$_POST['Comments'];
 
+
+    $link=mysqli_connect('localhost',"root","eresos4ever","NEW_LOCATION");
+    $sql="INSERT INTO NEW_LOCATION (STREET, STREET_NUM, CITY, POST_CODE, CHOICE, COMMENTS) VALUES ('".$street."', '".$number."', '".$city."', '".$postCode."', '".$choice."', '".$comments."')";
+    echo "<style> .new-location{ margin-top: 6px}</style>";
+    if(mysqli_query($link,$sql))  {
+        echo "<p align='center' style='margin-top: 120px'><mark style='background: #BDFFA7'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που υποβάλατε νέα θέση.</mark></p>";
+    }
+    else {
+        echo "<p align='center' style='margin-top: 120px'><mark style='background: #FF7D75'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</mark></p>";
+    }
+}
+?>
 
 <form class="new-location" method="post" action="new.php">
   <img class="pin-image" src="media/pin.png" alt="pin on a map">
@@ -77,37 +110,6 @@
   <!--<input class="submit-new-location" type="submit">-->
   <button class="submit-new-location" name="submit" value="submit" type="submit">Υποβολή</button>
 </form>
-
-
-<?php
-$street="";
-$number=NULL;
-$city="";
-$postCode="";
-$choice="";
-$comments="";
-if (isset($_POST['submit'])) {
-    $street=$_POST['Street'];
-    $number=$_POST['Number'];
-    $city=$_POST['City'];
-    $postCode=$_POST['PostCode'];
-    $choice=$_POST['Choice'];
-    if($choice=='1'){
-        $choice=1;
-    }else if($choice=='2'){
-        $choice=2;
-    }else{
-        $choice=3;
-    }
-    $comments=$_POST['Comments'];
-
-
-    $link=mysqli_connect('localhost',"root","eresos4ever","NEW_LOCATION");
-    $sql="INSERT INTO NEW_LOCATION (STREET, STREET_NUM, CITY, POST_CODE, CHOICE, COMMENTS) VALUES ('".$street."', '".$number."', '".$city."', '".$postCode."', '".$choice."', '".$comments."')";
-    if(mysqli_query($link,$sql))  echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που υποβάλατε νέα θέση.</p>";
-    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
-}
-?>
 
 
 <footer class="footer">
