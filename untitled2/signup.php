@@ -69,17 +69,23 @@ if (isset($_POST['signup'])) {
     $password1 = $_POST['confirmpassword'];
 
     if ($password != $password1) {
-        echo "ΟΙ ΚΩΔΙΚΟΙ ΔΕΝ ΤΑΙΡΙΑΖΟΥΝ!";
+        echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Οι κωδικοί δεν ταιριάζουν.</p>";
     } else {
         $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
         $sql = "SELECT PASSWORD FROM USER WHERE USERNAME='$username'";
         $result = mysqli_query($link, $sql);
         if (mysqli_num_rows($result) == 0) {
             $sql = "INSERT INTO USER (USERNAME, PASSWORD, ADMIN) VALUES ('" . $username . "', '" . $password . "', false)";
-            if (mysqli_query($link, $sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i>Η εγγραφή ολοκληρώθηκε επιτυχώς.</p>";
+            if (mysqli_query($link, $sql))
+            {
+                $_SESSION["LOGGED IN"]="user";
+                $_SESSION["username"]=$username;
+                $_SESSION["password"]=$password;
+                echo "<script> window.location='profil.php'</script>";
+            }
             else echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
         } else {
-            echo "Τo username υπάρχει ήδη.";
+            echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Το username υπάρχει ήδη.</p>";
         }
 
     }

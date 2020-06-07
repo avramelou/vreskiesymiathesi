@@ -3,14 +3,14 @@ session_start();
 if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]=="user")
 {
     $username=$_SESSION["username"];
-    $link=mysqli_connect('localhost',"avramelou","eresos4ever","USER_MAP");
-    $sql="SELECT NAME,SURNAME,TELEPHONE,EMAIL FROM USER WHERE USERNAME='$username'";
+    $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
+    $sql="SELECT * FROM USER WHERE USERNAME='$username'";
     $result=mysqli_query($link,$sql);
     $row=mysqli_fetch_assoc($result);
-    $name=$row["NAME"];
-    $surname=$row["SURNAME"];
-    $tel=$row["TELEPHONE"];
-    $email=$row["EMAIL"];
+    $name=$row['NAME'];
+    $surname=$row['SURNAME'];
+    $email=$row['EMAIL'];
+    $tel=$row['TELEPHONE'];
 }
 ?>
 <!DOCTYPE html>
@@ -107,15 +107,15 @@ if (isset($_POST['submit'])) {
     <h5>Επικοινωνήστε μαζί μας</h5><br>
     <div>
         <label for="inputName">Όνομα:</label><br>
-        <input type="text" name="Name" id="inputName" required><a style="color: red" value="<?=$name;?>"> *</a><br>
+        <input type="text" name="Name" id="inputName" value="<?=$name;?>" required><a style="color: red" > *</a><br>
     </div>
     <div>
         <label for="inputLastname">Επώνυμο:</label><br>
-        <input type="text" name="LastName" id="inputLastname" required><a style="color: red" value="<?=$surname;?>"> *</a><br>
+        <input type="text" name="LastName" id="inputLastname" value="<?=$surname;?>" required><a style="color: red" > *</a><br>
     </div>
     <div>
         <label for="inputEmail"><i class="fas fa-at"></i> Email:</label><br>
-        <input type="email" name="Email" id="inputEmail" required><a style="color: red" value="<?=$email;?>"> *</a><br>
+        <input type="email" name="Email" id="inputEmail" value="<?=$email;?>" required><a style="color: red" > *</a><br>
     </div>
     <div>
         <label for="inputTel"><i class="fas fa-phone-alt"></i> Τηλέφωνο:</label><br>
