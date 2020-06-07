@@ -48,12 +48,6 @@ session_start();
     <input type="text" id="inputUsername" class="form-control" placeholder="Όνομα χρήστη" required autofocus name="username">
     <label for="inputPassword" class="sr-only">Κωδικός</label>
     <input type="password" id="inputPassword" class="form-control" width="25%" placeholder="Κωδικός" required name="password">
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me" style="font-size: medium"> Να παραμείνω συνδεδεμένος
-        </label>
-    </div>
-
     <label>
         Δεν έχετε λογαριασμό; Δημιουργήστε έναν πατώντας <a href="signup.php">εδώ</a>
     </label>

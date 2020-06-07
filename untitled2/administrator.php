@@ -1,3 +1,16 @@
+<?php
+session_start();
+if(isset($_SESSION["LOGGED IN"]))
+{
+    $username=$_SESSION["username"];
+    $password=$_SESSION["password"];
+}
+else{
+   $username="";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,7 +74,7 @@
         <h5>Αλλαγή στοιχείων σύνδεσης</h5><br>
         <div>
             <label for="inputUsername">Όνομα Χρήστη:</label><br>
-            <input type="text" id="inputUsername"><br>
+            <input type="text" id="inputUsername" value="<?=$username;?>"><br>
         </div>
         <div>
             <label for="inputPassword">Τρέχων κωδικός:</label><br>

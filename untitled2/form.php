@@ -17,6 +17,13 @@ if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]=="user")
     $email="";
     $tel="";
 }
+else
+{
+    $name="";
+    $surname="";
+    $email="";
+    $tel="";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
