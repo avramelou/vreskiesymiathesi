@@ -139,7 +139,7 @@ if (isset($_POST['submitDelete'])){
             <div>
                 <label for="inputNewPassword">Νέος κωδικός:</label><br>
                 <div class="eye">
-                    <button class="eye-button" title="Εμφάνιση κωδικού" type="button" onclick="show()"><img src="media/visibility.png"></button>
+                    <button class="eye-button" title="Εμφάνιση κωδικού" type="button" onclick="show()"><i class="fas fa-eye"></i></button>
                 </div>
                 <input type="password" id="inputNewPassword" name="newpassword"><br>
             </div>

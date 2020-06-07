@@ -44,7 +44,7 @@ else{
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="index.php">ΑΡΧΙΚΗ</a>
-            <a class="nav-item nav-link" href="map.php">ΧΑΡΤΗΣ</a>
+            <a class="nav-item nav-link" href="map.php">ΕΥΡΕΣΗ ΘΕΣΗΣ</a>
             <a class="nav-item nav-link" href="new.php">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
             <a class="nav-item nav-link" href="form.php">ΕΠΙΚΟΙΝΩΝΙΑ</a>
             <a class="nav-item nav-link" href="help.php">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
@@ -66,7 +66,7 @@ else{
 <div class="form-contact" align="center">
 
     <div >
-        <img src="media/admin.png" alt="profil picture" style="width:20%; height:20%;" >
+        <img src="media/admin2.png" alt="profil picture" style="width:20%; height:20%;" >
     </div>
 
     <br>
@@ -82,11 +82,8 @@ else{
         </div>
         <div>
             <label for="inputNewPassword">Νέος κωδικός:</label><br>
-
-            <input type="password" id="inputNewPassword">
-
-                <button class="eye-button-admin" title="Εμφάνιση κωδικού" type="button" onclick="show()"><img src="media/visibility.png"></button>
-
+            <input type="password" id="inputNewPassword" style="margin-left:35px ">
+            <button class="eye-button-admin" title="Εμφάνιση κωδικού" type="button" onclick="show()"><i class="fas fa-eye"></i></button>
         </div>
         <div>
             <label for="confirmNewPassword">Επιβεβαίωση νέου κωδικού:</label><br>
@@ -100,10 +97,10 @@ else{
 
     <h5>Πρόσβαση στις βάσεις δεδομένων</h5>
     <div >
-        <button type="submit" class="admin-submit" ><a href="formdb.php" style="color: black">Φόρμα Επικοινωνίας</a> </button>
-        <button type="submit" class="admin-submit"><a href="newdb.php" style="color: black">Νέες Θέσεις</a></button>
-        <button type="submit" class="admin-submit"><a href="mapdb.php" style="color: black">Χάρτης</a></button>
-        <button type="submit" class="admin-submit"><a href="usersdb.php" style="color: black">Χρήστες</a></button>
+        <button type="submit" class="admin-submit" ><a href="formdb.php" target="_blank" style="color: black">Φόρμα Επικοινωνίας</a> </button>
+        <button type="submit" class="admin-submit"><a href="newdb.php" target="_blank" style="color: black">Νέες Θέσεις</a></button>
+        <button type="submit" class="admin-submit"><a href="mapdb.php" target="_blank" style="color: black">Χάρτης</a></button>
+        <button type="submit" class="admin-submit"><a href="usersdb.php" target="_blank" style="color: black">Χρήστες</a></button>
     </div>
 </div>
 

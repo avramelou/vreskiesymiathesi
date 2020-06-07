@@ -51,7 +51,7 @@
     <label for="inputPassword" class="sr-only">Κωδικός</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Κωδικός" required name="password">
 
-    <button class="eye-button" title="Εμφάνιση κωδικού" type="button" onclick="show()"><img src="media/visibility.png"></button>
+    <button class="eye-button" title="Εμφάνιση κωδικού" type="button" onclick="show()"><i class="fas fa-eye"></i></button>
 
     <label class="caption-style" for="inputUsername"> Επιβεβαιώστε τον κωδικό </label>
     <label for="confirmPassword" class="sr-only">Επιβεβαίωση κωδικού</label>
