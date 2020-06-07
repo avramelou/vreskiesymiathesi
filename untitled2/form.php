@@ -11,6 +11,11 @@ if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]=="user")
     $surname=$row['SURNAME'];
     $email=$row['EMAIL'];
     $tel=$row['TELEPHONE'];
+}else{
+    $name="";
+    $surname="";
+    $email="";
+    $tel="";
 }
 ?>
 <!DOCTYPE html>

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <meta name="theme-color" content="#fafafa">
 </head>
-<body class="database">
+<body>
 <?php
 $delete="";
 if (isset($_POST['submitDelete'])) {
@@ -75,7 +75,7 @@ if (isset($_POST['submitInsert'])) {
     </tbody>
 </table>
 
-<div align="center">
+<div align="center" class="boxes">
     <form action="mapdb.php" method="post" >
         <br>
         <h5>Διαγραφή τοποθεσίας</h5>
@@ -84,7 +84,7 @@ if (isset($_POST['submitInsert'])) {
     </form>
 </div>
 
-<div align="center" style="margin-bottom: 5em">
+<div align="center" style="margin-bottom: 5em" class="boxes">
     <form action="mapdb.php" method="post" >
         <br>
         <h5>Προσθήκη τοποθεσίας</h5>

@@ -275,22 +275,8 @@ if (isset($_POST['submitDelete'])){
         $locationID=intval($row['ID'],10);
 
         $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
-        $sql3 = "SELECT * FROM FAVOUTITES WHERE USER_ID=$userID AND LOCATION_ID= $locationID";
-        $result2 = mysqli_query($link,$sql3);
-        $row2 = mysqli_fetch_assoc($result2);
-        $rows = mysqli_num_rows($result2);
-        echo "<script> alert('$rows');</script>";
-        if(mysqli_query($link,$sql3))  {
-            echo "<p align='center' style='margin-top: 120px'><mark style='background: #BDFFA7'><i class=\"fa fa-exclamation-triangle\"></i> Η τοποθεσία υπάρχει ήδη.</mark></p>";
-        }
-        else {
-            $sql2 = "INSERT INTO FAVOURITES (USER_ID, LOCATION_ID) VALUES ('" . $userID . "', '" . $locationID . "')";
-            if (mysqli_query($link, $sql2)) {
-                echo "<p align='center' style='margin-top: 120px'><mark style='background: #BDFFA7'><i class=\"far fa-check-circle\"></i> H θέση καταχωρήθηκε επιτυχώς.</mark></p>";
-            } else {
-                echo "<p align='center' style='margin-top: 120px'><mark style='background: #FF7D75'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</mark></p>";
-            }
-        }
+        $sql2 = "INSERT INTO FAVOURITES (USER_ID, LOCATION_ID) VALUES ('" . $userID . "', '" . $locationID . "')";
+        $result2=mysqli_query($link, $sql2);
         echo "<script> window.location='profil.php'</script>";
     }
 
