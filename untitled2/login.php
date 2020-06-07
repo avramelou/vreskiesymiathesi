@@ -81,14 +81,14 @@ if (isset($_POST['login'])) {
         {
             if($row['ADMIN']==true)
             {
-                $_SESSION["LOGGED IN"]=true;
+                $_SESSION["LOGGED IN"]="admin";
                 $_SESSION["username"]=$username;
                 $_SESSION["password"]=$password;
                 echo "<script> window.location='administrator.php'</script>";
             }
             else
             {
-                $_SESSION["LOGGED IN"]=true;
+                $_SESSION["LOGGED IN"]="user";
                 $_SESSION["username"]=$username;
                 $_SESSION["password"]=$password;
                 echo "<script> window.location='profil.php'</script>";

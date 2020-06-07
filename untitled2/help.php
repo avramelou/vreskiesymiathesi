@@ -36,7 +36,7 @@ session_start();
         </div>
     </div>
     <?php
-    if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"])
+    if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]=="user")
     {
         echo "<div class=\"nav-item dropdown\">
         <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
@@ -44,7 +44,18 @@ session_start();
         </a>
         <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
             <a class=\"dropdown-item\" href=\"profil.php\"><i class=\"fas fa-user\"></i> Προφίλ</a>
-            <a class=\"dropdown-item\" href=\"index.php\"><i class=\"fas fa-power-off\"></i> Έξοδος</a>
+            <a class=\"dropdown-item\" href=\"logout.php\"><i class=\"fas fa-power-off\"></i> Έξοδος</a>
+        </div>
+    </div>";
+    }
+    elseif(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]=="admin") {
+        echo "<div class=\"nav-item dropdown\">
+        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+            <img src=\"media/admin.png\" alt=\"profile symbol\" style=\"width:50px; height: 50px;\">
+        </a>
+        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
+            <a class=\"dropdown-item\" href=\"administrator.php\"><i class=\"fas fa-user\"></i> Προφίλ</a>
+            <a class=\"dropdown-item\" href=\"logout.php\"  ><i class=\"fas fa-power-off\"></i> Έξοδος</a>
         </div>
     </div>";
     }

@@ -1,5 +1,17 @@
 <?php
 session_start();
+if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]=="user")
+{
+    $username=$_SESSION["username"];
+    $link=mysqli_connect('localhost',"avramelou","eresos4ever","USER_MAP");
+    $sql="SELECT NAME,SURNAME,TELEPHONE,EMAIL FROM USER WHERE USERNAME='$username'";
+    $result=mysqli_query($link,$sql);
+    $row=mysqli_fetch_assoc($result);
+    $name=$row["NAME"];
+    $surname=$row["SURNAME"];
+    $tel=$row["TELEPHONE"];
+    $email=$row["EMAIL"];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +48,7 @@ session_start();
         </div>
     </div>
     <?php
-    if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]==true)
+    if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]=="user")
     {
         echo "<div class=\"nav-item dropdown\">
         <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
@@ -44,7 +56,18 @@ session_start();
         </a>
         <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
             <a class=\"dropdown-item\" href=\"profil.php\"><i class=\"fas fa-user\"></i> Προφίλ</a>
-            <a class=\"dropdown-item\" href=\"index.php\"  ><i class=\"fas fa-power-off\"></i> Έξοδος</a>
+            <a class=\"dropdown-item\" href=\"logout.php\"  ><i class=\"fas fa-power-off\"></i> Έξοδος</a>
+        </div>
+    </div>";
+    }
+    elseif(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]=="admin") {
+        echo "<div class=\"nav-item dropdown\">
+        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+            <img src=\"media/admin.png\" alt=\"profile symbol\" style=\"width:50px; height: 50px;\">
+        </a>
+        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
+            <a class=\"dropdown-item\" href=\"administrator.php\"><i class=\"fas fa-user\"></i> Προφίλ</a>
+            <a class=\"dropdown-item\" href=\"logout.php\"  ><i class=\"fas fa-power-off\"></i> Έξοδος</a>
         </div>
     </div>";
     }
@@ -57,11 +80,6 @@ session_start();
 </nav>
 
 <?php
-$name="";
-$lastName="";
-$email="";
-$tel="";
-$comments="";
 if (isset($_POST['submit'])) {
     $name=$_POST['Name'];
     $lastName=$_POST['LastName'];
@@ -89,19 +107,19 @@ if (isset($_POST['submit'])) {
     <h5>Επικοινωνήστε μαζί μας</h5><br>
     <div>
         <label for="inputName">Όνομα:</label><br>
-        <input type="text" name="Name" id="inputName" required><a style="color: red"> *</a><br>
+        <input type="text" name="Name" id="inputName" required><a style="color: red" value="<?=$name;?>"> *</a><br>
     </div>
     <div>
         <label for="inputLastname">Επώνυμο:</label><br>
-        <input type="text" name="LastName" id="inputLastname" required><a style="color: red"> *</a><br>
+        <input type="text" name="LastName" id="inputLastname" required><a style="color: red" value="<?=$surname;?>"> *</a><br>
     </div>
     <div>
         <label for="inputEmail"><i class="fas fa-at"></i> Email:</label><br>
-        <input type="email" name="Email" id="inputEmail" required><a style="color: red"> *</a><br>
+        <input type="email" name="Email" id="inputEmail" required><a style="color: red" value="<?=$email;?>"> *</a><br>
     </div>
     <div>
         <label for="inputTel"><i class="fas fa-phone-alt"></i> Τηλέφωνο:</label><br>
-        <input type="number" name="Tel" id="inputTel"><br><br>
+        <input type="number" name="Tel" id="inputTel" value="<?=$tel;?>"><br><br>
     </div>
     <div>
         <label for="inputComments"><i class="far fa-comment-dots"></i> Σχόλια: <a style="color: red">*</a></label><br>

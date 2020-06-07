@@ -44,7 +44,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="profil.php"><i class="fas fa-user"></i> Προφίλ</a>
-            <a class="dropdown-item" href="index.php"><i class="fas fa-power-off"></i> Έξοδος</a>
+            <a class="dropdown-item" href="logout.php"><i class="fas fa-power-off"></i> Έξοδος</a>
         </div>
     </div>
 
