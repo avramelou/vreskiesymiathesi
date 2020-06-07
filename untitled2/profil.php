@@ -69,7 +69,7 @@ else{
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="profil.php"><i class="fas fa-user"></i> Προφίλ</a>
-            <a class="dropdown-item" href="index.php"><i class="fas fa-power-off"></i> Έξοδος</a>
+            <a class="dropdown-item" href="index.php" ><i class="fas fa-power-off"></i> Έξοδος</a>
         </div>
     </div>
 
@@ -80,6 +80,16 @@ $search="";
 if (isset($_POST['submit'])) {
     $search=$_POST['search'];
 }
+$insert="";
+if (isset($_POST['submitInsert'])){
+    $insert=$_POST['insert'];
+    $insert=intval($insert,10);
+}
+$delete="";
+if (isset($_POST['submitDelete'])){
+    $delete=$_POST['delete'];
+    $delete=intval($delete,10);
+}
 ?>
 
 <div class="form-contact">
@@ -88,7 +98,7 @@ if (isset($_POST['submit'])) {
         <img src="media/profile2.png" alt="profil picture" style="width:20%; height:20%;" >
     </div>
 
-    <h5>Γεια σας, (όνομα)</h5><br>
+    <h5>Γεια σας, <?php echo $username;?></h5><br>
     <ul>
         <li>Μπορείτε να επεξεργαστείτε τα στοιχεία του προφίλ σας παρακάτω.</li>
         <li>Με την δημιουργία λογαριασμού, έχετε πλέον την δυνατότητα να καταχωρήσετε τις θέσεις πάρκινγκ που χρησιμοποιείτε πιο συχνά στην λίστα με τα
@@ -174,13 +184,56 @@ if (isset($_POST['submit'])) {
                 }
             }
         }
+        else
+        {
+            $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
+            $sql="SELECT ID FROM USER WHERE USERNAME='$username'";
+            $result=mysqli_query($link,$sql);
+            $row=mysqli_fetch_assoc($result);
 
+            $id=$row['ID'];
+            $sql="UPDATE USER SET EMAIL='$email', TELEPHONE='$tel', NAME='$name', SURNAME='$surname' WHERE ID=$id";
+            if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i>Η ενημέρωση ολοκληρώθηκε επιτυχώς.</p>";
+            else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+
+        }
+        echo "<script> window.location='profil.php'</script>";
     }
     ?>
 
     <img class="favorites-image" src="media/add-to-favorites.png">
-    <h5>Η λίστα με τις αγαπημένες σας θέσεις:</h5><br>
+    <h5>Η λίστα με τις αγαπημένες σας θέσεις:</h5>
+
+
+    <?php
+    $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
+    $sql="SELECT PARKING.ID, ΟΔΟΣ, ΑΡΙΘΜΟΣ, ΠΕΡΙΟΧΗ, SITE FROM PARKING, FAVOURITES, USER WHERE USER.ID=USER_ID AND LOCATION_ID=PARKING.ID AND USERNAME='$username'";
+    $result = mysqli_query($link, $sql);
+    if(mysqli_num_rows($result)==0){
+        echo "Δεν υπάρχουν θέσεις στα αγαπημένα.";
+    }
+
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        $row = mysqli_fetch_assoc($result);
+        $show = $row["ΟΔΟΣ"] . ' ' . $row["ΑΡΙΘΜΟΣ"] . ' ' . $row["ΠΕΡΙΟΧΗ"];
+        $site = $row["SITE"];
+        $id = $row["ID"];
+
+        echo "<p> <br> <i style='color: red' class=\"fas fa-heart\"></i>  ID: $id <i class=\"fas fa-long-arrow-alt-right\"></i>  $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
+    }
+    ?>
+    <br>
+    <form action="profil.php" method="post">
+        <br>
+        <h5>Διαγραφή αγαπημένης θέσης</h5>
+        <input class="search-box-input" type="number" placeholder="Πληκτρολογήστε ID" name="delete" >
+        <button class="search-box-button"  type="submit" name="submitDelete" value="submit" ><i class="fas fa-trash"></i></button>
+    </form>
+
+    <br>
     <form method="post" action="profil.php">
+        <br>
+        <h5>Αναζητήστε μια θέση</h5>
         <input type="text" id="search" placeholder="Αναζήτηση..." name="search" class="search-box-input"  value="<?=$search;?>">
         <button class="submit-signup" type="submit" name="submit" value="submit"><i class="fa fa-search"></i> Νέα θέση</button>
     </form>
@@ -201,37 +254,72 @@ if (isset($_POST['submit'])) {
             $site = $row["SITE"];
             $id = $row["ID"];
 
-            echo "<p> <br>ID: $id ->  $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
+            echo "<p> <br>ID: $id <i class=\"fas fa-long-arrow-alt-right\"></i>  $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
 
         }
-        echo " <div>
-                  <form action=\"profil.php\" method=\"post\">
-                    <br>
-                    <h5>Προσθήκη στα αγαπημένα.</h5>
-                    <input class='search-box-input' type=\"number\" placeholder=\"Πληκτρολογήστε ID\" name='insert' >
-                    <button class='search-box-button'  type=\"submit\" name=\"submit\" value=\"submit\" ><i class=\"fas fa-plus\"></i></button>
-                </form>
-              </div>";
+
+        echo "<style> .add{visibility: visible !important;}</style>";
 
 
-        $insert = "";
-        if ($_POST['insert']=="submit") {
-            $insert = $_POST("insert");
-            $insert = intval($insert, 10);
-
-            $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
-            $sql = "SELECT * FROM PARKING WHERE ID='$insert'";
-            $result = mysqli_query($link, $sql);
-            $row = mysqli_fetch_assoc($result);
-            $sql1 = "SELECT ID FROM USER WHERE USERNAME='$username'";
-            $result1 = mysqli_query($link, $sql1);
-            $row1 = mysqli_fetch_assoc($result1);
-            $sql2 = "INSERT INTO FAVOURITES (USER_ID, LOCATION_ID) VALUES ('" . $row1['ID'] . "', '" . $row['ID'] . "')";
-
-        }
     }
-?>
+    if(!empty($insert)){
+        $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
+        $sql = "SELECT * FROM PARKING WHERE ID=$insert";
+        $result = mysqli_query($link, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $sql1 = "SELECT ID FROM USER WHERE USERNAME='$username'";
+        $result1 = mysqli_query($link, $sql1);
+        $row1 = mysqli_fetch_assoc($result1);
 
+        $userID=intval($row1['ID'],10);
+        $locationID=intval($row['ID'],10);
+
+        $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
+        $sql3 = "SELECT * FROM FAVOUTITES WHERE USER_ID=$userID AND LOCATION_ID= $locationID";
+        $result2 = mysqli_query($link,$sql3);
+        $row2 = mysqli_fetch_assoc($result2);
+        $rows = mysqli_num_rows($result2);
+        echo "<script> alert('$rows');</script>";
+        if(mysqli_query($link,$sql3))  {
+            echo "<p align='center' style='margin-top: 120px'><mark style='background: #BDFFA7'><i class=\"fa fa-exclamation-triangle\"></i> Η τοποθεσία υπάρχει ήδη.</mark></p>";
+        }
+        else {
+            $sql2 = "INSERT INTO FAVOURITES (USER_ID, LOCATION_ID) VALUES ('" . $userID . "', '" . $locationID . "')";
+            if (mysqli_query($link, $sql2)) {
+                echo "<p align='center' style='margin-top: 120px'><mark style='background: #BDFFA7'><i class=\"far fa-check-circle\"></i> H θέση καταχωρήθηκε επιτυχώς.</mark></p>";
+            } else {
+                echo "<p align='center' style='margin-top: 120px'><mark style='background: #FF7D75'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</mark></p>";
+            }
+        }
+        echo "<script> window.location='profil.php'</script>";
+    }
+
+    if(!empty($delete)){
+        $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
+        $sql1 = "SELECT ID FROM USER WHERE USERNAME='$username'";
+        $result1 = mysqli_query($link, $sql1);
+        $row1 = mysqli_fetch_assoc($result1);
+        $userID=intval($row1['ID'],10);
+
+        $sql="DELETE FROM FAVOURITES WHERE LOCATION_ID=$delete AND USER_ID=$userID";
+        $result10 = mysqli_query($link, $sql);
+        $rows = mysqli_affected_rows($link);
+
+        if ($rows==0) {
+            echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.');</script>";
+        }
+        echo "<script> window.location='profil.php'</script>";
+    }
+    ?>
+
+    <div class="add" style="visibility: hidden">
+        <form action='profil.php' method="post" >
+            <br>
+            <h5>Προσθήκη στα αγαπημένα.</h5>
+            <input class='search-box-input' type="number" placeholder="Πληκτρολογήστε ID" name="insert" >
+            <button class='search-box-button'  type="submit" name="submitInsert" value="submit" ><i class="fas fa-plus"></i></button>
+        </form>
+    </div>
 
 </div>
 

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +35,25 @@
             <a class="nav-item nav-link" href="help.php">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
         </div>
     </div>
-    <a href="login.php"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
+    <?php
+    if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]==true)
+    {
+        echo "<div class=\"nav-item dropdown\">
+        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+            <img src=\"media/profile.png\" alt=\"profile symbol\" style=\"width:50px; height: 50px;\">
+        </a>
+        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
+            <a class=\"dropdown-item\" href=\"profil.php\"><i class=\"fas fa-user\"></i> Προφίλ</a>
+            <a class=\"dropdown-item\" href=\"index.php\"  ><i class=\"fas fa-power-off\"></i> Έξοδος</a>
+        </div>
+    </div>";
+    }
+    else
+    {
+        echo "<a href=\"login.php\"><button type=\"button\" class=\"btn navbar-button\"><i class=\"fas fa-user\"></i> Σύνδεση</button></a>";
+    }
+    ?>
+
 </nav>
 
 <?php

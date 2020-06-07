@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +35,24 @@
             <a class="nav-item nav-link active" href="help.php">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
         </div>
     </div>
-    <a href="login.php"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
+    <?php
+    if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"])
+    {
+        echo "<div class=\"nav-item dropdown\">
+        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+            <img src=\"media/profile.png\" alt=\"profile symbol\" style=\"width:50px; height: 50px;\">
+        </a>
+        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
+            <a class=\"dropdown-item\" href=\"profil.php\"><i class=\"fas fa-user\"></i> Προφίλ</a>
+            <a class=\"dropdown-item\" href=\"index.php\"><i class=\"fas fa-power-off\"></i> Έξοδος</a>
+        </div>
+    </div>";
+    }
+    else
+    {
+        echo "<a href=\"login.php\"><button type=\"button\" class=\"btn navbar-button\"><i class=\"fas fa-user\"></i> Σύνδεση</button></a>";
+    }
+    ?>
 </nav>
 
 <div class="help">
@@ -59,7 +79,7 @@
     <p class="text-help-style"> Μπορείτε να συνδεθείτε στον λογαριασμό σας πατώντας <a href="login.php">εδώ</a> ή πατώντας πάνω δεξιά
         το κουμπί "Σύνδεση", όπου θα πρέπει να εισάγετε τα στοιχεία σας (όνομα χρήστη και κωδικό πρόσβασης) και να πατήσετε το κουμπί "Σύνδεση".</p><br>
     <h5 class="header-help-style"><b>Για οποιαδήποτε άλλη απορία μπορείτε να επικοινωνήσετε μαζί μας μέσω της <a
-                href="form.php">φόρμας επικοινωνίας.</a></b></h5>
+                    href="form.php">φόρμας επικοινωνίας.</a></b></h5>
 </div>
 
 <footer class="footer">

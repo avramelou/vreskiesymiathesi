@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <meta name="theme-color" content="#fafafa">
 </head>
-<body>
+<body class="database">
 <?php
 $delete="";
 if (isset($_POST['submit'])) {

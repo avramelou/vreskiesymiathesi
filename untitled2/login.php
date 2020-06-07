@@ -84,14 +84,14 @@ if (isset($_POST['login'])) {
                 $_SESSION["LOGGED IN"]=true;
                 $_SESSION["username"]=$username;
                 $_SESSION["password"]=$password;
-                header('location:administrator.php');
+                echo "<script> window.location='administrator.php'</script>";
             }
             else
             {
                 $_SESSION["LOGGED IN"]=true;
                 $_SESSION["username"]=$username;
                 $_SESSION["password"]=$password;
-                header('location:profil.php');
+                echo "<script> window.location='profil.php'</script>";
             }
 
         }
