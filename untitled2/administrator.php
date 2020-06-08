@@ -53,7 +53,7 @@ else{
 
     <div class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="media/admin.png" alt="profile symbol" style="width:50px; height: 50px;">
+            <img src="media/admin2.png" alt="profile symbol" style="width:50px; height: 50px;">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="profil.php"><i class="fas fa-user"></i> Προφίλ</a>
@@ -66,7 +66,7 @@ else{
 <div class="form-contact" align="center">
 
     <div >
-        <img src="media/admin.png" alt="profil picture" style="width:20%; height:20%;" >
+        <img src="media/admin2.png" alt="profil picture" style="width:20%; height:20%;" >
     </div>
 
     <br>
