@@ -23,6 +23,7 @@ if (isset($_POST['submitDelete'])) {
     $delete=$_POST['delete'];
     $delete = intval ($delete, 10);
 }
+
 $username="";
 $password="";
 if (isset($_POST['submitInsert'])) {
@@ -58,7 +59,6 @@ if (isset($_POST['submitInsert'])) {
         echo "<p align='center'><br><br>Δεν βρέθηκαν καταχωρήσεις στη βάση.</p>";
     }
 
-
     for ($i=0; $i<mysqli_num_rows($result); $i++) {
         $row = mysqli_fetch_assoc($result);
 
@@ -89,6 +89,7 @@ if (isset($_POST['submitInsert'])) {
     </form>
 </div>
 
+
 <div align="center" class = "boxes">
     <form action="usersdb.php" method="post">
         <br>
@@ -98,6 +99,8 @@ if (isset($_POST['submitInsert'])) {
         <button class="delete-button"  type="submit" name="submitInsert" value="submit" style="color: lawngreen"><i class="fas fa-plus"></i></button>
     </form>
 </div>
+
+
 
 
 <?php
@@ -127,6 +130,7 @@ if(!empty($delete)){
         echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.');</script>";
     }
 }
+
 if(!empty($username)){
     $sql="INSERT INTO USER (USERNAME,PASSWORD,ADMIN) VALUES ('".$username."', '".$password."',true)";
     if(mysqli_query($link,$sql)) {

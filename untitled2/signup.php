@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,6 +76,7 @@ if (isset($_POST['signup'])) {
         echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Οι κωδικοί δεν ταιριάζουν.</p>";
     } else {
         $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
+
         $sql = "SELECT PASSWORD FROM USER WHERE USERNAME='$username'";
         $result = mysqli_query($link, $sql);
         if (mysqli_num_rows($result) == 0) {

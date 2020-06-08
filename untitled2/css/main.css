@@ -273,12 +273,15 @@ hr {
   background-color: #ffc107;
   border: 0.5em solid #ffc107;
   border-radius: 0.3em;
+  margin-top: 1%; !important;
+  margin-left: 1%; !important;
 }
 
 .footer{
   padding-left: 5%;
   padding-bottom: 2%;
 }
+
 
 
 audio,
