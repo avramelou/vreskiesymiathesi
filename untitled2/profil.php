@@ -235,7 +235,7 @@ if (isset($_POST['submitDelete'])){
         <br>
         <h5>Αναζητήστε μια θέση</h5>
         <input type="text" id="search" placeholder="Αναζήτηση..." name="search" class="search-box-input"  value="<?=$search;?>">
-        <button class="submit-signup" type="submit" name="submit" value="submit"><i class="fa fa-search"></i> Νέα θέση</button>
+        <button class="submit-signup" type="submit" name="submit" value="submit" style="margin-top: 1%;"><i class="fa fa-search"></i> Νέα θέση</button>
     </form>
 
     <?php
