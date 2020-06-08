@@ -53,7 +53,7 @@ else{
 
     <div class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="media/admin2.png" alt="profile symbol" style="width:50px; height: 50px;">
+            <img src="media/admin.png" alt="profile symbol" style="width:50px; height: 50px;">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="profil.php"><i class="fas fa-user"></i> Προφίλ</a>
@@ -70,6 +70,7 @@ else{
     </div>
 
     <br>
+    <form method="post" action="administrator.php">
     <div class="change-data" >
         <h5>Αλλαγή στοιχείων σύνδεσης</h5><br>
         <div>
@@ -95,8 +96,8 @@ else{
     </div>
 
     <div align="center">
-        <button class="admin-submit" name="update" type="submit">Ενημέρωση</button>
-    </div><br><br>
+        <button class="admin-submit" name="update" formmethod="post" formaction="" type="submit">Ενημέρωση</button>
+    </div> </form><br><br>
 
     <?php
     if (isset($_POST['update'])) {
@@ -117,13 +118,13 @@ else{
                 if($passwordnew==$passwordnew1)
                 {
                     $id=$row['ID'];
-                    $sql="UPDATE USER SET USERNAME='$username', PASSWORD='$passwordnew' WHERE ID=$id";
+                    $sql="UPDATE USER SET USERNAME='$username1', PASSWORD='$passwordnew' WHERE ID=$id";
                     if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i>Η ενημέρωση ολοκληρώθηκε επιτυχώς.</p>";
                     else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
                 }
             }
         }
-        echo "<script> window.location='profil.php'</script>";
+        echo "<script> window.location='administrator.php'</script>";
     }
     ?>
 

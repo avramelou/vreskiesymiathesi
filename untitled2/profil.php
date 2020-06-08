@@ -178,7 +178,7 @@ if (isset($_POST['submitDelete'])){
                 if($passwordnew==$passwordnew1)
                 {
                     $id=$row['ID'];
-                    $sql="UPDATE USER SET USERNAME='$username', PASSWORD='$passwordnew', EMAIL='$email', TELEPHONE='$tel', NAME='$name', SURNAME='$surname' WHERE ID=$id";
+                    $sql="UPDATE USER SET USERNAME='$username1', PASSWORD='$passwordnew', EMAIL='$email', TELEPHONE='$tel', NAME='$name', SURNAME='$surname' WHERE ID=$id";
                     if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i>Η ενημέρωση ολοκληρώθηκε επιτυχώς.</p>";
                     else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
                 }
