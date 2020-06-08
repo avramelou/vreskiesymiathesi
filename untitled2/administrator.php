@@ -75,7 +75,7 @@ else{
         <h5>Αλλαγή στοιχείων σύνδεσης</h5><br>
         <div>
             <label for="inputUsername">Όνομα Χρήστη:</label><br>
-            <input type="text" id="inputUsername" value="<?=$username;?>"><br>
+            <input type="text" id="inputUsername" name="username" value="<?=$username;?>"><br>
         </div>
         <div>
             <label for="inputPassword">Τρέχων κωδικός:</label><br>

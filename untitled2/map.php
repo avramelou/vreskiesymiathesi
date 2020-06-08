@@ -92,8 +92,6 @@ if ($_POST['submit']=="submit") {
             $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
             $sql="SELECT * FROM PARKING WHERE ΟΔΟΣ='$search' OR ΠΕΡΙΟΧΗ='$search'";
             $result=mysqli_query($link,$sql);
-//            echo " <style> .map{ margin-top: 120px;
-//                                 padding: 3% 5%;} </style>";
             if(mysqli_num_rows($result)==0)
             {
                 echo "<p><br> Δεν βρέθηκαν θέσεις πάρκινγκ. </p>";
@@ -102,6 +100,18 @@ if ($_POST['submit']=="submit") {
                 $row = mysqli_fetch_assoc($result);
                 $show=$row["ΟΔΟΣ"] .' ' .$row["ΑΡΙΘΜΟΣ"] .' ' . $row["ΠΕΡΙΟΧΗ"];
                 $site=$row["SITE"];
+                $id=$row['ID'];
+                if(isset($_SESSION['LOGGED IN']) && $_SESSION['LOGGED IN']=="user")
+                {
+                    $username=$_SESSION['username'];
+                    $sql1="SELECT * FROM PARKING, FAVOURITES, USER WHERE USER.ID=USER_ID AND LOCATION_ID=PARKING.ID AND USERNAME='$username' AND LOCATION_ID=$id";
+                    $result1=mysqli_query($link,$sql1);
+                    if(mysqli_num_rows($result1)!=0)
+                    {
+                        echo "<p><br> <i style='color: red' class=\"fas fa-heart\"></i>  $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
+                        continue;
+                    }
+                }
                 echo "<p><br> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
             }
         }

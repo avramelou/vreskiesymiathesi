@@ -76,20 +76,19 @@ else{
 </nav>
 
 <?php
-$search="";
+if(isset($_SESSION['search']))
+{
+    $search=$_SESSION['search'];
+}
+else
+{
+    $search="";
+}
 if (isset($_POST['submit'])) {
     $search=$_POST['search'];
+    $_SESSION['search']=$search;
 }
-$insert="";
-if (isset($_POST['submitInsert'])){
-    $insert=$_POST['insert'];
-    $insert=intval($insert,10);
-}
-$delete="";
-if (isset($_POST['submitDelete'])){
-    $delete=$_POST['delete'];
-    $delete=intval($delete,10);
-}
+
 ?>
 
 <div class="form-contact">
@@ -219,16 +218,10 @@ if (isset($_POST['submitDelete'])){
         $site = $row["SITE"];
         $id = $row["ID"];
 
-        echo "<p> <br> <i style='color: red' class=\"fas fa-heart\"></i>  ID: $id <i class=\"fas fa-long-arrow-alt-right\"></i>  $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
+        echo "<a> <br> <a href='deletefavorites.php?id=$id' ><i style='color: red' class=\"fas fa-heart\"></i></a>  $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
     }
     ?>
     <br>
-    <form action="profil.php" method="post">
-        <br>
-        <h5>Διαγραφή αγαπημένης θέσης</h5>
-        <input class="search-box-input" type="number" placeholder="Πληκτρολογήστε ID" name="delete" >
-        <button class="search-box-button"  type="submit" name="submitDelete" value="submit" ><i class="fas fa-trash"></i></button>
-    </form>
 
     <br>
     <form method="post" action="profil.php">
@@ -254,61 +247,12 @@ if (isset($_POST['submitDelete'])){
             $site = $row["SITE"];
             $id = $row["ID"];
 
-            echo "<p> <br>ID: $id <i class=\"fas fa-long-arrow-alt-right\"></i>  $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
+            echo "<p><br> <a href='addfavorites.php?id=$id'><i class=\"fa fa-plus\" aria-hidden=\"true\"></i></a> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
 
         }
 
-        echo "<style> .add{visibility: visible !important;}</style>";
-
-
-    }
-    if(!empty($insert)){
-        $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
-        $sql = "SELECT * FROM PARKING WHERE ID=$insert";
-        $result = mysqli_query($link, $sql);
-        $row = mysqli_fetch_assoc($result);
-        $sql1 = "SELECT ID FROM USER WHERE USERNAME='$username'";
-        $result1 = mysqli_query($link, $sql1);
-        $row1 = mysqli_fetch_assoc($result1);
-
-        $userID=intval($row1['ID'],10);
-        $locationID=intval($row['ID'],10);
-
-        $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
-        $sql2 = "INSERT INTO FAVOURITES (USER_ID, LOCATION_ID) VALUES ('" . $userID . "', '" . $locationID . "')";
-        $result2=mysqli_query($link, $sql2);
-        echo "<script> window.location='profil.php'</script>";
-    }
-
-    if(!empty($delete)){
-        $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
-        $sql1 = "SELECT ID FROM USER WHERE USERNAME='$username'";
-        $result1 = mysqli_query($link, $sql1);
-        $row1 = mysqli_fetch_assoc($result1);
-        $userID=intval($row1['ID'],10);
-
-        $sql="DELETE FROM FAVOURITES WHERE LOCATION_ID=$delete AND USER_ID=$userID";
-        $result10 = mysqli_query($link, $sql);
-        $rows = mysqli_affected_rows($link);
-
-        if ($rows==0) {
-            echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.');</script>";
-        }
-        echo "<script> window.location='profil.php'</script>";
     }
     ?>
-
-    <div class="add" style="visibility: hidden">
-        <form action='profil.php' method="post" >
-            <br>
-            <h5>Προσθήκη στα αγαπημένα.</h5>
-            <input class='search-box-input' type="number" placeholder="Πληκτρολογήστε ID" name="insert" >
-            <button class='search-box-button'  type="submit" name="submitInsert" value="submit" ><i class="fas fa-plus"></i></button>
-        </form>
-    </div>
-
-</div>
-
 
 
 <script>
