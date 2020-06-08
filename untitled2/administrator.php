@@ -78,25 +78,54 @@ else{
         </div>
         <div>
             <label for="inputPassword">Τρέχων κωδικός:</label><br>
-            <input type="password" id="inputPassword"><br>
+            <input type="password" name="password" id="inputPassword"><br>
         </div>
         <div>
             <label for="inputNewPassword">Νέος κωδικός:</label><br>
 
-            <input type="password" id="inputNewPassword">
+            <input type="password" name="newpassword" id="inputNewPassword">
 
                 <button class="eye-button-admin" title="Εμφάνιση κωδικού" type="button" onclick="show()"><img src="media/visibility.png"></button>
 
         </div>
         <div>
             <label for="confirmNewPassword">Επιβεβαίωση νέου κωδικού:</label><br>
-            <input type="password" id="confirmNewPassword"><br><br>
+            <input type="password" name="newpassword1" id="confirmNewPassword"><br><br>
         </div>
     </div>
 
     <div align="center">
-        <button class="admin-submit" type="submit">Ενημέρωση</button>
+        <button class="admin-submit" name="update" type="submit">Ενημέρωση</button>
     </div><br><br>
+
+    <?php
+    if (isset($_POST['update'])) {
+        if(!empty($_POST['password']))
+        {
+            $username1=$_POST['username'];
+            $password1=$_POST['password'];
+            $passwordnew=$_POST['newpassword'];
+            $passwordnew1=$_POST['newpassword1'];
+
+            $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
+            $sql="SELECT ID FROM USER WHERE USERNAME='$username'";
+            $result=mysqli_query($link,$sql);
+            $row=mysqli_fetch_assoc($result);
+
+            if($password==$password1)
+            {
+                if($passwordnew==$passwordnew1)
+                {
+                    $id=$row['ID'];
+                    $sql="UPDATE USER SET USERNAME='$username', PASSWORD='$passwordnew' WHERE ID=$id";
+                    if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i>Η ενημέρωση ολοκληρώθηκε επιτυχώς.</p>";
+                    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+                }
+            }
+        }
+        echo "<script> window.location='profil.php'</script>";
+    }
+    ?>
 
     <h5>Πρόσβαση στις βάσεις δεδομένων</h5>
     <div >
