@@ -132,13 +132,20 @@ if(!empty($delete)){
 }
 
 if(!empty($username)){
-    $sql="INSERT INTO USER (USERNAME,PASSWORD,ADMIN) VALUES ('".$username."', '".$password."',true)";
-    if(mysqli_query($link,$sql)) {
+    $sql = "SELECT PASSWORD FROM USER WHERE USERNAME='$username'";
+    $result = mysqli_query($link, $sql);
+if (mysqli_num_rows($result) == 0) {
+    $sql = "INSERT INTO USER (USERNAME,PASSWORD,ADMIN) VALUES ('" . $username . "', '" . $password . "',true)";
+    if (mysqli_query($link, $sql)) {
         echo "<script>alert('Η καταχώρηση προστέθηκε επιτυχώς.');</script>";
-    }
-    else {
+    } else {
         echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.');</script>";
     }
+}
+else
+{
+    echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Το username υπάρχει ήδη.</p>";
+}
     $page=$_SERVER['PHP_SELF'];
     $sec="0";
     header("Refresh:$sec; url=$page");
