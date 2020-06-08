@@ -48,6 +48,8 @@ session_start();
     <input type="text" id="inputUsername" class="form-control" placeholder="Όνομα χρήστη" required autofocus name="username">
     <label for="inputPassword" class="sr-only">Κωδικός</label>
     <input type="password" id="inputPassword" class="form-control" width="25%" placeholder="Κωδικός" required name="password">
+    <button class="eye-button" title="Εμφάνιση κωδικού" type="button" onclick="show()"><i class="fas fa-eye"></i></button>
+
     <label>
         Δεν έχετε λογαριασμό; Δημιουργήστε έναν πατώντας <a href="signup.php">εδώ</a>
     </label>
@@ -98,6 +100,17 @@ if (isset($_POST['login'])) {
 
 }
 ?>
+
+<script>
+    function show() {
+        var pw = document.getElementById("inputPassword");
+        if(pw.type == "text"){
+            pw.type = "password";
+        } else {
+            pw.type = "text";
+        }
+    }
+</script>
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

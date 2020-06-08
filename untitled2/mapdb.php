@@ -88,11 +88,11 @@ if (isset($_POST['submitInsert'])) {
     <form action="mapdb.php" method="post" >
         <br>
         <h5>Προσθήκη τοποθεσίας</h5>
-        <input class="delete-input" type="text" placeholder="Οδός" name="street" required>
-        <input class="delete-input" type="number" placeholder="Αριθμός" name="streetNum" required>
-        <input class="delete-input" type="text" placeholder="Περιοχή" name="location" required>
-        <input class="delete-input" type="text" placeholder="Site" name="site" required>
-        <button class="delete-button"  type="submit" name="submitInsert" value="submit" style="color: lawngreen" ><i class="fas fa-plus"></i></button>
+        <input class="delete-input" type="text" placeholder="Οδός" name="street" style="margin-left: 1%; margin-top: 2%" required>
+        <input class="delete-input" type="number" placeholder="Αριθμός" name="streetNum" style="margin-left: 1%; margin-top: 2%;" required>
+        <input class="delete-input" type="text" placeholder="Περιοχή" name="location" style="margin-left: 1%; margin-top: 2%" required>
+        <input class="delete-input" type="text" placeholder="Site" name="site" style="margin-left: 1%; margin-top: 2%" required>
+        <button class="delete-button"  type="submit" name="submitInsert" value="submit" style="color: lawngreen; margin-left: 1%; margin-top: 2%" ><i class="fas fa-plus"></i></button>
     </form>
 </div>
 
