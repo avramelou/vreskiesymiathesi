@@ -18,11 +18,6 @@
 </head>
 <body>
 <?php
-$delete="";
-if (isset($_POST['submitDelete'])) {
-    $delete=$_POST['delete'];
-    $delete = intval ($delete, 10);
-}
 
 $username="";
 $password="";
@@ -38,7 +33,6 @@ if (isset($_POST['submitInsert'])) {
         <th colspan="8">USER</th>
     </tr>
     <tr>
-        <th scope="col">ID</th>
         <th scope="col">Username</th>
         <th scope="col">Password</th>
         <th scope="col">Email</th>
@@ -46,6 +40,7 @@ if (isset($_POST['submitInsert'])) {
         <th scope="col">Name</th>
         <th scope="col">Surname</th>
         <th scope="col">Administrator</th>
+        <th scope="col">Delete</th>
     </tr>
     </thead>
 
@@ -61,9 +56,8 @@ if (isset($_POST['submitInsert'])) {
 
     for ($i=0; $i<mysqli_num_rows($result); $i++) {
         $row = mysqli_fetch_assoc($result);
-
+        $id=$row["ID"];
         echo "<tr class='bg-light'>
-                        <th scope=\"row\">".$row["ID"]."</th>
                         <td>".$row["USERNAME"]."</td>
                         <td>".$row["PASSWORD"]."</td>
                         <td>".$row["EMAIL"]."</td>
@@ -71,24 +65,17 @@ if (isset($_POST['submitInsert'])) {
                         <td>".$row["NAME"]."</td>
                         <td>".$row["SURNAME"]."</td>";
         if($row["ADMIN"]){
-            echo "<td><i style='color: green' class=\"fas fa-user-check\"></i></td> </tr>";
+            echo "<td><i style='color: green' class=\"fas fa-user-check\"></i></td>
+                    <td><a href='deleteuser.php?id=$id'><i style='color: red' class=\"fa fa-trash\" aria-hidden=\"true\"></i></a></td></tr>";
         }else{
-            echo "<td><i style='color: red' class=\"fas fa-user-times\"></i></td> </tr>";
+            echo "<td><i style='color: red' class=\"fas fa-user-times\"></i></td>
+                   <td><a title='Δεν έχετε δυνατότητα να διαγράψετε αυτό το χρήστη'><i style='color: grey' class=\"fa fa-trash\" aria-hidden=\"true\"></i></a></td></tr>";
+
         }
     }
     ?>
     </tbody>
 </table>
-
-<div align="center" class="boxes">
-    <form action="usersdb.php" method="post">
-        <br>
-        <h5>Διαγραφή administrator</h5>
-        <input class="delete-input" type="number" placeholder="Πληκτρολογήστε ID" name="delete" >
-        <button class="delete-button"  type="submit" name="submitDelete" value="submit" ><i class="fas fa-trash"></i></button>
-    </form>
-</div>
-
 
 <div align="center" class = "boxes">
     <form action="usersdb.php" method="post">
@@ -104,34 +91,8 @@ if (isset($_POST['submitInsert'])) {
 
 
 <?php
-$link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
-if(!empty($delete)){
-
-    $sql="SELECT * FROM USER WHERE ID='$delete'";
-    $result=mysqli_query($link,$sql);
-    $row = mysqli_fetch_assoc($result);
-    $rows = mysqli_affected_rows($link);
-    if ($rows!=0) {
-        if ($row["ADMIN"]) {
-            $sql1="DELETE FROM USER WHERE ID='$delete'";
-            if(mysqli_query($link,$sql1)) {
-                echo "<script>alert('Η καταχώρηση διαγράφτηκε επιτυχώς.');</script>";
-            }
-            else {
-                echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.');</script>";
-            }
-            $page=$_SERVER['PHP_SELF'];
-            $sec="0";
-            header("Refresh:$sec; url=$page");
-        }else {
-            echo "<script>alert('Ο χρήστης με ID $delete δεν είναι administrator.')</script>";
-        }
-    }else{
-        echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.');</script>";
-    }
-}
-
 if(!empty($username)){
+    $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
     $sql = "SELECT PASSWORD FROM USER WHERE USERNAME='$username'";
     $result = mysqli_query($link, $sql);
 if (mysqli_num_rows($result) == 0) {
@@ -146,9 +107,7 @@ else
 {
     echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Το username υπάρχει ήδη.</p>";
 }
-    $page=$_SERVER['PHP_SELF'];
-    $sec="0";
-    header("Refresh:$sec; url=$page");
+    echo   "<script> window.location='usersdb.php'</script>";
 }
 ?>
 

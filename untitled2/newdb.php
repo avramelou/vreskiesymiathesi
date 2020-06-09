@@ -17,13 +17,7 @@
     <meta name="theme-color" content="#fafafa">
 </head>
 <body>
-<?php
-$delete="";
-if (isset($_POST['submit'])) {
-    $delete=$_POST['delete'];
-    $delete = intval ($delete, 10);
-}
-?>
+
 
 <table class="table">
     <thead class="thead-dark">
@@ -31,13 +25,13 @@ if (isset($_POST['submit'])) {
         <th colspan="7">NEW_LOCATION</th>
     </tr>
     <tr>
-        <th scope="col">ID</th>
         <th scope="col">Street</th>
         <th scope="col">StreetNumber</th>
         <th scope="col">City</th>
         <th scope="col">PostCode</th>
         <th scope="col">Choice</th>
         <th scope="col">Comments</th>
+        <th scope="col">Delete</th>
     </tr>
     </thead>
 
@@ -54,46 +48,32 @@ if (isset($_POST['submit'])) {
 
     for ($i=0; $i<mysqli_num_rows($result); $i++) {
         $row = mysqli_fetch_assoc($result);
+        $id=$row["ID"];
+        if($row["CHOICE"]==1)
+        {
+            $choice="Δεν υπάρχουν θέσεις";
+        }
+        elseif ($row["CHOICE"]==2)
+        {
+            $choice="Δεν επαρκούν οι θέσεις";
+        }
+        else
+        {
+            $choice="Υπάρχουν θέσεις αλλά δεν είναι καταχωρημένες στον χάρτη";
+        }
         echo "<tr class='bg-light'>
-                        <th scope=\"row\">".$row["ID"]."</th>
                         <td>".$row["STREET"]."</td>
                         <td>".$row["STREET_NUM"]."</td>
                         <td>".$row["CITY"]."</td>
                         <td>".$row["POST_CODE"]."</td>
-                        <td>".$row["CHOICE"]."</td>
+                        <td>".$choice."</td>
                         <td>".$row["COMMENTS"]."</td>
+                        <td><a href='deletenew.php?id=$id'><i style='color: red' class=\"fa fa-trash\" aria-hidden=\"true\"></i></a></td>
                   </tr>";
     }
     ?>
     </tbody>
 </table>
-
-<div align="center" class="boxes">
-    <form action="newdb.php" method="post">
-        <br>
-        <h5>Διαγραφή καταχώρησης</h5>
-        <input class="delete-input" type="number" placeholder="Πληκτρολογήστε ID" name="delete">
-        <button class="delete-button"  type="submit" name="submit" value="submit" ><i class="fas fa-trash"></i></button>
-    </form>
-</div>
-
-<?php
-if(!empty($delete)){
-    $link=mysqli_connect('localhost',"root","eresos4ever","NEW_LOCATION");
-    $sql="DELETE FROM NEW_LOCATION WHERE ID='$delete'";
-    $result=mysqli_query($link,$sql);
-    $rows=mysqli_affected_rows($link);
-    if($result && $rows!=0) {
-        echo "<script>alert('Η καταχώρηση διαγράφτηκε επιτυχώς.')</script>";
-    }
-    else {
-        echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.')</script>";
-    }
-    $page=$_SERVER['PHP_SELF'];
-    $sec="0";
-    header("Refresh:$sec; url=$page");
-}
-?>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

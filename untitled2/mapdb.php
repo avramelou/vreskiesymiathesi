@@ -18,11 +18,6 @@
 </head>
 <body>
 <?php
-$delete="";
-if (isset($_POST['submitDelete'])) {
-    $delete=$_POST['delete'];
-    $delete = intval ($delete, 10);
-}
 $street="";
 $streetNum="";
 $location="";
@@ -47,6 +42,7 @@ if (isset($_POST['submitInsert'])) {
         <th scope="col">Αριθμός</th>
         <th scope="col">Περιοχή</th>
         <th scope="col">Site</th>
+        <th scope="col">Delete</th>
     </tr>
     </thead>
 
@@ -63,26 +59,20 @@ if (isset($_POST['submitInsert'])) {
 
     for ($i=0; $i<mysqli_num_rows($result); $i++) {
         $row = mysqli_fetch_assoc($result);
+        $id=$row["ID"];
         echo "<tr class='bg-light'>
-                        <th scope=\"row\">".$row["ID"]."</th>
+                        <th scope=\"row\">".$id."</th>
                         <td>".$row["ΟΔΟΣ"]."</td>
                         <td>".$row["ΑΡΙΘΜΟΣ"]."</td>
                         <td>".$row["ΠΕΡΙΟΧΗ"]."</td>
                         <td>".$row["SITE"]."</td>
+                        <td><a href='deletemap.php?id=$id'><i style='color: red' class=\"fa fa-trash\" aria-hidden=\"true\"></i>
+</a></td>
                   </tr>";
     }
     ?>
     </tbody>
 </table>
-
-<div align="center" class="boxes">
-    <form action="mapdb.php" method="post" >
-        <br>
-        <h5>Διαγραφή τοποθεσίας</h5>
-        <input class="delete-input" type="number" placeholder="Πληκτρολογήστε ID" name="delete">
-        <button class="delete-button"  type="submit" name="submitDelete" value="submit"  ><i class="fas fa-trash"></i></button>
-    </form>
-</div>
 
 <div align="center" style="margin-bottom: 5em" class="boxes">
     <form action="mapdb.php" method="post" >
@@ -97,23 +87,8 @@ if (isset($_POST['submitInsert'])) {
 </div>
 
 <?php
-$link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
-if(!empty($delete)){
-    $sql="DELETE FROM PARKING WHERE ID='$delete'";
-    $result=mysqli_query($link,$sql);
-    $rows=mysqli_affected_rows($link);
-    if($result && $rows!=0) {
-        echo "<script>alert('Η καταχώρηση διαγράφτηκε επιτυχώς.')</script>";
-    }
-    else {
-        echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.')</script>";
-    }
-    $page=$_SERVER['PHP_SELF'];
-    $sec="0";
-    header("Refresh:$sec; url=$page");
-}
-
 if(!empty($street)){
+    $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
     $sql="INSERT INTO PARKING (ΟΔΟΣ, ΑΡΙΘΜΟΣ, ΠΕΡΙΟΧΗ, SITE) VALUES ('".$street."', '".$streetNum."', '".$location."', '".$site."')";
     if(mysqli_query($link,$sql)) {
         echo "<script>alert('Η καταχώρηση προστέθηκε επιτυχώς.')</script>";
@@ -121,9 +96,7 @@ if(!empty($street)){
     else {
         echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.')</script>";
     }
-    $page=$_SERVER['PHP_SELF'];
-    $sec="0";
-    header("Refresh:$sec; url=$page");
+    echo   "<script> window.location='mapdb.php'</script>";
 }
 ?>
 
