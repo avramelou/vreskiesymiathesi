@@ -42,7 +42,7 @@
     $result=mysqli_query($link,$sql);
     if(mysqli_num_rows($result)==0)
     {
-        echo "<p align='center'><br><br> Δεν βρέθηκαν καταχωρήσεις στη βάση. </p>";
+        echo "<p align='center'><br> Δεν βρέθηκαν καταχωρήσεις στη βάση. <br></p>";
     }
 
 
@@ -68,7 +68,7 @@
                         <td>".$row["POST_CODE"]."</td>
                         <td>".$choice."</td>
                         <td>".$row["COMMENTS"]."</td>
-                        <td><a href='deletenew.php?id=$id'><i style='color: red' class=\"fa fa-trash\" aria-hidden=\"true\"></i></a></td>
+                        <td><a href='deletenew.php?id=$id' title='Διαγραφή'><i style='color: black' class=\"fa fa-trash\"></i></a></td>
                   </tr>";
     }
     ?>

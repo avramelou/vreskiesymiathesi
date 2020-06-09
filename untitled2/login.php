@@ -41,22 +41,6 @@ session_start();
     <a href="login.php"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
 </nav>
 
-<form class="form-signin text-center" method="post" action="login.php">
-    <img class="mb-4" src="media/logo.png" alt="" width="178" height="100">
-    <h5>Συνδεθείτε στον λογαριασμό σας</h5>
-    <label for="inputUsername" class="sr-only">Όνομα χρήστη</label>
-    <input type="text" id="inputUsername" class="form-control" placeholder="Όνομα χρήστη" required autofocus name="username">
-    <label for="inputPassword" class="sr-only">Κωδικός</label>
-    <input type="password" id="inputPassword" class="form-control" width="25%" placeholder="Κωδικός" required name="password">
-    <button class="eye-button" title="Εμφάνιση κωδικού" type="button" onclick="show()"><i class="fas fa-eye"></i></button>
-
-    <label>
-        Δεν έχετε λογαριασμό; Δημιουργήστε έναν πατώντας <a href="signup.php">εδώ</a>
-    </label>
-    <button class="btn-block submit-signup" type="submit" name="login" value="submit">Σύνδεση</button>
-</form>
-
-
 <?php
 $username="";
 $password="";
@@ -69,7 +53,8 @@ if (isset($_POST['login'])) {
     $result=mysqli_query($link,$sql);
     if(mysqli_num_rows($result)==0)
     {
-        echo "<p align='center'><i class=\"fa fa-exclamation-triangle\"></i> Λάθος όνομα χρήστη.</p>";
+        echo "<style> .form-signin{ padding-top: 20px; margin-top: 0;}</style>";
+        echo "<p align='center' style='margin-top: 120px'><mark style='background: #FF7D75'><i class=\"fa fa-exclamation-triangle\"></i> Λάθος όνομα χρήστη.</mark></p>";
     }
     else{
         $row=mysqli_fetch_assoc($result);
@@ -93,13 +78,30 @@ if (isset($_POST['login'])) {
         }
         else
         {
-            echo "<p align='center'><i class=\"fa fa-exclamation-triangle\"></i> Λάθος κωδικός.</p>";
+            echo "<style> .form-signin{ padding-top: 20px; margin-top: 0;}</style>";
+            echo "<p align='center' style='margin-top: 120px'><mark style='background: #FF7D75'><i class=\"fa fa-exclamation-triangle\"></i> Λάθος κωδικός.</mark></p>";
         }
 
     }
 
 }
 ?>
+
+<form class="form-signin text-center" method="post" action="login.php">
+    <img class="mb-4" src="media/logo.png" alt="" width="178" height="100">
+    <h5>Συνδεθείτε στον λογαριασμό σας</h5>
+    <label for="inputUsername" class="sr-only">Όνομα χρήστη</label>
+    <input type="text" id="inputUsername" class="form-control" placeholder="Όνομα χρήστη" required autofocus name="username">
+    <label for="inputPassword" class="sr-only">Κωδικός</label>
+    <input type="password" id="inputPassword" class="form-control" width="25%" placeholder="Κωδικός" required name="password">
+    <button class="eye-button" title="Εμφάνιση κωδικού" type="button" onclick="show()"><i class="fas fa-eye"></i></button>
+
+    <label>
+        Δεν έχετε λογαριασμό; Δημιουργήστε έναν πατώντας <a href="signup.php">εδώ</a>
+    </label>
+    <button class="btn-block submit-signup" type="submit" name="login" value="submit">Σύνδεση</button>
+</form>
+
 
 <script>
     function show() {

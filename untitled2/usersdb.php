@@ -66,10 +66,10 @@ if (isset($_POST['submitInsert'])) {
                         <td>".$row["SURNAME"]."</td>";
         if($row["ADMIN"]){
             echo "<td><i style='color: green' class=\"fas fa-user-check\"></i></td>
-                    <td><a href='deleteuser.php?id=$id'><i style='color: red' class=\"fa fa-trash\" aria-hidden=\"true\"></i></a></td></tr>";
+                    <td><a href='deleteuser.php?id=$id'><i style='color: black' class=\"fa fa-trash\"></i></a></td></tr>";
         }else{
             echo "<td><i style='color: red' class=\"fas fa-user-times\"></i></td>
-                   <td><a title='Δεν έχετε δυνατότητα να διαγράψετε αυτό το χρήστη'><i style='color: grey' class=\"fa fa-trash\" aria-hidden=\"true\"></i></a></td></tr>";
+                   <td><a title='Δεν έχετε δυνατότητα να διαγράψετε αυτό το χρήστη'><i style='color: darkgrey' class=\"fa fa-trash\"></i></a></td></tr>";
 
         }
     }
@@ -77,13 +77,13 @@ if (isset($_POST['submitInsert'])) {
     </tbody>
 </table>
 
-<div align="center" class = "boxes">
+<div align="center" style="margin-bottom: 5em" class = "boxes">
     <form action="usersdb.php" method="post">
         <br>
         <h5>Προσθήκη administator</h5>
-        <input class="delete-input" type="text" placeholder="username" name="username" required>
-        <input class="delete-input" type="text" placeholder="password" name="password" required>
-        <button class="delete-button"  type="submit" name="submitInsert" value="submit" style="color: lawngreen"><i class="fas fa-plus"></i></button>
+        <input class="insert-input" type="text" placeholder="username" name="username" required>
+        <input class="insert-input" type="text" placeholder="password" name="password" required>
+        <button class="insert-button"  type="submit" name="submitInsert" value="submit"><i class="fas fa-plus"></i></button>
     </form>
 </div>
 
@@ -105,7 +105,7 @@ if (mysqli_num_rows($result) == 0) {
 }
 else
 {
-    echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Το username υπάρχει ήδη.</p>";
+    echo "<script>alert('Το username υπάρχει ήδη.');</script>";
 }
     echo   "<script> window.location='usersdb.php'</script>";
 }

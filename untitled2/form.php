@@ -90,12 +90,12 @@ if (isset($_POST['submit'])) {
     $lastName=$_POST['LastName'];
     $email=$_POST['Email'];
     $tel=$_POST['Tel'];
-    //$tel = intval($tel,10);
     $comments=$_POST['Comments'];
 
     $link=mysqli_connect('localhost',"root","eresos4ever","CONTACT_FORM");
     $sql="INSERT INTO CONTACT_FORM (NAME , SURNAME, EMAIL, TELEPHONE, COMMENTS) VALUES ('".$name."', '".$lastName."', '".$email."', '".$tel."', '".$comments."')";
-    echo "<style> .form-contact{ margin-top: 6px}</style>";
+
+    echo "<style> .form-contact{ margin-top: 0}</style>";
     if(mysqli_query($link,$sql)) {
 
         echo "<p align='center' style='margin-top: 120px'><mark style='background: #BDFFA7'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που επικοινωνήσατε μαζί μας.</mark></p>";
@@ -137,8 +137,6 @@ if (isset($_POST['submit'])) {
         <button class="submit-form" type="submit" name="submit" value="submit">Υποβολή</button>
     </div>
 </form>
-
-
 
 
 <footer class="footer">

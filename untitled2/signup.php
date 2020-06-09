@@ -43,6 +43,46 @@ session_start();
     <a href="login.php"><button type="button" class="btn navbar-button"><i class="fas fa-user"></i> Σύνδεση</button></a>
 </nav>
 
+<?php
+$username="";
+$password="";
+$password1="";
+if (isset($_POST['signup'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $password1 = $_POST['confirmpassword'];
+
+    if ($password != $password1) {
+        echo "<style> .form-signin{ padding-top: 20px; margin-top: 0;}</style>";
+        echo "<p align='center' style='margin-top: 120px'><mark style='background: #FF7D75'><i class=\"fa fa-exclamation-triangle\"></i> Οι κωδικοί δεν ταιριάζουν.</mark></p>";
+    } else {
+        $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
+
+        $sql = "SELECT PASSWORD FROM USER WHERE USERNAME='$username'";
+        $result = mysqli_query($link, $sql);
+        if (mysqli_num_rows($result) == 0) {
+            $sql = "INSERT INTO USER (USERNAME, PASSWORD, ADMIN) VALUES ('" . $username . "', '" . $password . "', false)";
+            if (mysqli_query($link, $sql))
+            {
+                $_SESSION["LOGGED IN"]="user";
+                $_SESSION["username"]=$username;
+                $_SESSION["password"]=$password;
+                echo "<script> window.location='profil.php'</script>";
+            }
+            else {
+                echo "<style> .form-signin{ padding-top: 20px; margin-top: 0;}</style>";
+                echo "<p align='center' style='margin-top: 120px'><mark style='background: #FF7D75'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</mark></p>";
+            }
+        } else {
+            echo "<style> .form-signin{ padding-top: 20px; margin-top: 0;}</style>";
+            echo "<p align='center' style='margin-top: 120px'><mark style='background: #FF7D75'><i class=\"fa fa-exclamation-triangle\"></i> Το username υπάρχει ήδη.</mark></p>";
+        }
+
+    }
+}
+?>
+
+
 <form class="form-signin text-center" method="post" action="signup.php">
     <div align="center">
         <img class="mb-4" src="media/logo.png" alt="" width="178" height="100">
@@ -63,39 +103,7 @@ session_start();
 
     <button class="btn-block submit-signup" type="submit" name="signup" value="submit">Εγγραφή</button>
 </form>
-<?php
-$username="";
-$password="";
-$password1="";
-if (isset($_POST['signup'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $password1 = $_POST['confirmpassword'];
 
-    if ($password != $password1) {
-        echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Οι κωδικοί δεν ταιριάζουν.</p>";
-    } else {
-        $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
-
-        $sql = "SELECT PASSWORD FROM USER WHERE USERNAME='$username'";
-        $result = mysqli_query($link, $sql);
-        if (mysqli_num_rows($result) == 0) {
-            $sql = "INSERT INTO USER (USERNAME, PASSWORD, ADMIN) VALUES ('" . $username . "', '" . $password . "', false)";
-            if (mysqli_query($link, $sql))
-            {
-                $_SESSION["LOGGED IN"]="user";
-                $_SESSION["username"]=$username;
-                $_SESSION["password"]=$password;
-                echo "<script> window.location='profil.php'</script>";
-            }
-            else echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
-        } else {
-            echo "<p align='center' style='margin-top: 100px'><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Το username υπάρχει ήδη.</p>";
-        }
-
-    }
-}
-?>
 
 <script>
     function show() {

@@ -44,7 +44,7 @@ else{
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="index.php">ΑΡΧΙΚΗ</a>
-            <a class="nav-item nav-link" href="map.php">ΧΑΡΤΗΣ</a>
+            <a class="nav-item nav-link" href="map.php">ΕΥΡΕΣΗ ΘΕΣΗΣ</a>
             <a class="nav-item nav-link" href="new.php">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
             <a class="nav-item nav-link" href="form.php">ΕΠΙΚΟΙΝΩΝΙΑ</a>
             <a class="nav-item nav-link" href="help.php">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
@@ -62,6 +62,45 @@ else{
     </div>
 
 </nav>
+
+<?php
+if (isset($_POST['update'])) {
+    if(!empty($_POST['password']))
+    {
+        $username1=$_POST['username'];
+        $password1=$_POST['password'];
+        $passwordnew=$_POST['newpassword'];
+        $passwordnew1=$_POST['newpassword1'];
+
+        $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
+        $sql="SELECT ID FROM USER WHERE USERNAME='$username'";
+        $result=mysqli_query($link,$sql);
+        $row=mysqli_fetch_assoc($result);
+
+        if($password==$password1)
+        {
+            if($passwordnew==$passwordnew1)
+            {
+                $id=$row['ID'];
+                $sql="UPDATE USER SET USERNAME='$username1', PASSWORD='$passwordnew' WHERE ID=$id";
+                if(mysqli_query($link,$sql)) {
+                    echo "<script>alert('Η ενημέρωση ολοκληρώθηκε επιτυχώς.');</script>";
+                }
+                else {
+                    echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.');</script>";
+                }
+            }
+            else{
+                echo "<script>alert('Οι κωδικοί δεν ταιριάζουν.');</script>";
+            }
+        }
+        else{
+            echo "<script>alert('Ο τρέχων κωδικός είναι λάθος.');</script>";
+        }
+    }
+    echo "<script> window.location='administrator.php'</script>";
+}
+?>
 
 <div class="form-contact" align="center">
 
@@ -83,10 +122,8 @@ else{
         </div>
         <div>
             <label for="inputNewPassword">Νέος κωδικός:</label><br>
-
-            <input type="password" name="newpassword" id="inputNewPassword">
-
-                <button class="eye-button-admin" title="Εμφάνιση κωδικού" type="button" onclick="show()"><img src="media/visibility.png"></button>
+            <input type="password" name="newpassword" id="inputNewPassword" style="margin-left: 35px">
+            <button class="eye-button-admin" title="Εμφάνιση κωδικού" type="button" onclick="show()"><i class="fas fa-eye"></i></button>
 
         </div>
         <div>
@@ -98,35 +135,6 @@ else{
     <div align="center">
         <button class="admin-submit" name="update" formmethod="post" formaction="" type="submit">Ενημέρωση</button>
     </div> </form><br><br>
-
-    <?php
-    if (isset($_POST['update'])) {
-        if(!empty($_POST['password']))
-        {
-            $username1=$_POST['username'];
-            $password1=$_POST['password'];
-            $passwordnew=$_POST['newpassword'];
-            $passwordnew1=$_POST['newpassword1'];
-
-            $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
-            $sql="SELECT ID FROM USER WHERE USERNAME='$username'";
-            $result=mysqli_query($link,$sql);
-            $row=mysqli_fetch_assoc($result);
-
-            if($password==$password1)
-            {
-                if($passwordnew==$passwordnew1)
-                {
-                    $id=$row['ID'];
-                    $sql="UPDATE USER SET USERNAME='$username1', PASSWORD='$passwordnew' WHERE ID=$id";
-                    if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i>Η ενημέρωση ολοκληρώθηκε επιτυχώς.</p>";
-                    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
-                }
-            }
-        }
-        echo "<script> window.location='administrator.php'</script>";
-    }
-    ?>
 
     <h5>Πρόσβαση στις βάσεις δεδομένων</h5>
     <div >

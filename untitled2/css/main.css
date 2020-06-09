@@ -187,21 +187,6 @@ hr {
   background-color: #e6ac00;
 }
 
-.delete-input{
-  font-size: inherit;
-  border: 0.2em solid black;
-  border-radius: 0.3em;
-  padding: 0.3em;
-  outline: none;
-}
-.delete-button{
-  color: red;
-  font-size: inherit;
-  border: 0.2em solid black;
-  border-radius: 0.3em;
-  background-color: black;
-  padding: 0.3em 0.8em;
-}
 /* --- FORM CONTACT AND NEW LOCATION --- */
 
 .form-contact, .new-location {
@@ -269,13 +254,34 @@ hr {
   padding-right: 10%;
 }
 
+/* --- ADMIN AND DATABASES --- */
+
 .admin-submit{
   background-color: #ffc107;
   border: 0.5em solid #ffc107;
   border-radius: 0.3em;
-  margin-top: 1%; !important;
-  margin-left: 1%; !important;
+  margin-top: 1%;
+  margin-left: 1%;
 }
+.insert-input{
+  font-size: inherit;
+  border: 0.2em solid black;
+  border-radius: 0.3em;
+  padding: 0.3em;
+  outline: none;
+  margin-right: 1%;
+  margin-top: 1%;
+}
+.insert-button {
+  color: lawngreen;
+  font-size: inherit;
+  border: 0.2em solid black;
+  border-radius: 0.3em;
+  background-color: black;
+  padding: 0.3em 0.8em;
+  margin-top: 1%;
+}
+
 
 .footer{
   padding-left: 5%;

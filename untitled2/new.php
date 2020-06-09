@@ -96,7 +96,8 @@ if (isset($_POST['submit'])) {
 
     $link=mysqli_connect('localhost',"root","eresos4ever","NEW_LOCATION");
     $sql="INSERT INTO NEW_LOCATION (STREET, STREET_NUM, CITY, POST_CODE, CHOICE, COMMENTS) VALUES ('".$street."', '".$number."', '".$city."', '".$postCode."', '".$choice."', '".$comments."')";
-    echo "<style> .new-location{ margin-top: 6px}</style>";
+
+    echo "<style> .new-location{ margin-top: 0}</style>";
     if(mysqli_query($link,$sql))  {
         echo "<p align='center' style='margin-top: 120px'><mark style='background: #BDFFA7'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που υποβάλατε νέα θέση.</mark></p>";
     }

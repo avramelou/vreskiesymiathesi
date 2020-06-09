@@ -55,8 +55,8 @@ else{
     <a class="navbar-brand" href="index.php"><img src="media/logo.png" alt="logo icon" height="70px" width=125px" /></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="index.php">ΑΡΧΙΚΗ</a>
-            <a class="nav-item nav-link" href="map.php">ΧΑΡΤΗΣ</a>
+            <a class="nav-item nav-link" href="index.php">ΑΡΧΙΚΗ</a>
+            <a class="nav-item nav-link" href="map.php">ΕΥΡΕΣΗ ΘΕΣΗΣ</a>
             <a class="nav-item nav-link" href="new.php">ΥΠΟΒΟΛΗ ΝΕΑΣ ΘΕΣΗΣ</a>
             <a class="nav-item nav-link" href="form.php">ΕΠΙΚΟΙΝΩΝΙΑ</a>
             <a class="nav-item nav-link" href="help.php">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ</a>
@@ -178,9 +178,19 @@ if (isset($_POST['submit'])) {
                 {
                     $id=$row['ID'];
                     $sql="UPDATE USER SET USERNAME='$username1', PASSWORD='$passwordnew', EMAIL='$email', TELEPHONE='$tel', NAME='$name', SURNAME='$surname' WHERE ID=$id";
-                    if(mysqli_query($link,$sql)) echo "<p align='center' style='margin-top: 10px'><i class=\"far fa-check-circle\"></i>Η ενημέρωση ολοκληρώθηκε επιτυχώς.</p>";
-                    else echo "<p align='center' style='margin-top: 10px'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</p>";
+                    if(mysqli_query($link,$sql)) {
+                        echo "<script>alert('Η ενημέρωση ολοκληρώθηκε επιτυχώς.');</script>";
+                    }
+                    else {
+                        echo "<script>alert('Σφάλμα. Δοκιμάστε ξανά.');</script>";
+                    }
                 }
+                else{
+                    echo "<script>alert('Οι κωδικοί δεν ταιριάζουν.');</script>";
+                }
+            }
+            else{
+                echo "<script>alert('Ο τρέχων κωδικός είναι λάθος.');</script>";
             }
         }
         else
@@ -218,7 +228,7 @@ if (isset($_POST['submit'])) {
         $site = $row["SITE"];
         $id = $row["ID"];
 
-        echo "<a> <br> <a href='deletefavorites.php?id=$id' ><i style='color: red' class=\"fas fa-heart\"></i></a>  $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
+        echo "<p><br> <a href='deletefavorites.php?id=$id' ><i title='Αφαίρεση' style='color: red' class='fas fa-heart'></i></a>  $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
     }
     ?>
     <br>
@@ -240,17 +250,14 @@ if (isset($_POST['submit'])) {
             echo "<p><br><br> Δεν βρέθηκαν θέσεις πάρκινγκ. </p>";
         }
 
-
         for ($i = 0; $i < mysqli_num_rows($result); $i++) {
             $row = mysqli_fetch_assoc($result);
             $show = $row["ΟΔΟΣ"] . ' ' . $row["ΑΡΙΘΜΟΣ"] . ' ' . $row["ΠΕΡΙΟΧΗ"];
             $site = $row["SITE"];
             $id = $row["ID"];
 
-            echo "<p><br> <a href='addfavorites.php?id=$id'><i class=\"fa fa-plus\" aria-hidden=\"true\"></i></a> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
-
+            echo "<p><br> <a href='addfavorites.php?id=$id'><i style='color: red' title='Προσθήκη' class=\"far fa-heart\"></i></a> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
         }
-
     }
     ?>
 
