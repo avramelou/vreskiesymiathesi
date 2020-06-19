@@ -250,13 +250,30 @@ if (isset($_POST['submit'])) {
             echo "<p><br><br> Δεν βρέθηκαν θέσεις πάρκινγκ. </p>";
         }
 
+
+
         for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+            $sql1="SELECT PARKING.ID FROM PARKING, FAVOURITES, USER WHERE USER.ID=USER_ID AND LOCATION_ID=PARKING.ID AND USERNAME='$username'";
+            $result1 = mysqli_query($link, $sql1);
+
             $row = mysqli_fetch_assoc($result);
+
             $show = $row["ΟΔΟΣ"] . ' ' . $row["ΑΡΙΘΜΟΣ"] . ' ' . $row["ΠΕΡΙΟΧΗ"];
             $site = $row["SITE"];
             $id = $row["ID"];
 
-            echo "<p><br> <a href='addfavorites.php?id=$id'><i style='color: red' title='Προσθήκη' class=\"far fa-heart\"></i></a> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
+            $flag = false;
+            for ($j = 0; $j < mysqli_num_rows($result1); $j++)
+            {
+                $row1 = mysqli_fetch_assoc($result1);
+                $id2=$row1["ID"];
+                if($id == $id2)
+                    $flag=true;
+            }
+            if (!$flag){
+                echo "<p><br> <a href='addfavorites.php?id=$id'><i style='color: red' title='Προσθήκη' class=\"far fa-heart\"></i></a> $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
+
+            }
         }
     }
     ?>

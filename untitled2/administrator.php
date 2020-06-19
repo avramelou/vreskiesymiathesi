@@ -138,10 +138,10 @@ if (isset($_POST['update'])) {
 
     <h5>Πρόσβαση στις βάσεις δεδομένων</h5>
     <div >
-        <button type="submit" class="admin-submit" ><a href="formdb.php" style="color: black">Φόρμα Επικοινωνίας</a> </button>
-        <button type="submit" class="admin-submit"><a href="newdb.php" style="color: black">Νέες Θέσεις</a></button>
-        <button type="submit" class="admin-submit"><a href="mapdb.php" style="color: black">Χάρτης</a></button>
-        <button type="submit" class="admin-submit"><a href="usersdb.php" style="color: black">Χρήστες</a></button>
+        <button type="submit" class="admin-submit" ><a href="formdb.php" target="_blank" style="color: black">Φόρμα Επικοινωνίας</a> </button>
+        <button type="submit" class="admin-submit"><a href="newdb.php" target="_blank" style="color: black">Νέες Θέσεις</a></button>
+        <button type="submit" class="admin-submit"><a href="mapdb.php" target="_blank" style="color: black">Χάρτης</a></button>
+        <button type="submit" class="admin-submit"><a href="usersdb.php" target="_blank" style="color: black">Χρήστες</a></button>
     </div>
 </div>
 
