@@ -210,7 +210,7 @@ if (isset($_POST['submit'])) {
     }
     ?>
 
-    <img class="favorites-image" src="media/add-to-favorites.png">
+
     <h5>Η λίστα με τις αγαπημένες σας θέσεις:</h5>
 
 
