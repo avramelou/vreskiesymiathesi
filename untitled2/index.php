@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION["search"] = "";
 ?>
 <!doctype html>
 <html class="no-js" lang="">

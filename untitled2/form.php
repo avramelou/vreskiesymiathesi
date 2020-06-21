@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION["search"] = "";
 if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]=="user")
 {
     $username=$_SESSION["username"];
