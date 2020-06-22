@@ -80,7 +80,7 @@ if ($_POST['submit']=="submit") {
     <div class="map-text">
         <br>
         <h5>Εύρεση θέσης πάρκινγκ</h5><br>
-        <p>Αναζητήστε μία θέση πάρκινγκ στο Δήμο της Θεσσαλλονίκης.<br>Πατήστε μία θέση στον χάρτη για να δείτε που βρίσκεται ή αναζητήστε μια θέση πάρκινγκ κοντά σας.</p>
+        <p>Αναζητήστε μία θέση πάρκινγκ στο Δήμο της Θεσσαλλονίκης.<br>Πατήστε μία θέση στον χάρτη για να δείτε που βρίσκεται ή αναζητήστε μια οδό για να βρείτε θέσεις κοντά.</p>
         <div class="search-box-wrapper">
             <form method="post" action="map.php">
                 <input type="text" id="search" placeholder="Αναζήτηση..." name="search" class="search-box-input"  value="<?=$search;?>">
@@ -91,7 +91,7 @@ if ($_POST['submit']=="submit") {
         if(!empty($search))
         {
             $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
-            $sql="SELECT * FROM PARKING WHERE ΟΔΟΣ='$search' OR ΠΕΡΙΟΧΗ='$search'";
+            $sql="SELECT * FROM PARKING WHERE ΟΔΟΣ LIKE '%$search%' OR ΠΕΡΙΟΧΗ LIKE '%$search%'";
             $result=mysqli_query($link,$sql);
             if(mysqli_num_rows($result)==0)
             {

@@ -246,7 +246,7 @@ if (isset($_POST['submit'])) {
     <?php
     if(!empty($search)) {
         $link = mysqli_connect('localhost', "root", "eresos4ever", "USER_MAP");
-        $sql = "SELECT * FROM PARKING WHERE ΟΔΟΣ='$search' OR ΠΕΡΙΟΧΗ='$search'";
+        $sql = "SELECT * FROM PARKING WHERE ΟΔΟΣ LIKE '%$search%' OR ΠΕΡΙΟΧΗ LIKE '%$search%'";
         $result = mysqli_query($link, $sql);
         if (mysqli_num_rows($result) == 0) {
             echo "<p><br><br> Δεν βρέθηκαν θέσεις πάρκινγκ. </p>";
