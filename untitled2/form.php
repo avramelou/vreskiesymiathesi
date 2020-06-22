@@ -88,13 +88,13 @@ if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]=="user")
 <?php
 if (isset($_POST['submit'])) {
     $name=$_POST['Name'];
-    $lastName=$_POST['LastName'];
+    $surname=$_POST['SURNAME'];
     $email=$_POST['Email'];
     $tel=$_POST['Tel'];
     $comments=$_POST['Comments'];
 
     $link=mysqli_connect('localhost',"root","eresos4ever","CONTACT_FORM");
-    $sql="INSERT INTO CONTACT_FORM (NAME , SURNAME, EMAIL, TELEPHONE, COMMENTS) VALUES ('".$name."', '".$lastName."', '".$email."', '".$tel."', '".$comments."')";
+    $sql="INSERT INTO CONTACT_FORM (NAME , SURNAME, EMAIL, TELEPHONE, COMMENTS) VALUES ('".$name."', '".$surname."', '".$email."', '".$tel."', '".$comments."')";
 
     echo "<style> .form-contact{ margin-top: 0}</style>";
     if(mysqli_query($link,$sql)) {
@@ -103,6 +103,14 @@ if (isset($_POST['submit'])) {
     }
     else {
         echo "<p align='center' style='margin-top: 120px'><mark style='background: #FF7D75'><i class=\"fa fa-exclamation-triangle\"></i> Σφάλμα. Δοκιμάστε ξανά.</mark></p>";
+    }
+
+    if(!isset($_SESSION["LOGGED IN"])){
+        $name = "";
+        $surname = "";
+        $email = "";
+        $tel = "";
+        $comments = "";
     }
 
 }
