@@ -88,7 +88,7 @@ if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]=="user")
 <?php
 if (isset($_POST['submit'])) {
     $name=$_POST['Name'];
-    $surname=$_POST['SURNAME'];
+    $surname=$_POST['Surname'];
     $email=$_POST['Email'];
     $tel=$_POST['Tel'];
     $comments=$_POST['Comments'];
@@ -124,8 +124,8 @@ if (isset($_POST['submit'])) {
         <input type="text" name="Name" id="inputName" value="<?=$name;?>" required><a style="color: red" > *</a><br>
     </div>
     <div>
-        <label for="inputLastname">Επώνυμο:</label><br>
-        <input type="text" name="LastName" id="inputLastname" value="<?=$surname;?>" required><a style="color: red" > *</a><br>
+        <label for="inputSurname">Επώνυμο:</label><br>
+        <input type="text" name="Surname" id="inputSurname" value="<?=$surname;?>" required><a style="color: red" > *</a><br>
     </div>
     <div>
         <label for="inputEmail"><i class="fas fa-at"></i> Email:</label><br>
