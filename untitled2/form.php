@@ -98,7 +98,23 @@ if (isset($_POST['submit'])) {
 
     echo "<style> .form-contact{ margin-top: 0}</style>";
     if(mysqli_query($link,$sql)) {
-
+        if(isset($_SESSION["LOGGED IN"]) && $_SESSION["LOGGED IN"]=="user")
+        {
+            $username=$_SESSION["username"];
+            $link=mysqli_connect('localhost',"root","eresos4ever","USER_MAP");
+            $sql="SELECT * FROM USER WHERE USERNAME='$username'";
+            $result=mysqli_query($link,$sql);
+            $row=mysqli_fetch_assoc($result);
+            $name=$row['NAME'];
+            $surname=$row['SURNAME'];
+            $email=$row['EMAIL'];
+            $tel=$row['TELEPHONE'];
+        }else{
+            $name="";
+            $surname="";
+            $email="";
+            $tel="";
+        }
         echo "<p align='center' style='margin-top: 120px'><mark style='background: #BDFFA7'><i class=\"far fa-check-circle\"></i> Ευχαριστούμε που επικοινωνήσατε μαζί μας.</mark></p>";
     }
     else {

@@ -84,6 +84,8 @@ if (isset($_POST['update'])) {
                 $id=$row['ID'];
                 $sql="UPDATE USER SET USERNAME='$username1', PASSWORD='$passwordnew' WHERE ID=$id";
                 if(mysqli_query($link,$sql)) {
+                    $_SESSION["username"] = $username1;
+                    $_SESSION["password"] = $passwordnew;
                     echo "<script>alert('Η ενημέρωση ολοκληρώθηκε επιτυχώς.');</script>";
                 }
                 else {

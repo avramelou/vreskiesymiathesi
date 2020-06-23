@@ -221,7 +221,7 @@ if (isset($_POST['submit'])) {
     $sql="SELECT PARKING.ID, ΟΔΟΣ, ΑΡΙΘΜΟΣ, ΠΕΡΙΟΧΗ, SITE FROM PARKING, FAVOURITES, USER WHERE USER.ID=USER_ID AND LOCATION_ID=PARKING.ID AND USERNAME='$username'";
     $result = mysqli_query($link, $sql);
     if(mysqli_num_rows($result)==0){
-        echo "Δεν υπάρχουν θέσεις στα αγαπημένα.";
+        echo "Δεν υπάρχουν θέσεις στα αγαπημένα. <br>";
     }
 
     for ($i = 0; $i < mysqli_num_rows($result); $i++) {
@@ -233,14 +233,13 @@ if (isset($_POST['submit'])) {
         echo "<p><br> <a href='deletefavorites.php?id=$id' ><i title='Αφαίρεση' style='color: red' class='fas fa-heart'></i></a>  $show <a href='$site' target='_blank' title='Άνοιγμα στο GoogleMaps'> <i style='color: blue' class=\"fas fa-map-marker-alt\"></i></a> </p>";
     }
     ?>
-    <br>
 
     <br>
     <form method="post" action="profil.php">
         <br>
         <h5>Αναζητήστε μια θέση</h5>
         <input type="text" id="search" placeholder="Αναζήτηση..." name="search" class="search-box-input"  value="<?=$search;?>">
-        <button class="submit-signup" type="submit" name="submit" value="submit" style="margin-top: 1%;"><i class="fa fa-search"></i> Νέα θέση</button>
+        <button class="search-box-button" type="submit" name="submit" value="submit"><i class="fa fa-search"></i></button>
     </form>
 
     <?php
