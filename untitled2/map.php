@@ -121,6 +121,7 @@ if ($_POST['submit']=="submit") {
 
     <div >
         <iframe class="map-frame" src="https://www.google.com/maps/d/embed?mid=1FJTcgJvioT3JF0h0GYj7WNzUtmOH-efl"></iframe>
+        <p>* Όλες οι θέσεις πάρκινγκ που απεικονίζονται αντλήθηκαν από δεδομένα που προσφέρει ο Δήμος Θεσσαλονίκης</p>
     </div>
 </div>
 
