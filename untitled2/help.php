@@ -91,7 +91,7 @@ $_SESSION["search"] = "";
     <p class="text-help-style"> Μπορείτε να συνδεθείτε στον λογαριασμό σας πατώντας <a href="login.php">εδώ</a> ή πατώντας πάνω δεξιά
         το κουμπί "Σύνδεση", όπου θα πρέπει να εισάγετε τα στοιχεία σας (όνομα χρήστη και κωδικό πρόσβασης) και να πατήσετε το κουμπί "Σύνδεση".</p>
     <h5 class="header-help-style">6. Τι δικαιολογητικά χρειάζονται για θέση στάθμευσης ΑΜΕΑ;</h5>
-    <p class="text-help-style">Μπορείτε να βρείτε πληροφορίες για τα δικαιολογητικά που χρειάζονται πατώντας <a href="https://www.dikaiologitika.gr/arxeio/1979/dikaiologitika-gia-thesi-stathmefsis-amea" target="_blank">εδώ</a>. </p><br>
+    <p class="text-help-style">Μπορείτε να βρείτε πληροφορίες για τα δικαιολογητικά που χρειάζονται πατώντας <a href="https://www.dikaiologitika.gr/arxeio/1979/dikaiologitika-gia-thesi-stathmefsis-amea" target="_blank" title="άνοιγμα στο dikaiologitika.gr">εδώ</a>. </p><br>
     <h5 class="header-help-style"><b>Για οποιαδήποτε άλλη απορία μπορείτε να επικοινωνήσετε μαζί μας μέσω της <a
                     href="form.php">φόρμας επικοινωνίας.</a></b></h5>
 </div>
